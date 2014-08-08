@@ -97,6 +97,8 @@ App.FormValidation = (function() {
       _validate($el);
     } else if ( event.type === 'submit' ) {
       // Validate all fields in form
+      console.log('submitting form');
+      return false;
     }
   }
 
@@ -113,7 +115,7 @@ App.FormValidation = (function() {
         $validationType = $this.data('validation'), // Get types of validations for this field
         $value = $this.val(), // Field value
         $length = $value.length, // Field value length
-        emailRegExp = /^[\wæøå.-0-9a-zA-Z.+_]+@[\wæøå.-0-9a-zA-Z.+_]+\.[\wæøå.a-zA-Z]{2,}$/i;
+        emailRegExp = /^[\wæøå.-0-9a-zA-Z.+_]+@[\wæøå.-0-9a-zA-Z.+_]+\.[\wæøå.a-zA-Z]{2,}$/i; // Email validation regular expression
 
     // if( $length < 2 ) {
     //   $this.removeClass(classNames.valid);
@@ -143,7 +145,7 @@ App.FormValidation = (function() {
       if ( $validationType.indexOf( validationTypes.email ) !== -1 ) {
         console.log('..and it wants us to validate EMAIL!');
 
-        if ($length !== 0 && !emailRegExp.test( $value ) ) {
+        if ( !emailRegExp.test( $value ) ) {
           $this.removeClass(classNames.valid);
           $this.addClass(classNames.invalid).addClass(validationTypes.email);
           validation = false;
@@ -165,33 +167,33 @@ App.FormValidation = (function() {
     //     }
     //   }
     // }
-    else if( $type === undefined && $value === "0" ) {
-      $this.removeClass(classNames.valid);
-      $this.addClass(classNames.invalid);
-      validation = false;
-    }
-    else if( $type === 'checkbox' && $this.prop('checked') === false ) {
-      $this.removeClass(classNames.valid);
-      $this.addClass(classNames.invalid);
-      validation = false;
-    }
-    else if( $type === 'email' && !emailRegExp.test( $value ) ) {
-      $this.removeClass(classNames.valid);
-      $this.addClass(classNames.invalid);
-      validation = false;
-    }
+    // else if( $type === undefined && $value === "0" ) {
+    //   $this.removeClass(classNames.valid);
+    //   $this.addClass(classNames.invalid);
+    //   validation = false;
+    // }
+    // else if( $type === 'checkbox' && $this.prop('checked') === false ) {
+    //   $this.removeClass(classNames.valid);
+    //   $this.addClass(classNames.invalid);
+    //   validation = false;
+    // }
+    // else if( $type === 'email' && !emailRegExp.test( $value ) ) {
+    //   $this.removeClass(classNames.valid);
+    //   $this.addClass(classNames.invalid);
+    //   validation = false;
+    // }
     // REQUIRED CHECKBOX
     // else if( $this.prop('checked') && $this.hasClass('js-user-login') ) {
     //   $this.removeClass(classNames.valid);
     //   $this.addClass(classNames.invalid);
     //   validation = false;
     // }
-    else {
-      // If all is valid, return validation
-      $this.removeClass(classNames.invalid);
-      $this.addClass(classNames.valid);
-      validation = true;
-    }
+    // else {
+    //   // If all is valid, return validation
+    //   $this.removeClass(classNames.invalid);
+    //   $this.addClass(classNames.valid);
+    //   validation = true;
+    // }
 
     return validation;
   }

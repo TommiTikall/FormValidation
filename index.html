@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+
+    <title>Form validation</title>
+
+    <meta name="description" content="Form validation">
+    <meta name="viewport" content="width=device-width">
+
+    <link href="stylesheets/main.css" rel="stylesheet">
+
+    <script>
+    // Replace no-js css class with js css class
+    document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, 'js');
+    </script>
+
+    <!--[if lt IE 9]>
+      <script src="javascripts/lib/html5shiv-3.7.2.js"></script>
+    <![endif]-->
+
+    <meta name="robots" content="noindex, nofollow">
+
+  </head>
+  <body>
+
+    <section class="container">
+      <h1>Form validation</h1>
+      <h2>Generic HTML, CSS and Javascript approach</h2>
+    </section>
+
+    <section class="container">
+      <form class="js-form">
+        <div class="input-row">
+          <label>First name</label>
+          <input type="text" data-validation="required" tabindex="1" />
+          <div class="errors">
+            <span class="error" data-error="required">This field is required</span>
+          </div>
+        </div>
+        <div class="input-row nth2">
+          <label>Last name</label>
+          <input type="text" data-validation="required" tabindex="2" />
+          <div class="errors">
+            <span class="error" data-error="required">This field is required</span>
+          </div>
+        </div>
+        <div class="input-row">
+          <label>E-mail</label>
+          <input type="email" data-validation="required email" tabindex="3" />
+          <div class="errors">
+            <span class="error" data-error="required">This field is required</span>
+            <span class="error" data-error="email">This is not a valid e-mail</span>
+          </div>
+        </div>
+        <div class="input-row">
+          <input type="submit" class="js-submit" data-validation-when="field-blur" />
+        </div>
+      </form>
+    </section>
+
+    <!-- <footer></footer> -->
+
+    <!-- JavaScript at the bottom for fast page loading -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="javascripts/lib/jquery-1.11.1.js"><\/script>')</script>
+
+    <script src="javascripts/main-min.js"></script>
+
+  </body>
+</html>

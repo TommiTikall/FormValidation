@@ -1,0 +1,89 @@
+// ===================================================
+//
+// Forms
+//
+// ===================================================
+
+
+// Field validation styles
+// ===================================================
+
+textarea,
+[type="url"],
+[type="file"],
+[type="text"],
+[type="date"],
+[type="time"],
+[type="week"],
+[type="email"],
+[type="month"],
+[type="color"],
+[type="number"],
+[type="search"],
+[type="password"],
+[type="datetime"],
+[type="datetime-local"] {
+  &[data-validation="required"] {
+
+  }
+}
+
+
+// Field errors
+// ===================================================
+.validation-summary,
+.validation-summary-message,
+.error {
+  color: $color-error;
+  display: none;
+
+  &.visible {
+    display: block;
+  }
+}
+
+.validation-summary,
+.error, {
+  background: lighten($color-error, 40%);
+  padding: 20px;
+}
+
+.errors {
+  margin-top: 5px;
+}
+
+.error {
+  padding: 5px 20px;
+}
+
+
+
+// Show / Hide individual validation messages for fields
+// ===================================================
+
+[type="text"],
+[type="email"],
+[type="number"],
+[type="search"],
+[type="password"] {
+
+  // When field is valid
+  &.valid {
+    border-color: $color-valid;
+    background: lighten($color-valid, 40%);
+  }
+
+  // When field is invalid
+  &.invalid {
+    border-color: $color-error;
+    background: lighten($color-error, 40%);
+
+    // Show the related field validation message
+    &.required + .errors [data-error="required"] {
+      display: block;
+    }
+    &.email + .errors [data-error="email"] {
+      display: block;
+    }
+  }
+}

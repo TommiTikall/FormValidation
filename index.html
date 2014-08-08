@@ -25,49 +25,111 @@
     <meta name="robots" content="noindex, nofollow">
 
   </head>
+  <!-- <body onload="prettyPrint()"> -->
   <body>
 
-    <section class="container">
-      <h1>Form validation</h1>
-      <h2>Generic HTML, CSS and Javascript approach</h2>
-    </section>
+    <main class="main">
+      <section class="container content">
+        <h1>Form validation</h1>
+        <h2>Generic HTML, CSS and Javascript approach</h2>
+        <p>This form validation relies heavily on markup. This means that the javascript will look at the field to determine what to validate. This is practical for when developing with CMS</p>
+      </section>
 
-    <section class="container">
-      <form class="js-form" data-validation-when="keyup field-blur submit">
-        <div class="input-row">
-          <label>First name</label>
-          <input type="text" data-validation="required" tabindex="1" />
-          <div class="errors">
-            <span class="error" data-error="required">This field is required</span>
-          </div>
-        </div>
-        <div class="input-row nth2">
-          <label>Last name</label>
-          <input type="text" data-validation="required" tabindex="2" />
-          <div class="errors">
-            <span class="error" data-error="required">This field is required</span>
-          </div>
-        </div>
-        <div class="input-row">
-          <label>E-mail</label>
-          <input type="email" data-validation="required email" tabindex="3" />
-          <div class="errors">
-            <span class="error" data-error="required">This field is required</span>
-            <span class="error" data-error="email">This is not a valid e-mail</span>
-          </div>
-        </div>
-        <div class="input-row">
-          <input type="submit" onclick="return false" class="js-submit" />
-        </div>
-      </form>
-    </section>
+      <section class="container content">
+        <div class="column">
+          <form class="js-form" data-validation-when="keyup field-blur submit">
+            <div class="input-row">
+              <label>Text validation</label>
+              <input type="text" data-validation="required" tabindex="1" />
+              <div class="errors">
+                <span class="error" data-error="required">This field is required</span>
+              </div>
+            </div>
 
-    <!-- <footer></footer> -->
+            <div class="input-row">
+              <label>E-mail validation</label>
+              <input type="email" data-validation="required email" tabindex="2" />
+              <div class="errors">
+                <span class="error" data-error="required">This field is required</span>
+                <span class="error" data-error="email">This is not a valid e-mail</span>
+              </div>
+            </div>
+
+            <div class="input-row">
+              <label>Number validation</label>
+              <input type="text" data-validation="required number" tabindex="3" />
+              <div class="errors">
+                <span class="error" data-error="required">This field is required</span>
+                <span class="error" data-error="required">You can only input numbers here</span>
+              </div>
+            </div>
+
+            <div class="input-row">
+              <label>Password</label>
+              <input type="password" data-validation1="required email" tabindex="3" />
+              <div class="errors">
+                <span class="error" data-error="required">This field is required</span>
+              </div>
+            </div>
+
+            <div class="input-row">
+              <input type="submit" onclick="return false" class="js-submit" tabindex="20" />
+            </div>
+          </form>
+        </div>
+
+        <div class="column">
+          <article>
+            <header>
+              <h2>Documentation</h2>
+              <!-- <h3>How to make this work on any form</h3> -->
+            </header>
+            <section>
+              <h3>Field data attributes</h3>
+              <p>Talk about how with the use of data-attributes in html elements to make the script validate the form</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed elementum dapibus dui et dignissim. Etiam a imperdiet enim. Fusce augue massa, facilisis ac tempor commodo, dictum facilisis nisl. Sed pharetra et elit tincidunt iaculis. Maecenas nec justo nec magna porttitor commodo. Sed massa lectus, eleifend sodales tortor id, convallis vulputate velit. Suspendisse a semper lectus, nec lobortis est. Proin posuere id nisi at consectetur.</p>
+              <p>Vestibulum eget bibendum ante, id tempor libero. Curabitur placerat vehicula nulla, sed luctus lectus mollis feugiat. Cras cursus blandit sem in auctor. Nam pretium vehicula lobortis. Proin dolor ante, dignissim sed nisi ac, imperdiet dictum lacus. Curabitur suscipit nibh quis enim rutrum, non convallis dui ultrices. Quisque rhoncus orci et justo dapibus, non posuere mauris tempor. Phasellus faucibus pharetra mauris, eget lobortis libero varius quis. Sed in orci lobortis, sodales nisl at, tincidunt mauris. Vestibulum laoreet suscipit mi non faucibus. Pellentesque faucibus, velit sit amet vulputate facilisis, tellus orci cursus augue, vel iaculis sapien magna id enim.</p>
+            </section>
+        </div>
+      </section>
+
+      <!-- Code blocks section -->
+      <section class="container content">
+        <header>
+          <h2>Code examples</h2>
+        </header>
+        <div class="code-example">
+          <p class="code-example__header">Single field demo</p>
+            <pre class="prettyprint linenums">
+&lt;!-- Single field demo --&gt;
+&lt;div class="input-row"&gt;
+  &lt;label&gt;E-mail&lt;/label&gt;
+  &lt;input type="email" data-validation="required email" tabindex="3" /&gt;
+  &lt;!-- The error container, containing an error message per data-validation property --&gt;
+  &lt;div class="errors"&gt;
+    &lt;span class="error" data-error="required"&gt;This field is required&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+          </div>
+      </section>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="site-footer__column">
+          Created by Tómas Thorvardarson
+        </div>
+        <div class="site-footer__column">
+          <a href="mailto:tomasthorvardarson@gmail.com">tomasthorvardarson@gmail.com</a>
+        </div>
+        <div class="site-footer__column">
+          <a href="https://twitter.com/TommiTikall">@TommiTikall</a>
+        </div>
+      </div>
+    </footer>
 
     <!-- JavaScript at the bottom for fast page loading -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="javascripts/lib/jquery-1.11.1.js"><\/script>')</script>
-
     <script src="javascripts/main-min.js"></script>
 
   </body>

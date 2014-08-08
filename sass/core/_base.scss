@@ -14,7 +14,7 @@ body {
   font-family: $font;
   line-height: 1.3;
   margin: 0 auto;
-  @include font-size(12px);
+  @include font-size(15px);
 
   // Show layout labels when in development mode
   @if $showbreakpoints == true {
@@ -27,6 +27,7 @@ body {
       position: fixed;
         bottom: 0;
         left: 0;
+        z-index: 100;
       @include at-breakpoint($layout-m) {   content: "layout-m"; }
       @include at-breakpoint($layout-l) {   content: "layout-l"; }
       @include at-breakpoint($layout-xl) {  content: "layout-xl (with IE fallback)"; }
@@ -57,6 +58,7 @@ h5 { font-size: 14px; font-size: 1.4rem; }
 
 // Paragraphs
 p {
+  line-height: 1.5;
   margin-bottom: 1rem;
 }
 
@@ -98,12 +100,34 @@ ol { list-style: decimal; }
 
 nav ul { list-style: none; }
 
+// pre {
+//   font-size: 13px;
+//   padding: 10px;
+//   border: solid 1px #999;
+//   background: #fbeec2;
+//   counter-reset: code-lines;
+// }
+
+// pre {
+//   overflow-x: auto;
+//   word-wrap: normal;
+//   white-space: nowrap;
+//   // white-space: pre;
+//   // white-space: pre-wrap;       /* css-3 */
+//   // white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+//   // white-space: -pre-wrap;      /* Opera 4-6 */
+//   // white-space: -o-pre-wrap;    /* Opera 7 */
+//   // word-wrap: break-word;       /* Internet Explorer 5.5+ */
+// }
+
+
 
 // Forms
 // ==========================================================================
 
 .input-row {
-  @extend %form-column;
+  @extend %clearfix;
+  padding: 10px 0 0;
 }
 
 textarea,
@@ -120,7 +144,7 @@ textarea,
 [type="search"],
 [type="password"],
 [type="datetime"],
-[type="datetime-local"], {
+[type="datetime-local"] {
   background-color: $theme-color-primary;
   border: solid 1px $color-border;
   display: block;
@@ -131,6 +155,7 @@ textarea,
   @include appearance( none );
   @include box-sizing(border-box);
   @include transition(border-color 0.3s);
+  @include border-radius(0);
   &:focus {
     border-color: $color-border-dark;
     outline: 0;
@@ -150,7 +175,10 @@ textarea {
 [type="submit"],
 [type="reset"],
 [type="button"],
-button { @extend %button; }
+button {
+  @extend %button;
+  float: right;
+}
 
 [type="checkbox"] {
   background: #fff;
@@ -181,7 +209,6 @@ button { @extend %button; }
 label {
   @extend %emphasize;
   display: inline-block;
-  @include rem( margin, 10px 0 );
 }
 
 // Tables

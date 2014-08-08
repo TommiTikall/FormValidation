@@ -377,8 +377,8 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   line-height: 1.3;
   margin: 0 auto;
-  font-size: 12px;
-  font-size: 1.2rem; }
+  font-size: 15px;
+  font-size: 1.5rem; }
   /* line 21, ../sass/core/_base.scss */
   body::before {
     background: rgba(0, 0, 0, 0.5);
@@ -388,12 +388,13 @@ body {
     padding: 5px 10px;
     position: fixed;
     bottom: 0;
-    left: 0; }
+    left: 0;
+    z-index: 100; }
     @media (min-width: 300px) {
       /* line 21, ../sass/core/_base.scss */
       body::before {
         content: "layout-m"; } }
-    @media (min-width: 481px) {
+    @media (min-width: 479px) {
       /* line 21, ../sass/core/_base.scss */
       body::before {
         content: "layout-l"; } }
@@ -409,88 +410,93 @@ body {
       body::before {
         content: "layout-xxl"; } }
 
-/* line 42, ../sass/core/_base.scss */
+/* line 43, ../sass/core/_base.scss */
 h1, h2, h3 {
   color: #333333;
   font-family: Ubuntu, "Helvetica Neue", "Arial Bold", sans-serif;
   margin-bottom: 10px;
   margin-bottom: 1rem; }
 
-/* line 52, ../sass/core/_base.scss */
+/* line 53, ../sass/core/_base.scss */
 h1 {
   font-size: 30px;
   font-size: 3rem; }
 
-/* line 53, ../sass/core/_base.scss */
+/* line 54, ../sass/core/_base.scss */
 h2 {
   font-size: 24px;
   font-size: 2.4rem; }
 
-/* line 54, ../sass/core/_base.scss */
+/* line 55, ../sass/core/_base.scss */
 h3 {
   font-size: 20px;
   font-size: 2rem; }
 
-/* line 55, ../sass/core/_base.scss */
+/* line 56, ../sass/core/_base.scss */
 h4 {
   font-size: 18px;
   font-size: 1.8rem; }
 
-/* line 56, ../sass/core/_base.scss */
+/* line 57, ../sass/core/_base.scss */
 h5 {
   font-size: 14px;
   font-size: 1.4rem; }
 
-/* line 59, ../sass/core/_base.scss */
+/* line 60, ../sass/core/_base.scss */
 p {
+  line-height: 1.5;
   margin-bottom: 1rem; }
 
-/* line 64, ../sass/core/_base.scss */
+/* line 66, ../sass/core/_base.scss */
 a {
-  color: #00bbee;
+  color: #303030;
   text-decoration: none; }
-  /* line 67, ../sass/core/_base.scss */
+  /* line 69, ../sass/core/_base.scss */
   a:hover, a:focus {
-    color: #3cd5ff;
+    color: #565656;
     text-decoration: underline; }
-  /* line 72, ../sass/core/_base.scss */
+  /* line 74, ../sass/core/_base.scss */
   a:focus {
     box-shadow: 0;
-    outline: dotted thin #3cd5ff; }
+    outline: dotted thin #565656; }
 
-/* line 79, ../sass/core/_base.scss */
+/* line 81, ../sass/core/_base.scss */
 ::selection {
   background: #1bb2e0;
   color: #ffdd00;
   text-shadow: none; }
 
-/* line 85, ../sass/core/_base.scss */
+/* line 87, ../sass/core/_base.scss */
 ::-moz-selection {
   background: #1bb2e0;
   color: #ffdd00;
   text-shadow: none; }
 
-/* line 92, ../sass/core/_base.scss */
+/* line 94, ../sass/core/_base.scss */
 em {
   font-style: italic; }
 
-/* line 93, ../sass/core/_base.scss */
+/* line 95, ../sass/core/_base.scss */
 strong {
   font-weight: bold; }
 
-/* line 96, ../sass/core/_base.scss */
+/* line 98, ../sass/core/_base.scss */
 ul {
   list-style: disc; }
 
-/* line 97, ../sass/core/_base.scss */
+/* line 99, ../sass/core/_base.scss */
 ol {
   list-style: decimal; }
 
-/* line 99, ../sass/core/_base.scss */
+/* line 101, ../sass/core/_base.scss */
 nav ul {
   list-style: none; }
 
-/* line 109, ../sass/core/_base.scss */
+/* line 128, ../sass/core/_base.scss */
+.input-row {
+  padding: 10px 0 0; }
+
+/* line 133, ../sass/core/_base.scss */
 textarea,
 [type="url"],
 [type="file"],
@@ -521,8 +527,11 @@ textarea,
   -moz-transition: border-color 0.3s;
   -o-transition: border-color 0.3s;
   -webkit-transition: border-color 0.3s;
-  transition: border-color 0.3s; }
-  /* line 134, ../sass/core/_base.scss */
+  transition: border-color 0.3s;
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  border-radius: 0; }
+  /* line 159, ../sass/core/_base.scss */
   textarea:focus,
   [type="url"]:focus,
   [type="file"]:focus,
@@ -544,7 +553,7 @@ textarea,
     -o-transition: border-color 0.2s;
     -webkit-transition: border-color 0.2s;
     transition: border-color 0.2s; }
-  /* line 139, ../sass/core/_base.scss */
+  /* line 164, ../sass/core/_base.scss */
   textarea:disabled,
   [type="url"]:disabled,
   [type="file"]:disabled,
@@ -563,12 +572,19 @@ textarea,
     cursor: not-allowed;
     opacity: 0.5; }
 
-/* line 145, ../sass/core/_base.scss */
+/* line 170, ../sass/core/_base.scss */
 textarea {
   min-height: 90px;
   resize: vertical; }
 
-/* line 155, ../sass/core/_base.scss */
+/* line 175, ../sass/core/_base.scss */
+[type="submit"],
+[type="reset"],
+[type="button"],
+button {
+  float: right; }
+
+/* line 183, ../sass/core/_base.scss */
 [type="checkbox"] {
   background: #fff;
   border: none;
@@ -580,7 +596,7 @@ textarea {
   height: 1.6rem;
   width: 16px;
   width: 1.6rem; }
-  /* line 163, ../sass/core/_base.scss */
+  /* line 191, ../sass/core/_base.scss */
   [type="checkbox"]:after {
     border: 1px solid #333333;
     content: "";
@@ -591,19 +607,17 @@ textarea {
     text-align: center;
     width: 100%;
     height: 100%; }
-  /* line 174, ../sass/core/_base.scss */
+  /* line 202, ../sass/core/_base.scss */
   [type="checkbox"]:checked:after {
     content: "\2713"; }
-  /* line 175, ../sass/core/_base.scss */
+  /* line 203, ../sass/core/_base.scss */
   label > [type="checkbox"] {
     float: left;
     margin-right: 1em; }
 
-/* line 181, ../sass/core/_base.scss */
+/* line 209, ../sass/core/_base.scss */
 label {
-  display: inline-block;
-  margin: 10px 0;
-  margin:  1rem 0; }
+  display: inline-block; }
 
 /* line 5, ../sass/core/_templates.scss */
 .container {
@@ -611,14 +625,14 @@ label {
   max-width: 330px;
   max-width: 33rem;
   _width: 330px;
-  padding-left: 10px;
-  padding-left: 1rem;
-  padding-right: 10px;
-  padding-right: 1rem;
+  padding-left: 15px;
+  padding-left: 1.5rem;
+  padding-right: 15px;
+  padding-right: 1.5rem;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 10px;
-  padding-right: 10px; }
+  padding-left: 15px;
+  padding-right: 15px; }
   /* line 38, ../../../../.rvm/gems/ruby-2.0.0-p247@new_sass/gems/compass-core-1.0.0.alpha.19/stylesheets/compass/utilities/general/_clearfix.scss */
   .container:after {
     content: "";
@@ -629,7 +643,7 @@ label {
     .container {
       max-width: 510px;
       max-width: 51rem; } }
-  @media (min-width: 481px) {
+  @media (min-width: 479px) {
     /* line 5, ../sass/core/_templates.scss */
     .container {
       max-width: 690px;
@@ -650,7 +664,7 @@ label {
       max-width: 1050px;
       max-width: 105rem; } }
 
-/* line 20, ../sass/core/_templates.scss */
+/* line 21, ../sass/core/_templates.scss */
 [type="submit"],
 [type="reset"],
 [type="button"],
@@ -659,7 +673,7 @@ button, .button, .button-primary, .button-secondary {
   -webkit-border-radius: 4px;
   border-radius: 4px; }
 
-/* line 24, ../sass/core/_templates.scss */
+/* line 25, ../sass/core/_templates.scss */
 [type="submit"],
 [type="reset"],
 [type="button"],
@@ -668,42 +682,41 @@ button, .button, .button-primary, .button-secondary {
   -webkit-border-radius: 4px;
   border-radius: 4px; }
 
-/* line 28, ../sass/core/_templates.scss */
+/* line 29, ../sass/core/_templates.scss */
 label {
   line-height: 1.5; }
 
-/* line 32, ../sass/core/_templates.scss */
-.input-row {
-  clear: both;
-  margin-bottom: 10px; }
-  @media (min-width: 481px) {
-    /* line 32, ../sass/core/_templates.scss */
-    .input-row {
-      width: 60.86957%;
-      float: left;
-      margin-right: 4.34783%; } }
-  /* line 87, ../../../../.rvm/gems/ruby-2.0.0-p247@new_sass/gems/susy-2.1.1/sass/susy/language/susyone/_media.scss */
-  .lt-ie9 .input-row {
-    width: 60.86957%;
-    float: left;
-    margin-right: 4.34783%;
-    display: inline; }
+/* line 34, ../sass/core/_templates.scss */
+.column {
+  padding: 10px 0 50px;
+  padding:  1rem 0 5rem; }
   @media (min-width: 700px) {
-    /* line 32, ../sass/core/_templates.scss */
-    .input-row {
+    /* line 34, ../sass/core/_templates.scss */
+    .column {
       width: 48.57143%;
       float: left;
       margin-right: 2.85714%; }
-      /* line 43, ../sass/core/_templates.scss */
-      .nth2.input-row {
-        float: left;
-        margin-right: 2.85714%; } }
+      /* line 39, ../sass/core/_templates.scss */
+      .column:nth-child(2n) {
+        float: right;
+        margin-right: 0; } }
   @media (min-width: 1000px) {
-    /* line 32, ../sass/core/_templates.scss */
-    .input-row {
-      width: 40%;
+    /* line 34, ../sass/core/_templates.scss */
+    .column {
+      width: 48.57143%;
       float: left;
       margin-right: 2.85714%; } }
+
+/* line 23, ../sass/core/_modules.scss */
+.input-row, .container {
+  *zoom: 1; }
+  /* line 31, ../sass/core/_modules.scss */
+  .input-row:before, .container:before, .input-row:after, .container:after {
+    content: " ";
+    display: table; }
+  /* line 37, ../sass/core/_modules.scss */
+  .input-row:after, .container:after {
+    clear: both; }
 
 /* line 48, ../sass/core/_modules.scss */
 [type="submit"],
@@ -787,6 +800,57 @@ button, .button, .button-primary, .button-secondary {
     box-shadow: 0 0 0 0 transparent;
     background: #FF9452; }
 
+/* line 7, ../sass/partials/_layout.scss */
+html, body {
+  margin: 0;
+  height: 100%; }
+
+/* line 12, ../sass/partials/_layout.scss */
+.main {
+  padding: 0 0 100px;
+  padding:  0 0 10rem; }
+
+/* line 16, ../sass/partials/_layout.scss */
+.content {
+  background: #f6f9fb; }
+
+/* line 25, ../sass/partials/_layout.scss */
+.site-footer {
+  background: #ffb347;
+  background: rgba(255, 179, 71, 0.9);
+  color: white;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 20px 0;
+  padding:  2rem 0; }
+
+/* line 36, ../sass/partials/_layout.scss */
+.site-footer__column {
+  padding: 5px 0;
+  text-align: center; }
+  @media (min-width: 700px) {
+    /* line 36, ../sass/partials/_layout.scss */
+    .site-footer__column {
+      width: 31.42857%;
+      float: left;
+      margin-right: 2.85714%; }
+      /* line 42, ../sass/partials/_layout.scss */
+      .site-footer__column:first-child {
+        text-align: left; }
+      /* line 45, ../sass/partials/_layout.scss */
+      .site-footer__column:nth-child(3n) {
+        text-align: right;
+        float: right;
+        margin-right: 0; } }
+  @media (min-width: 1000px) {
+    /* line 36, ../sass/partials/_layout.scss */
+    .site-footer__column {
+      width: 31.42857%;
+      float: left;
+      margin-right: 2.85714%; } }
+
 /* line 34, ../sass/partials/_forms.scss */
 .validation-summary,
 .validation-summary-message,
@@ -802,44 +866,201 @@ button, .button, .button-primary, .button-secondary {
 /* line 45, ../sass/partials/_forms.scss */
 .validation-summary,
 .error {
-  background: #efc1c1;
   padding: 20px; }
 
-/* line 51, ../sass/partials/_forms.scss */
+/* line 50, ../sass/partials/_forms.scss */
 .errors {
-  margin-top: 5px; }
+  background: #efc1c1;
+  border: solid 1px #b62e2e;
+  border-width: 0 1px 1px;
+  display: none; }
 
-/* line 55, ../sass/partials/_forms.scss */
+/* line 57, ../sass/partials/_forms.scss */
 .error {
-  padding: 5px 20px; }
+  padding: 0 10px 10px; }
 
-/* line 71, ../sass/partials/_forms.scss */
+/* line 75, ../sass/partials/_forms.scss */
 [type="text"].valid,
 [type="email"].valid,
 [type="number"].valid,
 [type="search"].valid,
 [type="password"].valid {
   border-color: #48b62e;
-  background: #caefc1; }
-/* line 77, ../sass/partials/_forms.scss */
+  background: #caefc1;
+  -moz-transition: none;
+  -o-transition: none;
+  -webkit-transition: none;
+  transition: none; }
+/* line 82, ../sass/partials/_forms.scss */
 [type="text"].invalid,
 [type="email"].invalid,
 [type="number"].invalid,
 [type="search"].invalid,
 [type="password"].invalid {
+  background: #efc1c1;
   border-color: #b62e2e;
-  background: #efc1c1; }
-  /* line 82, ../sass/partials/_forms.scss */
+  border-bottom: 0;
+  -moz-transition: none;
+  -o-transition: none;
+  -webkit-transition: none;
+  transition: none; }
+  /* line 89, ../sass/partials/_forms.scss */
+  [type="text"].invalid + .errors,
+  [type="email"].invalid + .errors,
+  [type="number"].invalid + .errors,
+  [type="search"].invalid + .errors,
+  [type="password"].invalid + .errors {
+    display: block; }
+  /* line 94, ../sass/partials/_forms.scss */
   [type="text"].invalid.required + .errors [data-error="required"],
   [type="email"].invalid.required + .errors [data-error="required"],
   [type="number"].invalid.required + .errors [data-error="required"],
   [type="search"].invalid.required + .errors [data-error="required"],
   [type="password"].invalid.required + .errors [data-error="required"] {
     display: block; }
-  /* line 85, ../sass/partials/_forms.scss */
+  /* line 97, ../sass/partials/_forms.scss */
   [type="text"].invalid.email + .errors [data-error="email"],
   [type="email"].invalid.email + .errors [data-error="email"],
   [type="number"].invalid.email + .errors [data-error="email"],
   [type="search"].invalid.email + .errors [data-error="email"],
   [type="password"].invalid.email + .errors [data-error="email"] {
     display: block; }
+
+/* Pretty printing styles. Used with prettify.js. */
+/* Vim sunburst theme by David Leibovic */
+/* line 4, ../sass/lib/prettify/_sunburst.scss */
+pre .str, code .str {
+  color: #65B042; }
+
+/* string  - green */
+/* line 5, ../sass/lib/prettify/_sunburst.scss */
+pre .kwd, code .kwd {
+  color: #E28964; }
+
+/* keyword - dark pink */
+/* line 6, ../sass/lib/prettify/_sunburst.scss */
+pre .com, code .com {
+  color: #AEAEAE;
+  font-style: italic; }
+
+/* comment - gray */
+/* line 7, ../sass/lib/prettify/_sunburst.scss */
+pre .typ, code .typ {
+  color: #89bdff; }
+
+/* type - light blue */
+/* line 8, ../sass/lib/prettify/_sunburst.scss */
+pre .lit, code .lit {
+  color: #3387CC; }
+
+/* literal - blue */
+/* line 9, ../sass/lib/prettify/_sunburst.scss */
+pre .pun, code .pun {
+  color: #fff; }
+
+/* punctuation - white */
+/* line 10, ../sass/lib/prettify/_sunburst.scss */
+pre .pln, code .pln {
+  color: #fff; }
+
+/* plaintext - white */
+/* line 11, ../sass/lib/prettify/_sunburst.scss */
+pre .tag, code .tag {
+  color: #89bdff; }
+
+/* html/xml tag    - light blue */
+/* line 12, ../sass/lib/prettify/_sunburst.scss */
+pre .atn, code .atn {
+  color: #bdb76b; }
+
+/* html/xml attribute name  - khaki */
+/* line 13, ../sass/lib/prettify/_sunburst.scss */
+pre .atv, code .atv {
+  color: #65B042; }
+
+/* html/xml attribute value - green */
+/* line 14, ../sass/lib/prettify/_sunburst.scss */
+pre .dec, code .dec {
+  color: #3387CC; }
+
+/* decimal - blue */
+/* line 16, ../sass/lib/prettify/_sunburst.scss */
+pre.prettyprint, code.prettyprint {
+  background-color: #000;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -o-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -khtml-border-radius: 8px;
+  border-radius: 8px; }
+
+/* line 26, ../sass/lib/prettify/_sunburst.scss */
+pre.prettyprint {
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  margin: 1em auto;
+  padding: 1em !important;
+  white-space: pre-wrap; }
+
+/* Specify class=linenums on a pre to get line numbering */
+/* line 37, ../sass/lib/prettify/_sunburst.scss */
+ol.linenums {
+  margin-top: 0;
+  margin-bottom: 0;
+  color: #AEAEAE; }
+
+/* IE indents via margin-left */
+/* line 38, ../sass/lib/prettify/_sunburst.scss */
+li.L0, li.L1, li.L2, li.L3, li.L5, li.L6, li.L7, li.L8 {
+  list-style-type: decimal !important; }
+
+/* Alternate shading for lines */
+/* line 40, ../sass/lib/prettify/_sunburst.scss */
+li.L1, li.L3, li.L5, li.L7, li.L9 {
+  background: none !important; }
+
+@media print {
+  /* line 43, ../sass/lib/prettify/_sunburst.scss */
+  pre .str, code .str {
+    color: #060; }
+
+  /* line 44, ../sass/lib/prettify/_sunburst.scss */
+  pre .kwd, code .kwd {
+    color: #006;
+    font-weight: bold; }
+
+  /* line 45, ../sass/lib/prettify/_sunburst.scss */
+  pre .com, code .com {
+    color: #600;
+    font-style: italic; }
+
+  /* line 46, ../sass/lib/prettify/_sunburst.scss */
+  pre .typ, code .typ {
+    color: #404;
+    font-weight: bold; }
+
+  /* line 47, ../sass/lib/prettify/_sunburst.scss */
+  pre .lit, code .lit {
+    color: #044; }
+
+  /* line 48, ../sass/lib/prettify/_sunburst.scss */
+  pre .pun, code .pun {
+    color: #440; }
+
+  /* line 49, ../sass/lib/prettify/_sunburst.scss */
+  pre .pln, code .pln {
+    color: #000; }
+
+  /* line 50, ../sass/lib/prettify/_sunburst.scss */
+  pre .tag, code .tag {
+    color: #006;
+    font-weight: bold; }
+
+  /* line 51, ../sass/lib/prettify/_sunburst.scss */
+  pre .atn, code .atn {
+    color: #404; }
+
+  /* line 52, ../sass/lib/prettify/_sunburst.scss */
+  pre .atv, code .atv {
+    color: #060; } }

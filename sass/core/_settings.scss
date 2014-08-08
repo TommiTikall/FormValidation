@@ -39,7 +39,7 @@ $color-selection-bg       : #1BB2E0;
 
 $color-border             : #aaa;
 
-$color-link               : #0BE;
+$color-link               : #303030;
 $color-link-hover         : lighten($color-link, 15%);
 
 // Form colors
@@ -51,7 +51,7 @@ $color-error              : #b62e2e;
 // Theme colors
 $theme-color-primary      : #fff;
 $theme-color-secondary    : #f6f9fb;
-$theme-color-tertiary     : #f0f3f5;
+$theme-color-tertiary     : #ffb347;
 $theme-color-quaternary   : #e3e6e8;
 
 
@@ -60,7 +60,7 @@ $theme-color-quaternary   : #e3e6e8;
 
 // Breakpoints (minimum widths!)
 $bp-s-m:    300px;
-$bp-m-l:    481px;
+$bp-m-l:    479px;
 $bp-l-xl:   700px;
 $bp-xl-xxl: 1000px;
 
@@ -87,7 +87,7 @@ $layouts: $layout-m $layout-l $layout-xl $layout-xxl;
 $total-columns: $cols-s;
 $column-width: 60px;
 $gutter-width: 30px;
-$grid-padding: $gutter-width / 3;
+$grid-padding: $gutter-width / 2;
 
 $container-style: magic; // "static", "fluid", "magic"
 

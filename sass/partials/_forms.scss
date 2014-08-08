@@ -24,7 +24,7 @@ textarea,
 [type="datetime"],
 [type="datetime-local"] {
   &[data-validation="required"] {
-
+    // Insert something that indicates required
   }
 }
 
@@ -44,16 +44,18 @@ textarea,
 
 .validation-summary,
 .error, {
-  background: lighten($color-error, 40%);
   padding: 20px;
 }
 
 .errors {
-  margin-top: 5px;
+  background: lighten($color-error, 40%);
+  border: solid 1px $color-error;
+  border-width: 0 1px 1px;
+  display: none;
 }
 
 .error {
-  padding: 5px 20px;
+  padding: 0 10px 10px;
 }
 
 
@@ -67,18 +69,28 @@ textarea,
 [type="search"],
 [type="password"] {
 
+  // @include transition(border-color, background 4s);
+
   // When field is valid
   &.valid {
     border-color: $color-valid;
     background: lighten($color-valid, 40%);
+    @include transition(none);
   }
 
   // When field is invalid
   &.invalid {
-    border-color: $color-error;
     background: lighten($color-error, 40%);
+    border-color: $color-error;
+    border-bottom: 0;
+    @include transition(none);
 
-    // Show the related field validation message
+    // Display errors container
+    & + .errors {
+      display: block;
+    }
+
+    // Display the relevant field validation message
     &.required + .errors [data-error="required"] {
       display: block;
     }

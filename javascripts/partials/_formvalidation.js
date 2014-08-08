@@ -1,8 +1,13 @@
 var App = App || {};
 
 /**
- * [description]
- * @return {[type]} [description]
+ * TODO
+ * - Do not validate email if field is empty [CHECK]
+ */
+
+
+/**
+ * Form validation
  */
 App.FormValidation = (function() {
   'use strict';
@@ -74,7 +79,7 @@ App.FormValidation = (function() {
    */
   function _addEventListeners() {
     dom.$validateField.on( 'focus', _pitStop );
-    dom.$validateField.on( 'blur', _pitStop );
+    // dom.$validateField.on( 'blur', _pitStop );
     dom.$validateField.on( 'keyup', _pitStop );
     dom.$submitButton.on( 'click', _pitStop );
   }
@@ -142,7 +147,7 @@ App.FormValidation = (function() {
 
       }
       // Check if field wants EMAIL validation on the side
-      if ( $validationType.indexOf( validationTypes.email ) !== -1 ) {
+      if ( $validationType.indexOf( validationTypes.email ) !== -1 && $length !== 0 ) {
         console.log('..and it wants us to validate EMAIL!');
 
         if ( !emailRegExp.test( $value ) ) {

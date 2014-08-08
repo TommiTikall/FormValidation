@@ -33,7 +33,7 @@
     </section>
 
     <section class="container">
-      <form class="js-form">
+      <form class="js-form" data-validation-when="keyup field-blur submit">
         <div class="input-row">
           <label>First name</label>
           <input type="text" data-validation="required" tabindex="1" />
@@ -57,7 +57,7 @@
           </div>
         </div>
         <div class="input-row">
-          <input type="submit" class="js-submit" data-validation-when="field-blur" />
+          <input type="submit" onclick="return false" class="js-submit" />
         </div>
       </form>
     </section>

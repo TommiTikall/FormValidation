@@ -3,6 +3,7 @@
 // A template is something you wouldn’t ever need to target in your application logic, and therefore can be safely extended with a preprocessor.
 
 %container {
+  @extend %clearfix;
   @include container;
   @include each-layout {
     @include set-container-width;
@@ -29,22 +30,17 @@
   line-height: 1.5;
 }
 
-%form-column {
-  clear: both;
-  margin-bottom: 10px;
-  @include at-breakpoint ($layout-l) {
-    @include span-columns(5);
-    // &.nth2 {
-    //   @include omega;
-    // }
-  }
+// Column two column layout
+%column {
+  @include rem( padding, 10px 0 50px );
+
   @include at-breakpoint ($layout-xl) {
     @include span-columns(6);
-    &.nth2 {
-      @include remove-omega;
+    &:nth-child(2n) {
+      @include omega;
     }
   }
   @include at-breakpoint ($layout-xxl) {
-    @include span-columns(5);
+    @include span-columns(6);
   }
 }

@@ -886,14 +886,18 @@ html, body {
   padding: 0 10px 10px; }
 
 /* line 70, ../sass/partials/_forms.scss */
-[data-validation~="required"] ~ .required-indicator {
-  position: absolute;
-  right: 15px;
-  top: 47px;
-  font-size: 35px;
-  font-size: 3.5rem; }
+.required-indicator {
+  display: none; }
+  /* line 73, ../sass/partials/_forms.scss */
+  [data-validation~="required"] ~ .required-indicator {
+    display: block;
+    position: absolute;
+    right: 15px;
+    top: 47px;
+    font-size: 35px;
+    font-size: 3.5rem; }
 
-/* line 86, ../sass/partials/_forms.scss */
+/* line 91, ../sass/partials/_forms.scss */
 [type="text"].valid,
 [type="email"].valid,
 [type="number"].valid,
@@ -905,7 +909,7 @@ html, body {
   -o-transition: none;
   -webkit-transition: none;
   transition: none; }
-/* line 93, ../sass/partials/_forms.scss */
+/* line 98, ../sass/partials/_forms.scss */
 [type="text"].invalid,
 [type="email"].invalid,
 [type="number"].invalid,
@@ -918,7 +922,7 @@ html, body {
   -o-transition: none;
   -webkit-transition: none;
   transition: none; }
-  /* line 101, ../sass/partials/_forms.scss */
+  /* line 106, ../sass/partials/_forms.scss */
   [type="text"].invalid + .errors,
   [type="email"].invalid + .errors,
   [type="number"].invalid + .errors,
@@ -926,28 +930,28 @@ html, body {
   [type="password"].invalid + .errors {
     display: block;
     padding-top: 10px; }
-  /* line 107, ../sass/partials/_forms.scss */
+  /* line 112, ../sass/partials/_forms.scss */
   [type="text"].invalid.required + .errors [data-error="required"],
   [type="email"].invalid.required + .errors [data-error="required"],
   [type="number"].invalid.required + .errors [data-error="required"],
   [type="search"].invalid.required + .errors [data-error="required"],
   [type="password"].invalid.required + .errors [data-error="required"] {
     display: block; }
-  /* line 110, ../sass/partials/_forms.scss */
+  /* line 115, ../sass/partials/_forms.scss */
   [type="text"].invalid.email + .errors [data-error="email"],
   [type="email"].invalid.email + .errors [data-error="email"],
   [type="number"].invalid.email + .errors [data-error="email"],
   [type="search"].invalid.email + .errors [data-error="email"],
   [type="password"].invalid.email + .errors [data-error="email"] {
     display: block; }
-  /* line 113, ../sass/partials/_forms.scss */
+  /* line 118, ../sass/partials/_forms.scss */
   [type="text"].invalid.number + .errors [data-error="number"],
   [type="email"].invalid.number + .errors [data-error="number"],
   [type="number"].invalid.number + .errors [data-error="number"],
   [type="search"].invalid.number + .errors [data-error="number"],
   [type="password"].invalid.number + .errors [data-error="number"] {
     display: block; }
-  /* line 116, ../sass/partials/_forms.scss */
+  /* line 121, ../sass/partials/_forms.scss */
   [type="text"].invalid.minchars + .errors [data-error="minchars"],
   [type="email"].invalid.minchars + .errors [data-error="minchars"],
   [type="number"].invalid.minchars + .errors [data-error="minchars"],

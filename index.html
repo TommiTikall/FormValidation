@@ -77,13 +77,14 @@
               <input type="password" data-validation="required minchars:6" tabindex="4">
               <ul class="errors">
                 <li class="error" data-error="required">This field is required</li>
+                <li class="error" data-error="minchars">There must be at least 6 characters</li>
               </ul>
               <div class="required-indicator">*</div>
             </div>
 
             <div class="input-row">
               <label>Minimun Characters</label>
-              <input type="text" data-validation="required minchars:6" tabindex="5">
+              <input type="text" data-validation="minchars:6" tabindex="5">
               <ul class="errors">
                 <li class="error" data-error="required">This field is required</li>
                 <li class="error" data-error="minchars">There must be at least 6 characters</li>

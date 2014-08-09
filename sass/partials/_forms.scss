@@ -67,11 +67,16 @@ textarea,
 // Show / Hide individual validation messages for fields
 // ===================================================
 
-[data-validation~="required"] ~ .required-indicator {
-  position: absolute;
+.required-indicator {
+  display: none;
+
+  [data-validation~="required"] ~  & {
+    display: block;
+    position: absolute;
     right: 15px;
     top: 47px;
-  @include font-size(35px);
+    @include font-size(35px);
+  }
 }
 
 [type="text"],

@@ -82,9 +82,9 @@ App.FormValidation = (function() {
    * Attach event listeners to DOM elements
    */
   function _addEventListeners() {
-    dom.$validateField.on( 'focus', _pitStop );
+    // dom.$validateField.on( 'focus', _pitStop );
     dom.$validateField.on( 'blur', _pitStop );
-    dom.$validateField.on( 'keyup', _pitStop );
+    // dom.$validateField.on( 'keyup', _pitStop );
     dom.$submitButton.on( 'click', _pitStop );
   }
 

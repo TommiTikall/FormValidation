@@ -30,7 +30,9 @@ App.FormValidation = (function() {
       validationTypes = {
         required : 'required',
         email : 'email',
-        password: 'password'
+        password: 'password',
+        number: 'number',
+        minchars: 'minchars'
       },
 
       // Group together fields that are text input fields
@@ -56,6 +58,8 @@ App.FormValidation = (function() {
 
     // Add event listeners
     _addEventListeners();
+
+    console.log(App.Global.IS_TOUCH);
   }
 
   /**
@@ -79,7 +83,7 @@ App.FormValidation = (function() {
    */
   function _addEventListeners() {
     dom.$validateField.on( 'focus', _pitStop );
-    // dom.$validateField.on( 'blur', _pitStop );
+    dom.$validateField.on( 'blur', _pitStop );
     dom.$validateField.on( 'keyup', _pitStop );
     dom.$submitButton.on( 'click', _pitStop );
   }
@@ -94,17 +98,27 @@ App.FormValidation = (function() {
   function _pitStop ( event ) {
     var $el = $( event.target ); // The form element in question
 
+    _validate($el);
+
     // Get event type to determine what to do next
-    if ( event.type === 'focus' || event.type === 'keyup' ) {
-      // console.log( 'element: ' + $el.data('validation') + '\nvalidation type(s): ' + [$el.data('validation').split(' ')] + '\n---------' );
-      _validate($el);
-    } else if ( event.type === 'blur' ) {
-      _validate($el);
-    } else if ( event.type === 'submit' ) {
-      // Validate all fields in form
-      console.log('submitting form');
-      return false;
-    }
+    // if ( event.type === 'keyup' ) {
+    //   _validate($el);
+    // }
+
+    // if ( event.type === 'focus' ) {
+    //   _validate($el);
+    // }
+
+    // if ( event.type === 'blur' ) {
+    //   console.log(event.type);
+    //   _validate($el);
+    // }
+
+    // if ( event.type === 'submit' ) {
+    //   // Validate all fields in form
+    //   console.log('submitting form');
+    //   return false;
+    // }
   }
 
   /**
@@ -120,21 +134,30 @@ App.FormValidation = (function() {
         $validationType = $this.data('validation'), // Get types of validations for this field
         $value = $this.val(), // Field value
         $length = $value.length, // Field value length
-        emailRegExp = /^[\wæøå.-0-9a-zA-Z.+_]+@[\wæøå.-0-9a-zA-Z.+_]+\.[\wæøå.a-zA-Z]{2,}$/i; // Email validation regular expression
+        isSpaceOrEmpty = /^\s*$/, // Empty space or blank characters (not working yet)
+        emailRegExp = /^[\wæøå.-0-9a-zA-Z.+_]+@[\wæøå.-0-9a-zA-Z.+_]+\.[\wæøå.a-zA-Z]{2,}$/i, // email
+        minCharsRegExp = /\:+\d/, // minimum chracters
+        numberRegExp = /^[0-9]*$/; // number
 
-    // if( $length < 2 ) {
-    //   $this.removeClass(classNames.valid);
-    //   $this.addClass(classNames.required);
-    //   validation = false;
-    // }
+    console.log('length: ' + $length);
 
     // Check if field belongs to TEXT INPUT FIELDS group
     if ( stringInputFields.indexOf( $type ) !== -1 ) {
-      console.log('this is a TEXT INPUT FIELD');
 
-      // Check if field has 'required' validation attached to it
+      /*
+        Clear all validation classes if EMPTY
+      */
+      if ( $length === 0 ) {
+        $this.removeClass(classNames.invalid);
+        $.each( validationTypes, function(i, n){
+          $this.removeClass(n);
+        });
+      }
+
+      /*
+        Check if field has REQUIRED validation attached to it
+      */
       if ( $validationType.indexOf( validationTypes.required ) !== -1 ) {
-        console.log('..and it requires a value to validate!');
 
         if ( $length === 0 ) {
           $this.removeClass(classNames.valid);
@@ -146,19 +169,61 @@ App.FormValidation = (function() {
         }
 
       }
-      // Check if field wants EMAIL validation on the side
-      if ( $validationType.indexOf( validationTypes.email ) !== -1 && $length !== 0 ) {
-        console.log('..and it wants us to validate EMAIL!');
 
-        if ( !emailRegExp.test( $value ) ) {
+      /*
+        Check if field wants EMAIL validation on the side
+      */
+      if ( $length !== 0 && $validationType.indexOf( validationTypes.email ) !== -1 ) {
+
+        if ( emailRegExp.test( $value ) ) {
+          $this.removeClass(classNames.invalid).removeClass(validationTypes.email);
+          $this.addClass(classNames.valid);
+        } else {
           $this.removeClass(classNames.valid);
           $this.addClass(classNames.invalid).addClass(validationTypes.email);
           validation = false;
-        } else {
-          $this.removeClass(classNames.invalid).removeClass(validationTypes.email);
-          $this.addClass(classNames.valid);
         }
       }
+
+      /*
+        Check if field wants NUMBER validation
+      */
+      if ( $length !== 0 && $validationType.indexOf( validationTypes.number ) !== -1 ) {
+
+        if ( numberRegExp.test( $value ) ) {
+          console.log('not a number');
+          $this.removeClass(classNames.invalid).removeClass(validationTypes.number);
+          $this.addClass(classNames.valid);
+        } else {
+          console.log('number');
+          $this.removeClass(classNames.valid);
+          $this.addClass(classNames.invalid).addClass(validationTypes.number);
+          validation = false;
+        }
+      }
+
+      /*
+        Check if field wants MINIMUM CHARACTERS validation
+      */
+     // console.log(validationTypes.minChars);
+      if ( $length !== 0 && $validationType.indexOf( validationTypes.minchars ) !== -1 ) {
+
+        // Get the number from validation string (minchars:number),
+        // convert match from array to string, then remove the semi colon from string
+        var minimumCharsToMatch = $validationType.match( minCharsRegExp ).toString();
+        minimumCharsToMatch = parseInt(minimumCharsToMatch.replace(':', ''), 10);
+
+        // If value length is the same or bigger than minimumCharsToMatch
+        if ( $length >= minimumCharsToMatch ) {
+          $this.removeClass(classNames.invalid).removeClass(validationTypes.minchars);
+          $this.addClass(classNames.valid);
+        } else {
+          $this.removeClass(classNames.valid);
+          $this.addClass(classNames.invalid).addClass(validationTypes.minchars);
+          validation = false;
+        }
+      }
+
     }
 
     // if( $type === 'text' ) {

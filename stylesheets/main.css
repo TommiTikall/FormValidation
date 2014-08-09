@@ -492,11 +492,16 @@ ol {
 nav ul {
   list-style: none; }
 
-/* line 128, ../sass/core/_base.scss */
+/* line 130, ../sass/core/_base.scss */
 .input-row {
-  padding: 10px 0 0; }
+  padding: 15px 0 0;
+  position: relative; }
 
-/* line 133, ../sass/core/_base.scss */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  /* line 140, ../sass/core/_base.scss */
+  .touch select:focus, .touch textarea:focus, .touch input:focus {
+    font-size: 16px; } }
+/* line 146, ../sass/core/_base.scss */
 textarea,
 [type="url"],
 [type="file"],
@@ -531,7 +536,7 @@ textarea,
   -moz-border-radius: 0;
   -webkit-border-radius: 0;
   border-radius: 0; }
-  /* line 159, ../sass/core/_base.scss */
+  /* line 172, ../sass/core/_base.scss */
   textarea:focus,
   [type="url"]:focus,
   [type="file"]:focus,
@@ -553,7 +558,7 @@ textarea,
     -o-transition: border-color 0.2s;
     -webkit-transition: border-color 0.2s;
     transition: border-color 0.2s; }
-  /* line 164, ../sass/core/_base.scss */
+  /* line 177, ../sass/core/_base.scss */
   textarea:disabled,
   [type="url"]:disabled,
   [type="file"]:disabled,
@@ -572,19 +577,19 @@ textarea,
     cursor: not-allowed;
     opacity: 0.5; }
 
-/* line 170, ../sass/core/_base.scss */
+/* line 183, ../sass/core/_base.scss */
 textarea {
   min-height: 90px;
   resize: vertical; }
 
-/* line 175, ../sass/core/_base.scss */
+/* line 188, ../sass/core/_base.scss */
 [type="submit"],
 [type="reset"],
 [type="button"],
 button {
   float: right; }
 
-/* line 183, ../sass/core/_base.scss */
+/* line 196, ../sass/core/_base.scss */
 [type="checkbox"] {
   background: #fff;
   border: none;
@@ -596,7 +601,7 @@ button {
   height: 1.6rem;
   width: 16px;
   width: 1.6rem; }
-  /* line 191, ../sass/core/_base.scss */
+  /* line 204, ../sass/core/_base.scss */
   [type="checkbox"]:after {
     border: 1px solid #333333;
     content: "";
@@ -607,15 +612,15 @@ button {
     text-align: center;
     width: 100%;
     height: 100%; }
-  /* line 202, ../sass/core/_base.scss */
+  /* line 215, ../sass/core/_base.scss */
   [type="checkbox"]:checked:after {
     content: "\2713"; }
-  /* line 203, ../sass/core/_base.scss */
+  /* line 216, ../sass/core/_base.scss */
   label > [type="checkbox"] {
     float: left;
     margin-right: 1em; }
 
-/* line 209, ../sass/core/_base.scss */
+/* line 222, ../sass/core/_base.scss */
 label {
   display: inline-block; }
 
@@ -810,42 +815,39 @@ html, body {
   padding: 0 0 100px;
   padding:  0 0 10rem; }
 
-/* line 16, ../sass/partials/_layout.scss */
+/* line 21, ../sass/partials/_layout.scss */
 .content {
   background: #f6f9fb; }
 
-/* line 25, ../sass/partials/_layout.scss */
+/* line 30, ../sass/partials/_layout.scss */
 .site-footer {
   background: #ffb347;
   background: rgba(255, 179, 71, 0.9);
   color: white;
-  position: fixed;
-  left: 0;
-  bottom: 0;
   width: 100%;
   padding: 20px 0;
   padding:  2rem 0; }
 
-/* line 36, ../sass/partials/_layout.scss */
+/* line 41, ../sass/partials/_layout.scss */
 .site-footer__column {
   padding: 5px 0;
   text-align: center; }
   @media (min-width: 700px) {
-    /* line 36, ../sass/partials/_layout.scss */
+    /* line 41, ../sass/partials/_layout.scss */
     .site-footer__column {
       width: 31.42857%;
       float: left;
       margin-right: 2.85714%; }
-      /* line 42, ../sass/partials/_layout.scss */
+      /* line 47, ../sass/partials/_layout.scss */
       .site-footer__column:first-child {
         text-align: left; }
-      /* line 45, ../sass/partials/_layout.scss */
+      /* line 50, ../sass/partials/_layout.scss */
       .site-footer__column:nth-child(3n) {
         text-align: right;
         float: right;
         margin-right: 0; } }
   @media (min-width: 1000px) {
-    /* line 36, ../sass/partials/_layout.scss */
+    /* line 41, ../sass/partials/_layout.scss */
     .site-footer__column {
       width: 31.42857%;
       float: left;
@@ -873,13 +875,25 @@ html, body {
   background: #efc1c1;
   border: solid 1px #b62e2e;
   border-width: 0 1px 1px;
-  display: none; }
+  display: none;
+  margin: 0;
+  padding: 0; }
 
-/* line 57, ../sass/partials/_forms.scss */
+/* line 59, ../sass/partials/_forms.scss */
 .error {
+  list-style: none;
+  margin: 0;
   padding: 0 10px 10px; }
 
-/* line 75, ../sass/partials/_forms.scss */
+/* line 70, ../sass/partials/_forms.scss */
+[data-validation~="required"] ~ .required-indicator {
+  position: absolute;
+  right: 15px;
+  top: 47px;
+  font-size: 35px;
+  font-size: 3.5rem; }
+
+/* line 86, ../sass/partials/_forms.scss */
 [type="text"].valid,
 [type="email"].valid,
 [type="number"].valid,
@@ -891,7 +905,7 @@ html, body {
   -o-transition: none;
   -webkit-transition: none;
   transition: none; }
-/* line 82, ../sass/partials/_forms.scss */
+/* line 93, ../sass/partials/_forms.scss */
 [type="text"].invalid,
 [type="email"].invalid,
 [type="number"].invalid,
@@ -899,31 +913,46 @@ html, body {
 [type="password"].invalid {
   background: #efc1c1;
   border-color: #b62e2e;
-  border-bottom: 0;
+  border-bottom: solid 1px #e59898;
   -moz-transition: none;
   -o-transition: none;
   -webkit-transition: none;
   transition: none; }
-  /* line 89, ../sass/partials/_forms.scss */
+  /* line 101, ../sass/partials/_forms.scss */
   [type="text"].invalid + .errors,
   [type="email"].invalid + .errors,
   [type="number"].invalid + .errors,
   [type="search"].invalid + .errors,
   [type="password"].invalid + .errors {
-    display: block; }
-  /* line 94, ../sass/partials/_forms.scss */
+    display: block;
+    padding-top: 10px; }
+  /* line 107, ../sass/partials/_forms.scss */
   [type="text"].invalid.required + .errors [data-error="required"],
   [type="email"].invalid.required + .errors [data-error="required"],
   [type="number"].invalid.required + .errors [data-error="required"],
   [type="search"].invalid.required + .errors [data-error="required"],
   [type="password"].invalid.required + .errors [data-error="required"] {
     display: block; }
-  /* line 97, ../sass/partials/_forms.scss */
+  /* line 110, ../sass/partials/_forms.scss */
   [type="text"].invalid.email + .errors [data-error="email"],
   [type="email"].invalid.email + .errors [data-error="email"],
   [type="number"].invalid.email + .errors [data-error="email"],
   [type="search"].invalid.email + .errors [data-error="email"],
   [type="password"].invalid.email + .errors [data-error="email"] {
+    display: block; }
+  /* line 113, ../sass/partials/_forms.scss */
+  [type="text"].invalid.number + .errors [data-error="number"],
+  [type="email"].invalid.number + .errors [data-error="number"],
+  [type="number"].invalid.number + .errors [data-error="number"],
+  [type="search"].invalid.number + .errors [data-error="number"],
+  [type="password"].invalid.number + .errors [data-error="number"] {
+    display: block; }
+  /* line 116, ../sass/partials/_forms.scss */
+  [type="text"].invalid.minchars + .errors [data-error="minchars"],
+  [type="email"].invalid.minchars + .errors [data-error="minchars"],
+  [type="number"].invalid.minchars + .errors [data-error="minchars"],
+  [type="search"].invalid.minchars + .errors [data-error="minchars"],
+  [type="password"].invalid.minchars + .errors [data-error="minchars"] {
     display: block; }
 
 /* Pretty printing styles. Used with prettify.js. */

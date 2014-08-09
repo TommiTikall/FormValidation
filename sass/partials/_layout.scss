@@ -10,7 +10,12 @@ html, body {
 }
 
 .main {
+  // @include rem(padding, 0 0 200px);
   @include rem(padding, 0 0 100px);
+
+  // @include at-breakpoint($layout-xl) {
+  //   @include rem(padding, 0 0 100px);
+  // }
 }
 
 .content {
@@ -26,9 +31,9 @@ html, body {
   background: $theme-color-tertiary;
   background: rgba($theme-color-tertiary, 0.9);
   color: $theme-color-primary;
-  position: fixed;
-    left:0;
-    bottom: 0;
+  // position: fixed;
+  //   left:0;
+  //   bottom: 0;
   width: 100%;
   @include rem(padding, 20px 0);
 }

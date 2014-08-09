@@ -125,9 +125,22 @@ nav ul { list-style: none; }
 // Forms
 // ==========================================================================
 
+$form-input-height: 50px;
+
 .input-row {
   @extend %clearfix;
-  padding: 10px 0 0;
+  padding: 15px 0 0;
+  position: relative;
+}
+
+
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  select:focus, textarea:focus, input:focus {
+    .touch & {
+      font-size: 16px;
+    }
+  }
 }
 
 textarea,
@@ -148,7 +161,7 @@ textarea,
   background-color: $theme-color-primary;
   border: solid 1px $color-border;
   display: block;
-  height: 50px;
+  height: $form-input-height;
   margin: 0;
   padding: 16px 10px;
   width: 100%;

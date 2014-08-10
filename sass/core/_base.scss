@@ -75,6 +75,14 @@ a {
     box-shadow: 0;
     outline: dotted thin $color-link-hover;
   }
+  p & {
+    padding: 0 10px;
+
+    &:after {
+      content: "\276F";
+      float: left;
+    }
+  }
 }
 
 // Text selection
@@ -99,6 +107,10 @@ ul { list-style: disc; }
 ol { list-style: decimal; }
 
 nav ul { list-style: none; }
+
+pre {
+  clear: both;
+}
 
 // pre {
 //   font-size: 13px;

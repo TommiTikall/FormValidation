@@ -42,9 +42,9 @@
 
       <section class="container content">
         <div class="column">
-          <form class="js-form" data-validation-when="keyup field-blur submit">
+          <form class="form js-form" data-validation-when="keyup field-blur submit">
             <div class="input-row">
-              <label>Text validation</label>
+              <label>Text validation [required]</label>
               <input type="text" data-validation="required" tabindex="1" />
               <ul class="errors">
                 <li class="error" data-error="required">This field is required</li>
@@ -53,7 +53,7 @@
             </div>
 
             <div class="input-row">
-              <label>E-mail validation</label>
+              <label>E-mail validation [required, email]</label>
               <input type="email" data-validation="required email" tabindex="2" />
               <ul class="errors">
                 <li class="error" data-error="required">This field is required</li>
@@ -63,7 +63,7 @@
             </div>
 
             <div class="input-row">
-              <label>Number validation</label>
+              <label>Number validation [required, number]</label>
               <input type="text" data-validation="required number" tabindex="3" />
               <ul class="errors">
                 <li class="error" data-error="required">This field is required</li>
@@ -73,7 +73,7 @@
             </div>
 
             <div class="input-row">
-              <label>Password</label>
+              <label>Password [required, minchars:6]</label>
               <input type="password" data-validation="required minchars:6" tabindex="4">
               <ul class="errors">
                 <li class="error" data-error="required">This field is required</li>
@@ -83,11 +83,12 @@
             </div>
 
             <div class="input-row">
-              <label>Minimun Characters</label>
-              <input type="text" data-validation="minchars:6" tabindex="5">
+              <label>Minimun 2 numbers [required, minchars:2, number]</label>
+              <input type="text" data-validation="required minchars:2 number" tabindex="5">
               <ul class="errors">
                 <li class="error" data-error="required">This field is required</li>
-                <li class="error" data-error="minchars">There must be at least 6 characters</li>
+                <li class="error" data-error="minchars">There must be at least 2 characters</li>
+                <li class="error" data-error="number">Numbers only</li>
               </ul>
               <div class="required-indicator">*</div>
             </div>
@@ -107,8 +108,17 @@
             <section>
               <h3>Field data attributes</h3>
               <p>Talk about how with the use of data-attributes in html elements to make the script validate the form</p>
-              <p><a href="http://ntt.cc/2008/05/10/over-10-useful-javascript-regular-expression-functions-to-improve-your-web-applications-efficiency.html">Useful javascript regular expressions</a><br />
-              <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">GitHub Markdown reference</a></p>
+              <p>
+                <a href="http://ntt.cc/2008/05/10/over-10-useful-javascript-regular-expression-functions-to-improve-your-web-applications-efficiency.html">Useful javascript regular expressions</a>
+                <br />
+                <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">GitHub Markdown reference</a>
+                <br />
+                <a href="http://www.regular-expressions.info/javascriptexample.html">Javascript regular expression tester</a>
+                <br />
+                <a href="http://character-code.com/">Awesome character code overview</a>
+                <br />
+                <a href="http://www.evotech.net/blog/2007/08/css-javascript-character-entities/">Convert HTML Entities to usable CSS code (for pseudo elements)</a>
+              </p>
               <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed elementum dapibus dui et dignissim. Etiam a imperdiet enim. Fusce augue massa, facilisis ac tempor commodo, dictum facilisis nisl. Sed pharetra et elit tincidunt iaculis. Maecenas nec justo nec magna porttitor commodo. Sed massa lectus, eleifend sodales tortor id, convallis vulputate velit. Suspendisse a semper lectus, nec lobortis est. Proin posuere id nisi at consectetur.</p> -->
             </section>
         </div>
@@ -119,9 +129,11 @@
         <header>
           <h2>Code examples</h2>
         </header>
+
         <div class="code-example">
           <h3 class="code-example__header">Single field demos</h3>
-          <form class="js-form">
+
+          <form class="js-form column">
             <div class="input-row">
               <label>Required validation</label>
               <input type="text" data-validation="required" />
@@ -131,7 +143,8 @@
               <div class="required-indicator">*</div>
             </div>
           </form>
-            <pre class="prettyprint linenums">
+
+          <pre class="prettyprint linenums">
 &lt;!-- Single field demo --&gt;
 &lt;form class="js-form"&gt;
   &lt;div class="input-row"&gt;
@@ -144,8 +157,37 @@
     &lt;div class="required-indicator"&gt;*&lt;/div&gt;
   &lt;/div&gt;
 &lt;/form&gt;
-            </pre>
+          </pre>
+        </div>
+
+   <!-- <div class="code-example">
+        <h3 class="code-example__header">Single field demos</h3>
+        <form class="js-form column">
+          <div class="input-row">
+            <label>Required validation</label>
+            <input type="text" data-validation="required" />
+            <ul class="errors">
+              <li class="error" data-error="required">This field is required</li>
+            </ul>
+            <div class="required-indicator">*</div>
           </div>
+        </form>
+        <pre class="prettyprint linenums">
+&lt;!-- Single field demo --&gt;
+&lt;form class="js-form"&gt;
+  &lt;div class="input-row"&gt;
+    &lt;label&gt;Required validation&lt;/label&gt;
+    &lt;input type="text" data-validation="required email" /&gt;
+    &lt;!-- The error container, containing an error message per data-validation property --&gt;
+    &lt;ul class="errors"&gt;
+      &lt;li class="error" data-error="required"&gt;This field is required&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;div class="required-indicator"&gt;*&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/form&gt;
+          </pre>
+        </div> -->
+
       </section>
 
     </main>

@@ -3,7 +3,10 @@
 // Forms
 //
 // ===================================================
-
+.form {
+  background: $theme-color-quaternary;
+  padding: 10px 15px 25px;
+}
 
 // Field validation styles
 // ===================================================
@@ -31,6 +34,13 @@ textarea,
 
 // Field errors
 // ===================================================
+
+%invalid {
+  background: lighten($color-error, 40%);
+  border: solid 1px $color-error;
+  @include transition(none);
+}
+
 .validation-summary,
 .validation-summary-message,
 .error {
@@ -48,8 +58,9 @@ textarea,
 }
 
 .errors {
-  background: lighten($color-error, 40%);
-  border: solid 1px $color-error;
+  @extend %invalid;
+  // background: lighten($color-error, 40%);
+  // border: solid 1px $color-error;
   border-width: 0 1px 1px;
   display: none;
   margin: 0;
@@ -85,8 +96,6 @@ textarea,
 [type="search"],
 [type="password"] {
 
-  // @include transition(border-color, background 4s);
-
   // When field is valid
   &.valid {
     border-color: $color-valid;
@@ -96,11 +105,8 @@ textarea,
 
   // When field is invalid
   &.invalid {
-    background: lighten($color-error, 40%);
-    border-color: $color-error;
-    // border-bottom: 0;
+    @extend %invalid;
     border-bottom: solid 1px lighten($color-error, 30%);
-    @include transition(none);
 
     // Display errors container
     & + .errors {
@@ -122,4 +128,5 @@ textarea,
       display: block;
     }
   }
+
 }

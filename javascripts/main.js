@@ -15,6 +15,4 @@ $(document).ready(function() {
   // Init form validation
 	App.FormValidation.initialize();
 
-  // Init prettify.js
-  prettyPrint();
 });

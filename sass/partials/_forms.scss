@@ -4,8 +4,13 @@
 //
 // ===================================================
 .form {
-  background: $theme-color-quaternary;
   padding: 10px 15px 25px;
+
+  &.demo {
+    background: $theme-color-quaternary;
+    border: solid 1px $color-border;
+    border-width: 1px 1px 4px;
+  }
 }
 
 // Field validation styles
@@ -81,13 +86,17 @@ textarea,
 .required-indicator {
   display: none;
 
-  [data-validation~="required"] ~  & {
-    display: block;
-    position: absolute;
-    right: 15px;
-    top: 47px;
-    @include font-size(35px);
-  }
+  // [data-validation~="required"] ~  & {
+  //   display: block;
+  //   position: absolute;
+  //   right: 15px;
+  //   top: 47px;
+  //   @include font-size(35px);
+  // }
+}
+
+[data-validation~="required"] {
+  border-bottom: solid 3px $color-border;
 }
 
 [type="text"],

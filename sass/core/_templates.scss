@@ -8,9 +8,16 @@
   @include each-layout {
     @include set-container-width;
   }
+  border: solid 1px lighten($color-border, 10%);
+  border-width: 0 1px;
+
   padding: {
     left: $grid-padding;
     right: $grid-padding;
+  }
+
+  .site-footer & {
+    border: 0;
   }
 }
 

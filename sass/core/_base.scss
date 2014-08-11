@@ -75,7 +75,7 @@ a {
     box-shadow: 0;
     outline: dotted thin $color-link-hover;
   }
-  p & {
+  li & {
     padding: 0 0 0 20px;
     position: relative;
 
@@ -83,7 +83,8 @@ a {
       content: "\276F";
       position: absolute;
         left: 5px;
-        top: -2px;
+        top: 1px;
+        @include font-size(10px);
     }
   }
 }
@@ -106,14 +107,25 @@ em { font-style: italic; }
 strong { font-weight: bold; }
 
 // Lists
-ul { list-style: disc; }
+// ul { list-style: disc; }
 ol { list-style: decimal; }
+ul {
+  list-style: none;
+  // margin: 10;
+  padding: 0;
+}
 li { line-height: 1.5; }
 
 nav ul { list-style: none; }
 
 pre {
   clear: both;
+}
+
+code {
+  color: $color-display;
+  @include font-size(14px);
+  padding: 0 5px;
 }
 
 .codeblock {

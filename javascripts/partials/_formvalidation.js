@@ -47,6 +47,26 @@ App.FormValidation = (function() {
         'search'
       ],
 
+      // Keys that will not trigger the keyup event
+      disabledKeys = [
+        9,  // backspace
+        13, // enter
+        16, // shift
+        17, // ctrl
+        18, // alt
+        20, // caps lock
+        27, // escape
+        33, // page up
+        34, // page down
+        35, // end
+        36, // home
+        37, // left arrow
+        38, // up arrow
+        39, // right arrow
+        40, // down arrow
+        45  // insert
+      ],
+
       // Store cached references to DOM elements
       // that will be used over and over again
       dom = {};
@@ -74,9 +94,6 @@ App.FormValidation = (function() {
     dom.$form = $( selectors.form );
     dom.$validateField = $( selectors.validateField, dom.$form );
     dom.$submitButton = $( selectors.submitButton );
-
-    // Count fields that want validation
-    console.log('I found ' + dom.$validateField.length + ' fields that want validation');
   }
 
   /**
@@ -84,9 +101,10 @@ App.FormValidation = (function() {
    */
   function _addEventListeners() {
     // dom.$validateField.on( 'focus', _pitStop );
-    dom.$validateField.on( 'blur', _pitStop );
-    dom.$validateField.on( 'keyup', _pitStop );
-    dom.$submitButton.on( 'click', _pitStop );
+    // dom.$validateField.on( 'blur', _pitStop );
+    dom.$form.on( 'keyup', dom.$validateField, _pitStop );
+    dom.$form.on( 'click', dom.$submitButton, _pitStop );
+    dom.$form.on( 'submit', _pitStop );
   }
 
   /**
@@ -99,12 +117,15 @@ App.FormValidation = (function() {
   function _pitStop ( event ) {
     var $el = $( event.target ); // The form element in question
 
-    _validate($el);
-
     // Get event type to determine what to do next
-    // if ( event.type === 'keyup' ) {
-    //   _validate($el);
-    // }
+    if ( event.type === 'keyup' ) {
+      var key = event.keyCode ? event.keyCode : event.charCode;
+      if ( disabledKeys.indexOf( key ) === -1 ) {
+        _validate($el);
+      }
+    } else {
+      _validate($el);
+    }
 
     // if ( event.type === 'focus' ) {
     //   _validate($el);
@@ -226,10 +247,6 @@ App.FormValidation = (function() {
         var customRegExpToMatch = $validationType.match( customRegExp ); // gets the custom regexp string
         customRegExpToMatch = new RegExp(customRegExpToMatch[1].replace('custom:', ''));
 
-        // console.log(typeof customRegExpToMatch);
-        console.log(typeof customRegExpToMatch, customRegExpToMatch, customRegExpToMatch.test( $value ));
-
-
         // If the field value matches the customRegExpToMatch
         if ( customRegExpToMatch.test( $value ) ) {
           $this.removeClass(validationTypes.custom);
@@ -239,13 +256,14 @@ App.FormValidation = (function() {
         }
       }
 
-      console.log('valid field: '+validation);
+      // console.log('valid field: '+validation);
 
       // Is the field valid or invalid? Tell the good folks!
       if ( validation === false ) {
         $this.removeClass(classNames.valid);
         $this.addClass(classNames.invalid);
-      } else if ( validation === true && $this.hasClass(classNames.invalid) ){
+      // } else if ( validation === true && $this.hasClass(classNames.invalid) ) {
+      } else if ( validation === true ) {
         $this.removeClass(classNames.invalid);
         $this.addClass(classNames.valid);
       }

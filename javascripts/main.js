@@ -1,6 +1,3 @@
-// Import plugins
-// @codekit-prepend "lib/prettifyjs/prettify.js";
-
 // Import utilities
 // @codekit-prepend "utils/_debug-log.js";
 

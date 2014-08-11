@@ -94,6 +94,15 @@
             </div>
 
             <div class="input-row">
+              <label>Custom validation pattern (numbers only) [custom]</label>
+              <input type="text" data-validation="custom:'^[0-9]*$'" tabindex="6">
+              <!-- <input type="text" data-validation="custom:'^\s*[\w\-\+_]+(\.[\w\-\+_]+)*\@[\w\-\+_]+\.[\w\-\+_]+(\.[\w\-\+_]+)*\s*$'" tabindex="6"> -->
+              <ul class="errors">
+                <li class="error" data-error="custom">Custom Regular Expression not met: Numbers only</li>
+              </ul>
+            </div>
+
+            <div class="input-row">
               <input type="submit" onclick="return false" class="js-submit" tabindex="20">
             </div>
           </form>
@@ -108,18 +117,13 @@
             <section>
               <h3>Field data attributes</h3>
               <p>Talk about how with the use of data-attributes in html elements to make the script validate the form</p>
-              <p>
-                <a href="http://ntt.cc/2008/05/10/over-10-useful-javascript-regular-expression-functions-to-improve-your-web-applications-efficiency.html">Useful javascript regular expressions</a>
-                <br />
-                <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">GitHub Markdown reference</a>
-                <br />
-                <a href="http://www.regular-expressions.info/javascriptexample.html">Javascript regular expression tester</a>
-                <br />
-                <a href="http://character-code.com/">Awesome character code overview</a>
-                <br />
-                <a href="http://www.evotech.net/blog/2007/08/css-javascript-character-entities/">Convert HTML Entities to usable CSS code (for pseudo elements)</a>
-              </p>
-              <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed elementum dapibus dui et dignissim. Etiam a imperdiet enim. Fusce augue massa, facilisis ac tempor commodo, dictum facilisis nisl. Sed pharetra et elit tincidunt iaculis. Maecenas nec justo nec magna porttitor commodo. Sed massa lectus, eleifend sodales tortor id, convallis vulputate velit. Suspendisse a semper lectus, nec lobortis est. Proin posuere id nisi at consectetur.</p> -->
+              <ul>
+                <li><a href="http://ntt.cc/2008/05/10/over-10-useful-javascript-regular-expression-functions-to-improve-your-web-applications-efficiency.html">Useful javascript regular expressions</a></li>
+                <li><a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">GitHub Markdown reference</a></li>
+                <li><a href="http://www.regular-expressions.info/javascriptexample.html">Javascript regular expression tester</a></li>
+                <li><a href="http://character-code.com/">Awesome character code overview</a></li>
+                <li><a href="http://www.evotech.net/blog/2007/08/css-javascript-character-entities/">Convert HTML Entities to usable CSS code (for pseudo elements)</a></li>
+              </ul>
             </section>
         </div>
       </section>
@@ -136,20 +140,23 @@
           <form class="js-form column">
             <div class="input-row">
               <label>Required validation</label>
-              <input type="text" data-validation="required" />
+              <input type="text" data-validation="required">
               <ul class="errors">
                 <li class="error" data-error="required">This field is required</li>
               </ul>
               <div class="required-indicator">*</div>
             </div>
           </form>
+          <div class="codeblock">
+            <script src="https://gist.github.com/TommiTikall/8524385dfd88aa4a6065.js"></script>
+          </div>
 
-          <pre class="prettyprint linenums">
+          <!-- <pre class="prettyprint linenums">
 &lt;!-- Single field demo --&gt;
 &lt;form class="js-form"&gt;
   &lt;div class="input-row"&gt;
     &lt;label&gt;Required validation&lt;/label&gt;
-    &lt;input type="text" data-validation="required email" /&gt;
+    &lt;input type="text" data-validation="required email"&gt;
     &lt;!-- The error container, containing an error message per data-validation property --&gt;
     &lt;ul class="errors"&gt;
       &lt;li class="error" data-error="required"&gt;This field is required&lt;/li&gt;
@@ -157,8 +164,8 @@
     &lt;div class="required-indicator"&gt;*&lt;/div&gt;
   &lt;/div&gt;
 &lt;/form&gt;
-          </pre>
-        </div>
+</pre>
+        </div> -->
 
    <!-- <div class="code-example">
         <h3 class="code-example__header">Single field demos</h3>

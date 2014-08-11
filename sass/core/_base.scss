@@ -76,11 +76,14 @@ a {
     outline: dotted thin $color-link-hover;
   }
   p & {
-    padding: 0 10px;
+    padding: 0 0 0 20px;
+    position: relative;
 
     &:after {
       content: "\276F";
-      float: left;
+      position: absolute;
+        left: 5px;
+        top: -2px;
     }
   }
 }
@@ -105,6 +108,7 @@ strong { font-weight: bold; }
 // Lists
 ul { list-style: disc; }
 ol { list-style: decimal; }
+li { line-height: 1.5; }
 
 nav ul { list-style: none; }
 
@@ -112,26 +116,10 @@ pre {
   clear: both;
 }
 
-// pre {
-//   font-size: 13px;
-//   padding: 10px;
-//   border: solid 1px #999;
-//   background: #fbeec2;
-//   counter-reset: code-lines;
-// }
-
-// pre {
-//   overflow-x: auto;
-//   word-wrap: normal;
-//   white-space: nowrap;
-//   // white-space: pre;
-//   // white-space: pre-wrap;       /* css-3 */
-//   // white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
-//   // white-space: -pre-wrap;      /* Opera 4-6 */
-//   // white-space: -o-pre-wrap;    /* Opera 7 */
-//   // word-wrap: break-word;       /* Internet Explorer 5.5+ */
-// }
-
+.codeblock {
+  @extend %clearfix;
+  clear: both;
+}
 
 
 // Forms
@@ -235,29 +223,3 @@ label {
   @extend %emphasize;
   display: inline-block;
 }
-
-// Tables
-// ==========================================================================
-
-// table {
-//   width:100%;
-
-//   th {
-//     background: #ccc;
-//     border-bottom: solid 1px #aaa;
-//     font-size: 120%;
-//     padding: 5px;
-//     text-align: left;
-//   }
-
-//   tr {
-//     &:nth-child(even) {
-//       background: #eee;
-//     }
-//   }
-
-//   td {
-//     border-bottom: solid 1px #aaa;
-//     padding: 5px;
-//   }
-// }

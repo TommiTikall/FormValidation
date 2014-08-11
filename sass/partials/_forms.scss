@@ -127,6 +127,9 @@ textarea,
     &.minchars + .errors [data-error="minchars"] {
       display: block;
     }
+    &.custom + .errors [data-error="custom"] {
+      display: block;
+    }
   }
 
 }

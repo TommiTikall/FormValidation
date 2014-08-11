@@ -34,7 +34,8 @@ App.FormValidation = (function() {
         email : 'email',
         password: 'password',
         number: 'number',
-        minchars: 'minchars'
+        minchars: 'minchars',
+        custom: 'custom'
       },
 
       // Group together fields that are text input fields
@@ -60,8 +61,6 @@ App.FormValidation = (function() {
 
     // Add event listeners
     _addEventListeners();
-
-    console.log(App.Global.IS_TOUCH);
   }
 
   /**
@@ -137,9 +136,12 @@ App.FormValidation = (function() {
         $value = $this.val(), // Field value
         $length = $value.length, // Field value length
         isSpaceOrEmpty = /^\s*$/, // Empty space or blank characters (not working yet)
-        emailRegExp = /^[\wæøå.-0-9a-zA-Z.+_]+@[\wæøå.-0-9a-zA-Z.+_]+\.[\wæøå.a-zA-Z]{2,}$/i, // email
-        minCharsRegExp = /\:+\d/, // minimum chracters
-        numberRegExp = /^[0-9]*$/; // number
+        emailRegExp = /^[\wæøå.-0-9a-zA-Z.+_]+@[\wæøå.-0-9a-zA-Z.+_]+\.[\wæøå.a-zA-Z]{2,}$/i, // Email
+        minCharsRegExp = /\bminchars:+\d/i, // Minimum chracters
+        numberRegExp = /^[0-9]*$/, // Number
+        // customRegExp = /\:'(.*?)'/; // Custom regular expression, get everything after : and between ''
+        customRegExp = /\bcustom:'(.*?)'/i;
+
 
     // Check if field belongs to TEXT INPUT FIELDS group
     if ( stringInputFields.indexOf( $type ) !== -1 ) {
@@ -155,7 +157,7 @@ App.FormValidation = (function() {
       }
 
       /*
-        Check if field has REQUIRED validation attached to it
+        Check if field wants REQUIRED validation
       */
       if ( $validationType.indexOf( validationTypes.required ) !== -1 ) {
 
@@ -168,7 +170,7 @@ App.FormValidation = (function() {
       }
 
       /*
-        Check if field wants EMAIL validation on the side
+        Check if field wants EMAIL validation
       */
       if ( $length !== 0 && $validationType.indexOf( validationTypes.email ) !== -1 ) {
 
@@ -202,7 +204,7 @@ App.FormValidation = (function() {
         // Get the number from validation string (minchars:number),
         // convert match from array to string, then remove the semi colon from string
         var minimumCharsToMatch = $validationType.match( minCharsRegExp ).toString();
-        minimumCharsToMatch = parseInt(minimumCharsToMatch.replace(':', ''), 10);
+        minimumCharsToMatch = parseInt(minimumCharsToMatch.replace('minchars:', ''), 10);
 
         // If value length is the same or bigger than minimumCharsToMatch
         if ( $length >= minimumCharsToMatch ) {
@@ -213,13 +215,37 @@ App.FormValidation = (function() {
         }
       }
 
-      console.log(validation);
+      /*
+        Check if field wants CUSTOM validation
+        This should be a Regular Expression string between ''
+      */
+      if ( $length !== 0 && $validationType.indexOf( validationTypes.custom ) !== -1 ) {
+
+        // Get the regular expression string from validation string (custom:'string'),
+        // convert match from array to string, then remove the semi colon from string
+        var customRegExpToMatch = $validationType.match( customRegExp ); // gets the custom regexp string
+        customRegExpToMatch = new RegExp(customRegExpToMatch[1].replace('custom:', ''));
+
+        // console.log(typeof customRegExpToMatch);
+        console.log(typeof customRegExpToMatch, customRegExpToMatch, customRegExpToMatch.test( $value ));
+
+
+        // If the field value matches the customRegExpToMatch
+        if ( customRegExpToMatch.test( $value ) ) {
+          $this.removeClass(validationTypes.custom);
+        } else {
+          $this.addClass(validationTypes.custom);
+          validation = false;
+        }
+      }
+
+      console.log('valid field: '+validation);
 
       // Is the field valid or invalid? Tell the good folks!
       if ( validation === false ) {
         $this.removeClass(classNames.valid);
         $this.addClass(classNames.invalid);
-      } else {
+      } else if ( validation === true && $this.hasClass(classNames.invalid) ){
         $this.removeClass(classNames.invalid);
         $this.addClass(classNames.valid);
       }
@@ -254,8 +280,6 @@ App.FormValidation = (function() {
     //   $this.addClass(classNames.valid);
     //   validation = true;
     // }
-
-    return validation;
   }
 
   ////////////////

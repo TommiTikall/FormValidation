@@ -56,3 +56,10 @@ html, body {
     @include span-columns(4);
   }
 }
+
+// Code examples
+.code-example {
+  .js-form {
+    padding-bottom: 10px;
+  }
+}

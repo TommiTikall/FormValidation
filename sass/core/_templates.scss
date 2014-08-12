@@ -1,0 +1,54 @@
+// Templates are building blocks and don’t stand on their own and rarely describe look and feel.
+// Templates are single, repeatable patterns that can be put together to form a component.
+// A template is something you wouldn’t ever need to target in your application logic, and therefore can be safely extended with a preprocessor.
+
+%container {
+  @extend %clearfix;
+  @include container;
+  @include each-layout {
+    @include set-container-width;
+  }
+  border: solid 1px lighten($color-border, 10%);
+  border-width: 0 1px;
+
+  padding: {
+    left: $grid-padding;
+    right: $grid-padding;
+  }
+
+  .site-footer & {
+    border: 0;
+  }
+}
+
+%drop-shadow {
+  @include box-shadow(0 0 3px rgba(#000, .5));
+}
+
+%rounded {
+  @include border-radius(4px);
+}
+
+%rounded {
+	@include border-radius(4px);
+}
+
+%emphasize {
+  line-height: 1.5;
+}
+
+// Column two column layout
+%column {
+  @extend %clearfix;
+  @include rem( padding, 10px 0 50px );
+
+  @include at-breakpoint ($layout-xl) {
+    @include span-columns(6);
+    &:nth-of-type(2n) {
+      @include omega;
+    }
+  }
+  @include at-breakpoint ($layout-xxl) {
+    @include span-columns(6);
+  }
+}

@@ -1,0 +1,63 @@
+// Layout rules divide the page into sections. Layouts hold one or more components together.
+// Layout rules are anything related to the position of the element in the document.
+// e.g.: columns span, display, positioning and more
+// Visual styling should be in _global, _components or _templates
+// Layout rules are also responsible for layout changes due to browser size (responsive)
+
+html, body {
+  margin: 0;
+  height: 100%;
+}
+
+.main {
+  // @include rem(padding, 0 0 200px);
+  // @include rem(padding, 0 0 100px);
+
+  // @include at-breakpoint($layout-xl) {
+  //   @include rem(padding, 0 0 100px);
+  // }
+}
+
+.content-block {
+  background: $theme-color-secondary;
+  @include rem(padding-bottom, 50px);
+}
+
+.column {
+  @extend %column;
+}
+
+
+.site-footer {
+  background: $theme-color-tertiary;
+  background: rgba($theme-color-tertiary, 0.9);
+  color: $theme-color-primary;
+  width: 100%;
+  @include rem(padding, 20px 0);
+}
+
+.site-footer__column {
+  padding: 5px 0;
+  text-align: center;
+
+  @include at-breakpoint ($layout-xl) {
+    @include span-columns(4);
+    &:first-child {
+      text-align: left;
+    }
+    &:nth-child(3n) {
+      text-align: right;
+      @include omega;
+    }
+  }
+  @include at-breakpoint ($layout-xxl) {
+    @include span-columns(4);
+  }
+}
+
+// Code examples
+.code-example {
+  .form {
+    padding: 0 0 10px;
+  }
+}

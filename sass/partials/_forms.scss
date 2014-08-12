@@ -1,0 +1,144 @@
+// ===================================================
+//
+// Forms
+//
+// ===================================================
+.form {
+  padding: 10px 15px 25px;
+
+  &.demo {
+    background: $theme-color-quaternary;
+    border: solid 1px $color-border;
+    border-width: 1px 1px 4px;
+  }
+}
+
+// Field validation styles
+// ===================================================
+
+textarea,
+[type="url"],
+[type="file"],
+[type="text"],
+[type="date"],
+[type="time"],
+[type="week"],
+[type="email"],
+[type="month"],
+[type="color"],
+[type="number"],
+[type="search"],
+[type="password"],
+[type="datetime"],
+[type="datetime-local"] {
+  &[data-validation="required"] {
+    // Insert something that indicates required
+  }
+}
+
+
+// Field errors
+// ===================================================
+
+%invalid {
+  background: lighten($color-error, 40%);
+  border: solid 1px $color-error;
+  @include transition(none);
+}
+
+.validation-summary,
+.validation-summary-message,
+.error {
+  color: $color-error;
+  display: none;
+
+  &.visible {
+    display: block;
+  }
+}
+
+.validation-summary,
+.error, {
+  padding: 20px;
+}
+
+.errors {
+  @extend %invalid;
+  // background: lighten($color-error, 40%);
+  // border: solid 1px $color-error;
+  border-width: 0 1px 1px;
+  display: none;
+  margin: 0;
+  padding: 0;
+}
+
+.error {
+  list-style: none;
+  margin: 0;
+  padding: 0 10px 10px;
+}
+
+
+
+// Show / Hide individual validation messages for fields
+// ===================================================
+
+.required-indicator {
+  display: none;
+
+  // [data-validation~="required"] ~  & {
+  //   display: block;
+  //   position: absolute;
+  //   right: 15px;
+  //   top: 47px;
+  //   @include font-size(35px);
+  // }
+}
+
+[data-validation~="required"] {
+  border-bottom: solid 3px $color-border;
+}
+
+[type="text"],
+[type="email"],
+[type="number"],
+[type="search"],
+[type="password"] {
+
+  // When field is valid
+  &.valid {
+    border-color: $color-valid;
+    background: lighten($color-valid, 40%);
+    @include transition(none);
+  }
+
+  // When field is invalid
+  &.invalid {
+    @extend %invalid;
+    border-bottom: solid 1px lighten($color-error, 30%);
+
+    // Display errors container
+    & + .errors {
+      display: block;
+      padding-top: 10px;
+    }
+
+    // Display the relevant field validation message
+    &.required + .errors [data-error="required"] {
+      display: block;
+    }
+    &.email + .errors [data-error="email"] {
+      display: block;
+    }
+    &.number + .errors [data-error="number"] {
+      display: block;
+    }
+    &.minchars + .errors [data-error="minchars"] {
+      display: block;
+    }
+    &.custom + .errors [data-error="custom"] {
+      display: block;
+    }
+  }
+
+}

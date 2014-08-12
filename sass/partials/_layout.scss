@@ -9,18 +9,11 @@ html, body {
   height: 100%;
 }
 
-.main {
-  // @include rem(padding, 0 0 200px);
-  // @include rem(padding, 0 0 100px);
-
-  // @include at-breakpoint($layout-xl) {
-  //   @include rem(padding, 0 0 100px);
-  // }
-}
+.main {}
 
 .content-block {
   background: $theme-color-secondary;
-  @include rem(padding-bottom, 50px);
+  @include rem(padding-bottom, 30px);
 }
 
 .column {

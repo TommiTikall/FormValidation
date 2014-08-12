@@ -411,59 +411,65 @@ body {
         content: "layout-xxl"; } }
 
 /* line 43, ../sass/core/_base.scss */
-h1, h2, h3 {
+h1, h2, h3, h4 {
   color: #333333;
   font-family: Ubuntu, "Helvetica Neue", "Arial Bold", sans-serif;
-  margin-bottom: 10px;
-  margin-bottom: 1rem; }
+  margin: 10px 0;
+  margin:  1rem 0; }
 
-/* line 53, ../sass/core/_base.scss */
+/* line 49, ../sass/core/_base.scss */
+h4,
+h5,
+h6 {
+  color: #777777; }
+
+/* line 55, ../sass/core/_base.scss */
 h1 {
   font-size: 30px;
   font-size: 3rem; }
 
-/* line 54, ../sass/core/_base.scss */
+/* line 56, ../sass/core/_base.scss */
 h2 {
   font-size: 24px;
   font-size: 2.4rem; }
 
-/* line 55, ../sass/core/_base.scss */
+/* line 57, ../sass/core/_base.scss */
 h3 {
   font-size: 20px;
   font-size: 2rem; }
 
-/* line 56, ../sass/core/_base.scss */
+/* line 58, ../sass/core/_base.scss */
 h4 {
   font-size: 18px;
   font-size: 1.8rem; }
 
-/* line 57, ../sass/core/_base.scss */
+/* line 59, ../sass/core/_base.scss */
 h5 {
   font-size: 14px;
   font-size: 1.4rem; }
 
-/* line 60, ../sass/core/_base.scss */
+/* line 62, ../sass/core/_base.scss */
 p {
   line-height: 1.5;
   margin-bottom: 1rem; }
 
-/* line 66, ../sass/core/_base.scss */
+/* line 68, ../sass/core/_base.scss */
 a {
   color: #303030;
   text-decoration: none; }
-  /* line 69, ../sass/core/_base.scss */
+  /* line 71, ../sass/core/_base.scss */
   a:hover, a:focus {
     color: #565656;
     text-decoration: underline; }
-  /* line 74, ../sass/core/_base.scss */
+  /* line 76, ../sass/core/_base.scss */
   a:focus {
     box-shadow: 0;
     outline: dotted thin #565656; }
-  /* line 78, ../sass/core/_base.scss */
+  /* line 80, ../sass/core/_base.scss */
   li a {
     padding: 0 0 0 20px;
     position: relative; }
-    /* line 82, ../sass/core/_base.scss */
+    /* line 84, ../sass/core/_base.scss */
     li a:after {
       content: "\276F";
       position: absolute;
@@ -472,68 +478,68 @@ a {
       font-size: 10px;
       font-size: 1rem; }
 
-/* line 93, ../sass/core/_base.scss */
+/* line 95, ../sass/core/_base.scss */
 ::selection {
   background: #1bb2e0;
   color: #ffdd00;
   text-shadow: none; }
 
-/* line 99, ../sass/core/_base.scss */
+/* line 101, ../sass/core/_base.scss */
 ::-moz-selection {
   background: #1bb2e0;
   color: #ffdd00;
   text-shadow: none; }
 
-/* line 106, ../sass/core/_base.scss */
+/* line 108, ../sass/core/_base.scss */
 em {
   font-style: italic; }
 
-/* line 107, ../sass/core/_base.scss */
+/* line 109, ../sass/core/_base.scss */
 strong {
   font-weight: bold; }
 
-/* line 111, ../sass/core/_base.scss */
+/* line 113, ../sass/core/_base.scss */
 ol {
   list-style: decimal; }
 
-/* line 112, ../sass/core/_base.scss */
+/* line 114, ../sass/core/_base.scss */
 ul {
   list-style: none;
   padding: 0; }
 
-/* line 117, ../sass/core/_base.scss */
+/* line 119, ../sass/core/_base.scss */
 li {
   line-height: 1.5; }
 
-/* line 119, ../sass/core/_base.scss */
+/* line 121, ../sass/core/_base.scss */
 nav ul {
   list-style: none; }
 
-/* line 121, ../sass/core/_base.scss */
+/* line 123, ../sass/core/_base.scss */
 pre {
   clear: both; }
 
-/* line 125, ../sass/core/_base.scss */
+/* line 127, ../sass/core/_base.scss */
 code {
   color: #333333;
   font-size: 14px;
   font-size: 1.4rem;
   padding: 0 5px; }
 
-/* line 131, ../sass/core/_base.scss */
+/* line 133, ../sass/core/_base.scss */
 .codeblock {
   clear: both; }
 
-/* line 142, ../sass/core/_base.scss */
+/* line 144, ../sass/core/_base.scss */
 .input-row {
   padding: 15px 0 0;
   position: relative; }
 
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
-  /* line 152, ../sass/core/_base.scss */
+  /* line 154, ../sass/core/_base.scss */
   .touch select:focus, .touch textarea:focus, .touch input:focus {
     font-size: 16px; } }
-/* line 158, ../sass/core/_base.scss */
+/* line 160, ../sass/core/_base.scss */
 textarea,
 [type="url"],
 [type="file"],
@@ -568,7 +574,7 @@ textarea,
   -moz-border-radius: 0;
   -webkit-border-radius: 0;
   border-radius: 0; }
-  /* line 184, ../sass/core/_base.scss */
+  /* line 186, ../sass/core/_base.scss */
   textarea:focus,
   [type="url"]:focus,
   [type="file"]:focus,
@@ -590,7 +596,7 @@ textarea,
     -o-transition: border-color 0.2s;
     -webkit-transition: border-color 0.2s;
     transition: border-color 0.2s; }
-  /* line 189, ../sass/core/_base.scss */
+  /* line 191, ../sass/core/_base.scss */
   textarea:disabled,
   [type="url"]:disabled,
   [type="file"]:disabled,
@@ -609,19 +615,19 @@ textarea,
     cursor: not-allowed;
     opacity: 0.5; }
 
-/* line 195, ../sass/core/_base.scss */
+/* line 197, ../sass/core/_base.scss */
 textarea {
   min-height: 90px;
   resize: vertical; }
 
-/* line 200, ../sass/core/_base.scss */
+/* line 202, ../sass/core/_base.scss */
 [type="submit"],
 [type="reset"],
 [type="button"],
 button {
   float: right; }
 
-/* line 208, ../sass/core/_base.scss */
+/* line 210, ../sass/core/_base.scss */
 [type="checkbox"] {
   background: #fff;
   border: none;
@@ -633,7 +639,7 @@ button {
   height: 1.6rem;
   width: 16px;
   width: 1.6rem; }
-  /* line 216, ../sass/core/_base.scss */
+  /* line 218, ../sass/core/_base.scss */
   [type="checkbox"]:after {
     border: 1px solid #333333;
     content: "";
@@ -644,15 +650,15 @@ button {
     text-align: center;
     width: 100%;
     height: 100%; }
-  /* line 227, ../sass/core/_base.scss */
+  /* line 229, ../sass/core/_base.scss */
   [type="checkbox"]:checked:after {
     content: "\2713"; }
-  /* line 228, ../sass/core/_base.scss */
+  /* line 230, ../sass/core/_base.scss */
   label > [type="checkbox"] {
     float: left;
     margin-right: 1em; }
 
-/* line 234, ../sass/core/_base.scss */
+/* line 236, ../sass/core/_base.scss */
 label {
   display: inline-block; }
 
@@ -847,13 +853,13 @@ html, body {
   margin: 0;
   height: 100%; }
 
-/* line 21, ../sass/partials/_layout.scss */
+/* line 14, ../sass/partials/_layout.scss */
 .content-block {
   background: #f6f9fb;
-  padding-bottom: 50px;
-  padding-bottom: 5rem; }
+  padding-bottom: 30px;
+  padding-bottom: 3rem; }
 
-/* line 31, ../sass/partials/_layout.scss */
+/* line 24, ../sass/partials/_layout.scss */
 .site-footer {
   background: #ffb347;
   background: rgba(255, 179, 71, 0.9);
@@ -862,32 +868,32 @@ html, body {
   padding: 20px 0;
   padding:  2rem 0; }
 
-/* line 39, ../sass/partials/_layout.scss */
+/* line 32, ../sass/partials/_layout.scss */
 .site-footer__column {
   padding: 5px 0;
   text-align: center; }
   @media (min-width: 700px) {
-    /* line 39, ../sass/partials/_layout.scss */
+    /* line 32, ../sass/partials/_layout.scss */
     .site-footer__column {
       width: 31.42857%;
       float: left;
       margin-right: 2.85714%; }
-      /* line 45, ../sass/partials/_layout.scss */
+      /* line 38, ../sass/partials/_layout.scss */
       .site-footer__column:first-child {
         text-align: left; }
-      /* line 48, ../sass/partials/_layout.scss */
+      /* line 41, ../sass/partials/_layout.scss */
       .site-footer__column:nth-child(3n) {
         text-align: right;
         float: right;
         margin-right: 0; } }
   @media (min-width: 1000px) {
-    /* line 39, ../sass/partials/_layout.scss */
+    /* line 32, ../sass/partials/_layout.scss */
     .site-footer__column {
       width: 31.42857%;
       float: left;
       margin-right: 2.85714%; } }
 
-/* line 60, ../sass/partials/_layout.scss */
+/* line 53, ../sass/partials/_layout.scss */
 .code-example .form {
   padding: 0 0 10px; }
 
@@ -906,8 +912,8 @@ html, body {
 [type="number"].invalid,
 [type="search"].invalid,
 [type="password"].invalid {
-  background: #efc1c1;
-  border: solid 1px #b62e2e;
+  background: #ffecc3;
+  border: solid 1px #ffbb2a;
   -moz-transition: none;
   -o-transition: none;
   -webkit-transition: none;
@@ -917,41 +923,37 @@ html, body {
 .validation-summary,
 .validation-summary-message,
 .error {
-  color: #b62e2e;
+  color: #c38500;
   display: none; }
-  /* line 55, ../sass/partials/_forms.scss */
+  /* line 56, ../sass/partials/_forms.scss */
   .validation-summary.visible,
   .validation-summary-message.visible,
   .error.visible {
     display: block; }
 
-/* line 60, ../sass/partials/_forms.scss */
+/* line 61, ../sass/partials/_forms.scss */
 .validation-summary,
 .error {
   padding: 20px; }
 
-/* line 65, ../sass/partials/_forms.scss */
+/* line 66, ../sass/partials/_forms.scss */
 .errors {
   border-width: 0 1px 1px;
   display: none;
   margin: 0;
   padding: 0; }
 
-/* line 75, ../sass/partials/_forms.scss */
+/* line 74, ../sass/partials/_forms.scss */
 .error {
   list-style: none;
   margin: 0;
   padding: 0 10px 10px; }
 
-/* line 86, ../sass/partials/_forms.scss */
-.required-indicator {
-  display: none; }
-
-/* line 98, ../sass/partials/_forms.scss */
+/* line 96, ../sass/partials/_forms.scss */
 [data-validation~="required"] {
   border-bottom: solid 3px #cccccc; }
 
-/* line 109, ../sass/partials/_forms.scss */
+/* line 107, ../sass/partials/_forms.scss */
 [type="text"].valid,
 [type="email"].valid,
 [type="number"].valid,
@@ -963,14 +965,15 @@ html, body {
   -o-transition: none;
   -webkit-transition: none;
   transition: none; }
-/* line 116, ../sass/partials/_forms.scss */
+/* line 114, ../sass/partials/_forms.scss */
 [type="text"].invalid,
 [type="email"].invalid,
 [type="number"].invalid,
 [type="search"].invalid,
 [type="password"].invalid {
-  border-bottom: solid 1px #e59898; }
-  /* line 121, ../sass/partials/_forms.scss */
+  border-bottom: solid 1px #ffdc90;
+  height: 48px; }
+  /* line 120, ../sass/partials/_forms.scss */
   [type="text"].invalid + .errors,
   [type="email"].invalid + .errors,
   [type="number"].invalid + .errors,
@@ -978,38 +981,45 @@ html, body {
   [type="password"].invalid + .errors {
     display: block;
     padding-top: 10px; }
-  /* line 127, ../sass/partials/_forms.scss */
+  /* line 126, ../sass/partials/_forms.scss */
   [type="text"].invalid.required + .errors [data-error="required"],
   [type="email"].invalid.required + .errors [data-error="required"],
   [type="number"].invalid.required + .errors [data-error="required"],
   [type="search"].invalid.required + .errors [data-error="required"],
   [type="password"].invalid.required + .errors [data-error="required"] {
     display: block; }
-  /* line 130, ../sass/partials/_forms.scss */
+  /* line 129, ../sass/partials/_forms.scss */
   [type="text"].invalid.email + .errors [data-error="email"],
   [type="email"].invalid.email + .errors [data-error="email"],
   [type="number"].invalid.email + .errors [data-error="email"],
   [type="search"].invalid.email + .errors [data-error="email"],
   [type="password"].invalid.email + .errors [data-error="email"] {
     display: block; }
-  /* line 133, ../sass/partials/_forms.scss */
+  /* line 132, ../sass/partials/_forms.scss */
   [type="text"].invalid.number + .errors [data-error="number"],
   [type="email"].invalid.number + .errors [data-error="number"],
   [type="number"].invalid.number + .errors [data-error="number"],
   [type="search"].invalid.number + .errors [data-error="number"],
   [type="password"].invalid.number + .errors [data-error="number"] {
     display: block; }
-  /* line 136, ../sass/partials/_forms.scss */
+  /* line 135, ../sass/partials/_forms.scss */
   [type="text"].invalid.minchars + .errors [data-error="minchars"],
   [type="email"].invalid.minchars + .errors [data-error="minchars"],
   [type="number"].invalid.minchars + .errors [data-error="minchars"],
   [type="search"].invalid.minchars + .errors [data-error="minchars"],
   [type="password"].invalid.minchars + .errors [data-error="minchars"] {
     display: block; }
-  /* line 139, ../sass/partials/_forms.scss */
+  /* line 138, ../sass/partials/_forms.scss */
   [type="text"].invalid.custom + .errors [data-error="custom"],
   [type="email"].invalid.custom + .errors [data-error="custom"],
   [type="number"].invalid.custom + .errors [data-error="custom"],
   [type="search"].invalid.custom + .errors [data-error="custom"],
   [type="password"].invalid.custom + .errors [data-error="custom"] {
+    display: block; }
+  /* line 141, ../sass/partials/_forms.scss */
+  [type="text"].invalid.equalto + .errors [data-error="equalto"],
+  [type="email"].invalid.equalto + .errors [data-error="equalto"],
+  [type="number"].invalid.equalto + .errors [data-error="equalto"],
+  [type="search"].invalid.equalto + .errors [data-error="equalto"],
+  [type="password"].invalid.equalto + .errors [data-error="equalto"] {
     display: block; }

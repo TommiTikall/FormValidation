@@ -1,4 +1,0 @@
-FormValidation
-==============
-
-Simple form validation

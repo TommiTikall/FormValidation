@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8">
 
-    <title>Form validation</title>
+    <title>Validate</title>
 
     <meta name="description" content="Form validation">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,24 +27,25 @@
   </head>
   <body>
 
+    <header class="site-header">
+      <div class="container">
+        <h1 class="logo">Validate</h1>
+      </div>
+    </header>
+
     <main class="main">
       <article>
 
         <section class="container content-block">
-          <h1>Form validation for CMS</h1>
-          <h2>Markup is the word!</h2>
+          <h1>Validate</h1>
+          <h2>Form validation for CMS</h2>
+          <h3>Markup is the word!</h3>
           <p>
             Because so many form validation plugins are mostly javascript solutions, where which fields are validated, validation types, and error messages, are defined in javascript code, it is not always a good approach for content managment systems, that only flood the DOM. I can think of one scenario where CMS is set up to support multiple languages, and all translations are handled by the CMS, i.e. it will only be rendered in your DOM. Then how do we translate the error messages, for instance?
             <br />
             This is why I wanted to come up with a form validation that relies on the markup rather than the javascript. The markup makes the calls, the javascript should just listen and do as it is told!
           </p>
-          <!-- <p>
-            This form validation relies on its markup.
-            <br />
-            This means that the javascript will look at the field and its attributes to determine what to validate. Kinda modular.. yes?
-            <br />
-            Anyways, this is a practical approach for when developing with CMS, or where you don't want to set up a init with options in javascript for each form on page.
-          </p> -->
+
         </section>
 
         <section class="container content-block">
@@ -87,7 +88,7 @@
               </div>
 
               <div class="input-row">
-                <label>Confirm password [required equalto:password]</label>
+                <label>Confirm password [required equalto:#password]</label>
                 <input type="password" data-validation="required equalto:#password" tabindex="5">
                 <ul class="errors">
                   <li class="error" data-error="required">This field is required</li>

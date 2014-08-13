@@ -398,7 +398,7 @@ body {
       /* line 21, ../sass/core/_base.scss */
       body::before {
         content: "layout-l"; } }
-    /* line 87, ../../../../.rvm/gems/ruby-2.0.0-p247@new_sass/gems/susy-2.1.1/sass/susy/language/susyone/_media.scss */
+    /* line 87, ../../../../.rvm/gems/ruby-2.0.0-p247@new_sass/gems/susy-2.1.3/sass/susy/language/susyone/_media.scss */
     .lt-ie9 body::before {
       content: "layout-l"; }
     @media (min-width: 700px) {
@@ -411,65 +411,68 @@ body {
         content: "layout-xxl"; } }
 
 /* line 43, ../sass/core/_base.scss */
-h1, h2, h3, h4 {
+h1, h2, h3 {
   color: #333333;
-  font-family: Ubuntu, "Helvetica Neue", "Arial Bold", sans-serif;
+  font-family: "Gill Sans", "Lucida Sans Unicode", sans-serif;
+  font-weight: normal;
   margin: 10px 0;
   margin:  1rem 0; }
 
-/* line 49, ../sass/core/_base.scss */
+/* line 50, ../sass/core/_base.scss */
 h4,
 h5,
 h6 {
-  color: #777777; }
+  color: #777777;
+  margin: 10px 0;
+  margin:  1rem 0; }
 
-/* line 55, ../sass/core/_base.scss */
+/* line 57, ../sass/core/_base.scss */
 h1 {
   font-size: 30px;
   font-size: 3rem; }
 
-/* line 56, ../sass/core/_base.scss */
+/* line 58, ../sass/core/_base.scss */
 h2 {
   font-size: 24px;
   font-size: 2.4rem; }
 
-/* line 57, ../sass/core/_base.scss */
+/* line 59, ../sass/core/_base.scss */
 h3 {
   font-size: 20px;
   font-size: 2rem; }
 
-/* line 58, ../sass/core/_base.scss */
+/* line 60, ../sass/core/_base.scss */
 h4 {
   font-size: 18px;
   font-size: 1.8rem; }
 
-/* line 59, ../sass/core/_base.scss */
+/* line 61, ../sass/core/_base.scss */
 h5 {
   font-size: 14px;
   font-size: 1.4rem; }
 
-/* line 62, ../sass/core/_base.scss */
+/* line 64, ../sass/core/_base.scss */
 p {
   line-height: 1.5;
   margin-bottom: 1rem; }
 
-/* line 68, ../sass/core/_base.scss */
+/* line 70, ../sass/core/_base.scss */
 a {
   color: #303030;
   text-decoration: none; }
-  /* line 71, ../sass/core/_base.scss */
+  /* line 73, ../sass/core/_base.scss */
   a:hover, a:focus {
     color: #565656;
     text-decoration: underline; }
-  /* line 76, ../sass/core/_base.scss */
+  /* line 78, ../sass/core/_base.scss */
   a:focus {
     box-shadow: 0;
     outline: dotted thin #565656; }
-  /* line 80, ../sass/core/_base.scss */
+  /* line 82, ../sass/core/_base.scss */
   li a {
     padding: 0 0 0 20px;
     position: relative; }
-    /* line 84, ../sass/core/_base.scss */
+    /* line 86, ../sass/core/_base.scss */
     li a:after {
       content: "\276F";
       position: absolute;
@@ -478,68 +481,68 @@ a {
       font-size: 10px;
       font-size: 1rem; }
 
-/* line 95, ../sass/core/_base.scss */
+/* line 97, ../sass/core/_base.scss */
 ::selection {
   background: #1bb2e0;
   color: #ffdd00;
   text-shadow: none; }
 
-/* line 101, ../sass/core/_base.scss */
+/* line 103, ../sass/core/_base.scss */
 ::-moz-selection {
   background: #1bb2e0;
   color: #ffdd00;
   text-shadow: none; }
 
-/* line 108, ../sass/core/_base.scss */
+/* line 110, ../sass/core/_base.scss */
 em {
   font-style: italic; }
 
-/* line 109, ../sass/core/_base.scss */
+/* line 111, ../sass/core/_base.scss */
 strong {
   font-weight: bold; }
 
-/* line 113, ../sass/core/_base.scss */
+/* line 115, ../sass/core/_base.scss */
 ol {
   list-style: decimal; }
 
-/* line 114, ../sass/core/_base.scss */
+/* line 116, ../sass/core/_base.scss */
 ul {
   list-style: none;
   padding: 0; }
 
-/* line 119, ../sass/core/_base.scss */
+/* line 121, ../sass/core/_base.scss */
 li {
   line-height: 1.5; }
 
-/* line 121, ../sass/core/_base.scss */
+/* line 123, ../sass/core/_base.scss */
 nav ul {
   list-style: none; }
 
-/* line 123, ../sass/core/_base.scss */
+/* line 125, ../sass/core/_base.scss */
 pre {
   clear: both; }
 
-/* line 127, ../sass/core/_base.scss */
+/* line 129, ../sass/core/_base.scss */
 code {
   color: #333333;
   font-size: 14px;
   font-size: 1.4rem;
   padding: 0 5px; }
 
-/* line 133, ../sass/core/_base.scss */
+/* line 135, ../sass/core/_base.scss */
 .codeblock {
   clear: both; }
 
-/* line 144, ../sass/core/_base.scss */
+/* line 146, ../sass/core/_base.scss */
 .input-row {
   padding: 15px 0 0;
   position: relative; }
 
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
-  /* line 154, ../sass/core/_base.scss */
+  /* line 156, ../sass/core/_base.scss */
   .touch select:focus, .touch textarea:focus, .touch input:focus {
     font-size: 16px; } }
-/* line 160, ../sass/core/_base.scss */
+/* line 162, ../sass/core/_base.scss */
 textarea,
 [type="url"],
 [type="file"],
@@ -574,7 +577,7 @@ textarea,
   -moz-border-radius: 0;
   -webkit-border-radius: 0;
   border-radius: 0; }
-  /* line 186, ../sass/core/_base.scss */
+  /* line 188, ../sass/core/_base.scss */
   textarea:focus,
   [type="url"]:focus,
   [type="file"]:focus,
@@ -596,7 +599,7 @@ textarea,
     -o-transition: border-color 0.2s;
     -webkit-transition: border-color 0.2s;
     transition: border-color 0.2s; }
-  /* line 191, ../sass/core/_base.scss */
+  /* line 193, ../sass/core/_base.scss */
   textarea:disabled,
   [type="url"]:disabled,
   [type="file"]:disabled,
@@ -615,19 +618,19 @@ textarea,
     cursor: not-allowed;
     opacity: 0.5; }
 
-/* line 197, ../sass/core/_base.scss */
+/* line 199, ../sass/core/_base.scss */
 textarea {
   min-height: 90px;
   resize: vertical; }
 
-/* line 202, ../sass/core/_base.scss */
+/* line 204, ../sass/core/_base.scss */
 [type="submit"],
 [type="reset"],
 [type="button"],
 button {
   float: right; }
 
-/* line 210, ../sass/core/_base.scss */
+/* line 212, ../sass/core/_base.scss */
 [type="checkbox"] {
   background: #fff;
   border: none;
@@ -639,7 +642,7 @@ button {
   height: 1.6rem;
   width: 16px;
   width: 1.6rem; }
-  /* line 218, ../sass/core/_base.scss */
+  /* line 220, ../sass/core/_base.scss */
   [type="checkbox"]:after {
     border: 1px solid #333333;
     content: "";
@@ -650,15 +653,15 @@ button {
     text-align: center;
     width: 100%;
     height: 100%; }
-  /* line 229, ../sass/core/_base.scss */
+  /* line 231, ../sass/core/_base.scss */
   [type="checkbox"]:checked:after {
     content: "\2713"; }
-  /* line 230, ../sass/core/_base.scss */
+  /* line 232, ../sass/core/_base.scss */
   label > [type="checkbox"] {
     float: left;
     margin-right: 1em; }
 
-/* line 236, ../sass/core/_base.scss */
+/* line 238, ../sass/core/_base.scss */
 label {
   display: inline-block; }
 
@@ -674,8 +677,6 @@ label {
   padding-right: 1.5rem;
   margin-left: auto;
   margin-right: auto;
-  border: solid 1px #e6e6e6;
-  border-width: 0 1px;
   padding-left: 15px;
   padding-right: 15px; }
   /* line 38, ../../../../.rvm/gems/ruby-2.0.0-p247@new_sass/gems/compass-core-1.0.0.alpha.19/stylesheets/compass/utilities/general/_clearfix.scss */
@@ -693,7 +694,7 @@ label {
     .container {
       max-width: 690px;
       max-width: 69rem; } }
-  /* line 87, ../../../../.rvm/gems/ruby-2.0.0-p247@new_sass/gems/susy-2.1.1/sass/susy/language/susyone/_media.scss */
+  /* line 87, ../../../../.rvm/gems/ruby-2.0.0-p247@new_sass/gems/susy-2.1.3/sass/susy/language/susyone/_media.scss */
   .lt-ie9 .container {
     max-width: 690px;
     max-width: 69rem;
@@ -708,11 +709,11 @@ label {
     .container {
       max-width: 1050px;
       max-width: 105rem; } }
-  /* line 19, ../sass/core/_templates.scss */
+  /* line 17, ../sass/core/_templates.scss */
   .site-footer .container {
     border: 0; }
 
-/* line 28, ../sass/core/_templates.scss */
+/* line 26, ../sass/core/_templates.scss */
 [type="submit"],
 [type="reset"],
 [type="button"],
@@ -721,7 +722,7 @@ button, .button, .button-primary, .button-secondary {
   -webkit-border-radius: 4px;
   border-radius: 4px; }
 
-/* line 32, ../sass/core/_templates.scss */
+/* line 30, ../sass/core/_templates.scss */
 [type="submit"],
 [type="reset"],
 [type="button"],
@@ -730,26 +731,26 @@ button, .button, .button-primary, .button-secondary {
   -webkit-border-radius: 4px;
   border-radius: 4px; }
 
-/* line 36, ../sass/core/_templates.scss */
+/* line 34, ../sass/core/_templates.scss */
 label {
   line-height: 1.5; }
 
-/* line 41, ../sass/core/_templates.scss */
+/* line 39, ../sass/core/_templates.scss */
 .column {
-  padding: 10px 0 50px;
-  padding:  1rem 0 5rem; }
+  padding: 10px 0 20px;
+  padding:  1rem 0 2rem; }
   @media (min-width: 700px) {
-    /* line 41, ../sass/core/_templates.scss */
+    /* line 39, ../sass/core/_templates.scss */
     .column {
       width: 48.57143%;
       float: left;
       margin-right: 2.85714%; }
-      /* line 47, ../sass/core/_templates.scss */
+      /* line 45, ../sass/core/_templates.scss */
       .column:nth-of-type(2n) {
         float: right;
         margin-right: 0; } }
   @media (min-width: 1000px) {
-    /* line 41, ../sass/core/_templates.scss */
+    /* line 39, ../sass/core/_templates.scss */
     .column {
       width: 48.57143%;
       float: left;
@@ -853,47 +854,92 @@ html, body {
   margin: 0;
   height: 100%; }
 
-/* line 14, ../sass/partials/_layout.scss */
-.content-block {
-  background: #f6f9fb;
-  padding-bottom: 30px;
-  padding-bottom: 3rem; }
+/* line 12, ../sass/partials/_layout.scss */
+.site-header {
+  background: #00a1cb;
+  border-bottom: solid 7px #008db2;
+  margin-bottom: 30px;
+  margin-bottom: 3rem;
+  padding: 20px 0 0;
+  padding:  2rem 0 0; }
+  /* line 18, ../sass/partials/_layout.scss */
+  .site-header .container {
+    border: 0; }
+  /* line 22, ../sass/partials/_layout.scss */
+  .site-header .logo {
+    color: white;
+    position: relative;
+    padding: 0 0 0 50px;
+    padding:  0 0 0 5rem;
+    font-size: 50px;
+    font-size: 5rem; }
+    /* line 28, ../sass/partials/_layout.scss */
+    .site-header .logo:first-letter {
+      color: #00a1cb; }
+    /* line 32, ../sass/partials/_layout.scss */
+    .site-header .logo:before, .site-header .logo:after {
+      content: "\2610";
+      display: block;
+      line-height: 0.5;
+      position: absolute;
+      left: 0;
+      top: 8px;
+      z-index: 0;
+      font-size: 80px;
+      font-size: 8rem;
+      margin: 0 0 0 20px;
+      margin:  0 0 0 2rem; }
+    /* line 46, ../sass/partials/_layout.scss */
+    .site-header .logo:after {
+      content: "\2713";
+      color: #fff;
+      line-height: 0.5;
+      left: 2px;
+      top: 0;
+      font-size: 100px;
+      font-size: 10rem; }
 
-/* line 24, ../sass/partials/_layout.scss */
+@media (min-width: 700px) {
+  /* line 60, ../sass/partials/_layout.scss */
+  .content-block {
+    padding-bottom: 30px;
+    padding-bottom: 3rem; } }
+
+/* line 71, ../sass/partials/_layout.scss */
 .site-footer {
-  background: #ffb347;
-  background: rgba(255, 179, 71, 0.9);
+  background: #00a1cb;
+  background: rgba(0, 161, 203, 0.9);
   color: white;
   width: 100%;
   padding: 20px 0;
   padding:  2rem 0; }
 
-/* line 32, ../sass/partials/_layout.scss */
+/* line 79, ../sass/partials/_layout.scss */
 .site-footer__column {
   padding: 5px 0;
   text-align: center; }
   @media (min-width: 700px) {
-    /* line 32, ../sass/partials/_layout.scss */
+    /* line 79, ../sass/partials/_layout.scss */
     .site-footer__column {
       width: 31.42857%;
       float: left;
       margin-right: 2.85714%; }
-      /* line 38, ../sass/partials/_layout.scss */
+      /* line 85, ../sass/partials/_layout.scss */
       .site-footer__column:first-child {
         text-align: left; }
-      /* line 41, ../sass/partials/_layout.scss */
+      /* line 88, ../sass/partials/_layout.scss */
       .site-footer__column:nth-child(3n) {
         text-align: right;
         float: right;
         margin-right: 0; } }
   @media (min-width: 1000px) {
-    /* line 32, ../sass/partials/_layout.scss */
+    /* line 79, ../sass/partials/_layout.scss */
     .site-footer__column {
       width: 31.42857%;
       float: left;
       margin-right: 2.85714%; } }
 
-/* line 53, ../sass/partials/_layout.scss */
+/* line 100, ../sass/partials/_layout.scss */
 .code-example .form {
   padding: 0 0 10px; }
 
@@ -912,8 +958,8 @@ html, body {
 [type="number"].invalid,
 [type="search"].invalid,
 [type="password"].invalid {
-  background: #ffecc3;
-  border: solid 1px #ffbb2a;
+  background: #fde6b2;
+  border: solid 1px #fab71c;
   -moz-transition: none;
   -o-transition: none;
   -webkit-transition: none;
@@ -923,37 +969,37 @@ html, body {
 .validation-summary,
 .validation-summary-message,
 .error {
-  color: #c38500;
+  color: #ac7904;
   display: none; }
-  /* line 56, ../sass/partials/_forms.scss */
+  /* line 55, ../sass/partials/_forms.scss */
   .validation-summary.visible,
   .validation-summary-message.visible,
   .error.visible {
     display: block; }
 
-/* line 61, ../sass/partials/_forms.scss */
+/* line 60, ../sass/partials/_forms.scss */
 .validation-summary,
 .error {
   padding: 20px; }
 
-/* line 66, ../sass/partials/_forms.scss */
+/* line 65, ../sass/partials/_forms.scss */
 .errors {
   border-width: 0 1px 1px;
   display: none;
   margin: 0;
   padding: 0; }
 
-/* line 74, ../sass/partials/_forms.scss */
+/* line 73, ../sass/partials/_forms.scss */
 .error {
   list-style: none;
   margin: 0;
   padding: 0 10px 10px; }
 
-/* line 96, ../sass/partials/_forms.scss */
+/* line 95, ../sass/partials/_forms.scss */
 [data-validation~="required"] {
   border-bottom: solid 3px #cccccc; }
 
-/* line 107, ../sass/partials/_forms.scss */
+/* line 106, ../sass/partials/_forms.scss */
 [type="text"].valid,
 [type="email"].valid,
 [type="number"].valid,
@@ -965,15 +1011,21 @@ html, body {
   -o-transition: none;
   -webkit-transition: none;
   transition: none; }
-/* line 114, ../sass/partials/_forms.scss */
+/* line 113, ../sass/partials/_forms.scss */
 [type="text"].invalid,
 [type="email"].invalid,
 [type="number"].invalid,
 [type="search"].invalid,
 [type="password"].invalid {
-  border-bottom: solid 1px #ffdc90;
-  height: 48px; }
-  /* line 120, ../sass/partials/_forms.scss */
+  border-bottom: solid 1px #fcd780; }
+  /* line 117, ../sass/partials/_forms.scss */
+  [type="text"].invalid.required,
+  [type="email"].invalid.required,
+  [type="number"].invalid.required,
+  [type="search"].invalid.required,
+  [type="password"].invalid.required {
+    height: 48px; }
+  /* line 122, ../sass/partials/_forms.scss */
   [type="text"].invalid + .errors,
   [type="email"].invalid + .errors,
   [type="number"].invalid + .errors,
@@ -981,42 +1033,42 @@ html, body {
   [type="password"].invalid + .errors {
     display: block;
     padding-top: 10px; }
-  /* line 126, ../sass/partials/_forms.scss */
+  /* line 128, ../sass/partials/_forms.scss */
   [type="text"].invalid.required + .errors [data-error="required"],
   [type="email"].invalid.required + .errors [data-error="required"],
   [type="number"].invalid.required + .errors [data-error="required"],
   [type="search"].invalid.required + .errors [data-error="required"],
   [type="password"].invalid.required + .errors [data-error="required"] {
     display: block; }
-  /* line 129, ../sass/partials/_forms.scss */
+  /* line 131, ../sass/partials/_forms.scss */
   [type="text"].invalid.email + .errors [data-error="email"],
   [type="email"].invalid.email + .errors [data-error="email"],
   [type="number"].invalid.email + .errors [data-error="email"],
   [type="search"].invalid.email + .errors [data-error="email"],
   [type="password"].invalid.email + .errors [data-error="email"] {
     display: block; }
-  /* line 132, ../sass/partials/_forms.scss */
+  /* line 134, ../sass/partials/_forms.scss */
   [type="text"].invalid.number + .errors [data-error="number"],
   [type="email"].invalid.number + .errors [data-error="number"],
   [type="number"].invalid.number + .errors [data-error="number"],
   [type="search"].invalid.number + .errors [data-error="number"],
   [type="password"].invalid.number + .errors [data-error="number"] {
     display: block; }
-  /* line 135, ../sass/partials/_forms.scss */
+  /* line 137, ../sass/partials/_forms.scss */
   [type="text"].invalid.minchars + .errors [data-error="minchars"],
   [type="email"].invalid.minchars + .errors [data-error="minchars"],
   [type="number"].invalid.minchars + .errors [data-error="minchars"],
   [type="search"].invalid.minchars + .errors [data-error="minchars"],
   [type="password"].invalid.minchars + .errors [data-error="minchars"] {
     display: block; }
-  /* line 138, ../sass/partials/_forms.scss */
+  /* line 140, ../sass/partials/_forms.scss */
   [type="text"].invalid.custom + .errors [data-error="custom"],
   [type="email"].invalid.custom + .errors [data-error="custom"],
   [type="number"].invalid.custom + .errors [data-error="custom"],
   [type="search"].invalid.custom + .errors [data-error="custom"],
   [type="password"].invalid.custom + .errors [data-error="custom"] {
     display: block; }
-  /* line 141, ../sass/partials/_forms.scss */
+  /* line 143, ../sass/partials/_forms.scss */
   [type="text"].invalid.equalto + .errors [data-error="equalto"],
   [type="email"].invalid.equalto + .errors [data-error="equalto"],
   [type="number"].invalid.equalto + .errors [data-error="equalto"],

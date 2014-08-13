@@ -9,11 +9,58 @@ html, body {
   height: 100%;
 }
 
+.site-header {
+  background: $color-palette-1;
+  border-bottom: solid 7px darken($color-palette-1, 5%);
+  @include rem(margin-bottom, 30px);
+  @include rem(padding, 20px 0 0);
+
+  .container {
+    border: 0;
+  }
+
+  .logo {
+    color: $theme-color-primary;
+    position: relative;
+    @include rem(padding, 0 0 0 50px);
+    @include font-size(50px);
+
+    &:first-letter {
+      color: $color-palette-1;
+    }
+
+    &:before,
+    &:after {
+      // Ballot box
+      content: "\2610";
+      display: block;
+      line-height: 0.5;
+      position: absolute;
+        left: 0;
+        top: 8px;
+        z-index: 0;
+      @include font-size(80px);
+      @include rem(margin, 0 0 0 20px);
+    }
+
+    &:after {
+      // Checkmark
+      content: "\2713";
+      color: #fff;
+      line-height: 0.5;
+      left: 2px;
+      top: 0;
+      @include font-size(100px);
+    }
+  }
+}
+
 .main {}
 
 .content-block {
-  background: $theme-color-secondary;
-  @include rem(padding-bottom, 30px);
+  @include at-breakpoint($layout-xl) {
+    @include rem(padding-bottom, 30px);
+  }
 }
 
 .column {
@@ -22,8 +69,8 @@ html, body {
 
 
 .site-footer {
-  background: $theme-color-tertiary;
-  background: rgba($theme-color-tertiary, 0.9);
+  background: $color-palette-1;
+  background: rgba($color-palette-1, 0.9);
   color: $theme-color-primary;
   width: 100%;
   @include rem(padding, 20px 0);

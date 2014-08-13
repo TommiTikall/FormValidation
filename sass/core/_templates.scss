@@ -8,8 +8,6 @@
   @include each-layout {
     @include set-container-width;
   }
-  border: solid 1px lighten($color-border, 10%);
-  border-width: 0 1px;
 
   padding: {
     left: $grid-padding;
@@ -40,7 +38,7 @@
 // Column two column layout
 %column {
   @extend %clearfix;
-  @include rem( padding, 10px 0 50px );
+  @include rem(padding, 10px 0 20px);
 
   @include at-breakpoint ($layout-xl) {
     @include span-columns(6);

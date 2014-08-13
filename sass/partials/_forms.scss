@@ -49,7 +49,6 @@ textarea,
 .validation-summary,
 .validation-summary-message,
 .error {
-  // color: $color-warning;
   color: darken($color-warning, 20%);
   display: none;
 
@@ -114,7 +113,10 @@ textarea,
   &.invalid {
     @extend %invalid;
     border-bottom: solid 1px lighten($color-warning, 20%);
-    height: 48px;
+
+    &.required {
+      height: 48px;
+    }
 
     // Display errors container
     & + .errors {

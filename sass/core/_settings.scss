@@ -29,7 +29,7 @@ $rem-with-px-fallback: false;
 
 // Typograhpy (create a sane font-stack)
 $font: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-$font-display: Ubuntu, 'Helvetica Neue', 'Arial Bold', sans-serif;
+$font-display: 'Gill Sans', 'Lucida Sans Unicode', sans-serif; // Ubuntu, 'Helvetica Neue', 'Arial Bold', sans-serif;
 
 // Colors
 $color-text               : #777;
@@ -47,6 +47,8 @@ $color-border             : #ccc;
 $color-border-dark        : #333;
 $color-valid              : #48b62e;
 $color-error              : #b62e2e;
+$color-warning            : #fab71c; // #ffbb2a;
+$color-info               : #0065d6;
 
 // Theme colors
 $theme-color-primary      : #fff;
@@ -54,6 +56,8 @@ $theme-color-secondary    : #f6f9fb;
 $theme-color-tertiary     : #ffb347;
 $theme-color-quaternary   : #e3e6e8;
 $theme-color-quinquennial : #888;
+
+$color-palette-1: #00a1cb;
 
 
 // ---------------------------------------------------------------------------

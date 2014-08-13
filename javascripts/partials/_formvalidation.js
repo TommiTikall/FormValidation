@@ -35,7 +35,8 @@ App.FormValidation = (function() {
         password: 'password',
         number: 'number',
         minchars: 'minchars',
-        custom: 'custom'
+        custom: 'custom',
+        equalto: 'equalto'
       },
 
       // Group together fields that are text input fields
@@ -46,6 +47,14 @@ App.FormValidation = (function() {
         'number',
         'search'
       ],
+
+      RegExps = {
+        emailRegExp : /^[\wæøå.-0-9a-zA-Z.+_]+@[\wæøå.-0-9a-zA-Z.+_]+\.[\wæøå.a-zA-Z]{2,}$/i, // Email
+        minCharsRegExp : /\bminchars:+\d/i, // Minimum chracters
+        equalToRegExp : /#(\S+)/, // Equalto field (id)
+        numberRegExp : /^[0-9]*$/, // Number
+        customRegExp : /\bcustom:'(.*?)'/i // Custom regular expression
+      },
 
       // Keys that will not trigger the keyup event
       disabledKeys = [
@@ -101,10 +110,10 @@ App.FormValidation = (function() {
    */
   function _addEventListeners() {
     // dom.$validateField.on( 'focus', _pitStop );
-    // dom.$validateField.on( 'blur', _pitStop );
+    dom.$validateField.on( 'blur', _pitStop );
     dom.$form.on( 'keyup', dom.$validateField, _pitStop );
-    dom.$form.on( 'click', dom.$submitButton, _pitStop );
-    dom.$form.on( 'submit', _pitStop );
+    // dom.$form.on( 'click', dom.$submitButton, _pitStop );
+    // dom.$form.on( 'submit', _pitStop );
   }
 
   /**
@@ -155,13 +164,16 @@ App.FormValidation = (function() {
     var $type = $this.attr('type'), // Field type [text, password, email, ...]
         $validationType = $this.data('validation'), // Get types of validations for this field
         $value = $this.val(), // Field value
-        $length = $value.length, // Field value length
-        isSpaceOrEmpty = /^\s*$/, // Empty space or blank characters (not working yet)
-        emailRegExp = /^[\wæøå.-0-9a-zA-Z.+_]+@[\wæøå.-0-9a-zA-Z.+_]+\.[\wæøå.a-zA-Z]{2,}$/i, // Email
-        minCharsRegExp = /\bminchars:+\d/i, // Minimum chracters
-        numberRegExp = /^[0-9]*$/, // Number
+        $length = $value.length; // Field value length
+        // isSpaceOrEmpty = /^\s*$/, // Empty space or blank characters (not working yet)
+        // emailRegExp = /^[\wæøå.-0-9a-zA-Z.+_]+@[\wæøå.-0-9a-zA-Z.+_]+\.[\wæøå.a-zA-Z]{2,}$/i, // Email
+        // minCharsRegExp = /\bminchars:+\d/i, // Minimum chracters
+        // equalToRegExp = /\bequalto:^\S+/i, // Equalto field ID
+        // equalToRegExp = /\bequalto:(\S+)/, // Equalto field (id or class)
+        // equalToRegExp = /#(\S+)/, // Equalto field (id)
+        // numberRegExp = /^[0-9]*$/, // Number
         // customRegExp = /\:'(.*?)'/; // Custom regular expression, get everything after : and between ''
-        customRegExp = /\bcustom:'(.*?)'/i;
+        // customRegExp = /\bcustom:'(.*?)'/i;
 
 
     // Check if field belongs to TEXT INPUT FIELDS group
@@ -195,7 +207,7 @@ App.FormValidation = (function() {
       */
       if ( $length !== 0 && $validationType.indexOf( validationTypes.email ) !== -1 ) {
 
-        if ( emailRegExp.test( $value ) ) {
+        if ( RegExps.emailRegExp.test( $value ) ) {
           $this.removeClass(validationTypes.email);
         } else {
           $this.addClass(validationTypes.email);
@@ -208,7 +220,7 @@ App.FormValidation = (function() {
       */
       if ( $length !== 0 && $validationType.indexOf( validationTypes.number ) !== -1 ) {
 
-        if ( numberRegExp.test( $value ) ) {
+        if ( RegExps.numberRegExp.test( $value ) ) {
           $this.removeClass(validationTypes.number);
         } else {
           $this.addClass(validationTypes.number);
@@ -219,12 +231,11 @@ App.FormValidation = (function() {
       /*
         Check if field wants MINIMUM CHARACTERS validation
       */
-      // console.log(validationTypes.minChars);
       if ( $length !== 0 && $validationType.indexOf( validationTypes.minchars ) !== -1 ) {
 
         // Get the number from validation string (minchars:number),
         // convert match from array to string, then remove the semi colon from string
-        var minimumCharsToMatch = $validationType.match( minCharsRegExp ).toString();
+        var minimumCharsToMatch = $validationType.match( RegExps.minCharsRegExp ).toString();
         minimumCharsToMatch = parseInt(minimumCharsToMatch.replace('minchars:', ''), 10);
 
         // If value length is the same or bigger than minimumCharsToMatch
@@ -244,7 +255,7 @@ App.FormValidation = (function() {
 
         // Get the regular expression string from validation string (custom:'string'),
         // convert match from array to string, then remove the semi colon from string
-        var customRegExpToMatch = $validationType.match( customRegExp ); // gets the custom regexp string
+        var customRegExpToMatch = $validationType.match( RegExps.customRegExp ); // gets the custom regexp string
         customRegExpToMatch = new RegExp(customRegExpToMatch[1].replace('custom:', ''));
 
         // If the field value matches the customRegExpToMatch
@@ -254,16 +265,41 @@ App.FormValidation = (function() {
           $this.addClass(validationTypes.custom);
           validation = false;
         }
+
       }
 
-      // console.log('valid field: '+validation);
+      /*
+        Check if field wants EQUALTO validation
+      */
+      if ( $length !== 0 && $validationType.indexOf( validationTypes.equalto ) !== -1 ) {
 
-      // Is the field valid or invalid? Tell the good folks!
+        // Get the regular expression string from validation string (equalto:'string'),
+        // convert match from array to string, then remove the semi colon from string
+        var equaltoRegExpToMatch = $validationType.match( RegExps.equalToRegExp )[0].toString(); // gets the equalto regexp string
+
+        // equaltoRegExpToMatch = equaltoRegExpToMatch.replace('equalto:', '');
+        var $equaltoFieldValue = $( equaltoRegExpToMatch ).val();
+
+        // If the field value matches the equaltoRegExpToMatch
+        if ( $value === $equaltoFieldValue ) {
+          $this.removeClass(validationTypes.equalto);
+        } else {
+          $this.addClass(validationTypes.equalto);
+          validation = false;
+        }
+      }
+
+      // Check if validation === true || false
+      // If field is not valid, remove valid class, and introduce invalid class
       if ( validation === false ) {
         $this.removeClass(classNames.valid);
         $this.addClass(classNames.invalid);
-      // } else if ( validation === true && $this.hasClass(classNames.invalid) ) {
-      } else if ( validation === true ) {
+
+      // Check if field is valid, and has invalid class
+      // If both are fulfilled, then remove invalid class, and add valid class
+      // This is to ensure that fields that do not have 'required' validation,
+      // do not get valid class if empty when validation is triggered
+      } else if ( validation === true && $this.hasClass(classNames.invalid) ) {
         $this.removeClass(classNames.invalid);
         $this.addClass(classNames.valid);
       }

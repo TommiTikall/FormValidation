@@ -41,15 +41,15 @@ textarea,
 // ===================================================
 
 %invalid {
-  background: lighten($color-error, 40%);
-  border: solid 1px $color-error;
+  background: lighten($color-warning, 30%);
+  border: solid 1px $color-warning;
   @include transition(none);
 }
 
 .validation-summary,
 .validation-summary-message,
 .error {
-  color: $color-error;
+  color: darken($color-warning, 20%);
   display: none;
 
   &.visible {
@@ -64,8 +64,6 @@ textarea,
 
 .errors {
   @extend %invalid;
-  // background: lighten($color-error, 40%);
-  // border: solid 1px $color-error;
   border-width: 0 1px 1px;
   display: none;
   margin: 0;
@@ -83,17 +81,16 @@ textarea,
 // Show / Hide individual validation messages for fields
 // ===================================================
 
-.required-indicator {
-  display: none;
-
-  // [data-validation~="required"] ~  & {
-  //   display: block;
-  //   position: absolute;
-  //   right: 15px;
-  //   top: 47px;
-  //   @include font-size(35px);
-  // }
-}
+// .required-indicator {
+//   display: none;
+//   [data-validation~="required"] ~  & {
+//     display: block;
+//     position: absolute;
+//     right: 15px;
+//     top: 47px;
+//     @include font-size(35px);
+//   }
+// }
 
 [data-validation~="required"] {
   border-bottom: solid 3px $color-border;
@@ -115,7 +112,11 @@ textarea,
   // When field is invalid
   &.invalid {
     @extend %invalid;
-    border-bottom: solid 1px lighten($color-error, 30%);
+    border-bottom: solid 1px lighten($color-warning, 20%);
+
+    &.required {
+      height: 48px;
+    }
 
     // Display errors container
     & + .errors {
@@ -137,6 +138,9 @@ textarea,
       display: block;
     }
     &.custom + .errors [data-error="custom"] {
+      display: block;
+    }
+    &.equalto + .errors [data-error="equalto"] {
       display: block;
     }
   }

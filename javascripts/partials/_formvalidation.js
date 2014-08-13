@@ -265,22 +265,20 @@ App.FormValidation = (function() {
           $this.addClass(validationTypes.custom);
           validation = false;
         }
+
       }
 
       /*
         Check if field wants EQUALTO validation
       */
       if ( $length !== 0 && $validationType.indexOf( validationTypes.equalto ) !== -1 ) {
-        console.log('equal to matching');
 
         // Get the regular expression string from validation string (equalto:'string'),
         // convert match from array to string, then remove the semi colon from string
         var equaltoRegExpToMatch = $validationType.match( RegExps.equalToRegExp )[0].toString(); // gets the equalto regexp string
-        console.log(equaltoRegExpToMatch);
 
         // equaltoRegExpToMatch = equaltoRegExpToMatch.replace('equalto:', '');
         var $equaltoFieldValue = $( equaltoRegExpToMatch ).val();
-        console.log($equaltoFieldValue, $value);
 
         // If the field value matches the equaltoRegExpToMatch
         if ( $value === $equaltoFieldValue ) {
@@ -291,14 +289,17 @@ App.FormValidation = (function() {
         }
       }
 
-      // console.log('valid field: '+validation);
-
-      // Is the field valid or invalid? Tell the good folks!
+      // Check if validation === true || false
+      // If field is not valid, remove valid class, and introduce invalid class
       if ( validation === false ) {
         $this.removeClass(classNames.valid);
         $this.addClass(classNames.invalid);
-      // } else if ( validation === true && $this.hasClass(classNames.invalid) ) {
-      } else if ( validation === true ) {
+
+      // Check if field is valid, and has invalid class
+      // If both are fulfilled, then remove invalid class, and add valid class
+      // This is to ensure that fields that do not have 'required' validation,
+      // do not get valid class if empty when validation is triggered
+      } else if ( validation === true && $this.hasClass(classNames.invalid) ) {
         $this.removeClass(classNames.invalid);
         $this.addClass(classNames.valid);
       }

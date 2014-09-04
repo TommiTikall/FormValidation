@@ -16,6 +16,15 @@ App.FormValidation = (function() {
 
   var validation,
 
+      validationSettings = {
+        onBlur: true, // Only if field is invalid or valid
+        onFocus: false, // Only if field is invalid or valid
+        onKeyUp: true, // Only if field is invalid or valid
+        onSubmit: true,
+        showInlineValidation: true,
+        showValidationSummary: false
+      },
+
       // Selectors for DOM elements
       selectors = {
         form : '.js-form',
@@ -121,9 +130,20 @@ App.FormValidation = (function() {
    * Attach event listeners to DOM elements
    */
   function _addEventListeners() {
-    dom.$validateField.on( 'keyup', _pitStop );
-    dom.$validateField.on( 'blur', _pitStop );
-    dom.$form.on( 'submit', _pitStop );
+
+    if ( validationSettings.onKeyUp ) {
+      dom.$validateField.on( 'keyup', _pitStop );
+    }
+    if ( validationSettings.onFocus ) {
+      dom.$validateField.on( 'focus', _pitStop );
+    }
+    if ( validationSettings.onBlur ) {
+      dom.$validateField.on( 'blur', _pitStop );
+    }
+    if ( validationSettings.onSubmit ) {
+      dom.$form.on( 'submit', _pitStop );
+    }
+
 
     // dom.$validateField.on( 'focus', _pitStop );
     // dom.$form.on( 'click', dom.$submitButton, _pitStop );

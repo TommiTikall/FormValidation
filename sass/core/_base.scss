@@ -229,7 +229,9 @@ button {
     height: 100%;
   }
   &:checked:after { content: "\2713"; }
-  label > & {
+
+  // Specifically float left to re-order dom
+  &.checkbox {
     float: left;
     @include rem(margin-right, 10px);
   }

@@ -100,7 +100,8 @@
 [type="email"],
 [type="number"],
 [type="search"],
-[type="password"] {
+[type="password"],
+[type="checkbox"] {
 
   // When field is valid
   &.valid {
@@ -144,7 +145,16 @@
     // Show error for non-text fields
     &[type="checkbox"],
     &[type="radio"] {
+      background: #fff;
       border-bottom: solid 1px lighten($color-warning, 20%);
+      @include rem( height, 18px );
+      @include rem( width, 18px );
+
+      // Small tweaks to the error container
+      & + .errors {
+        border-width: 1px;
+        @include rem( margin-top, 5px );
+      }
     }
   }
 

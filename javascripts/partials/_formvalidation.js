@@ -40,6 +40,7 @@ App.FormValidation = (function() {
       },
 
       // Group together fields that are text input fields
+      // This is to easily match input types when looping through validation
       stringInputFields = [
         'text',
         'password',
@@ -48,17 +49,28 @@ App.FormValidation = (function() {
         'search'
       ],
 
-      RegExps = {
+      // Regular expressions used by validation
+      regExps = {
         emailRegExp : /^[\wæøå.-0-9a-zA-Z.+_]+@[\wæøå.-0-9a-zA-Z.+_]+\.[\wæøå.a-zA-Z]{2,}$/i, // Email
         minCharsRegExp : /\bminchars:+\d/i, // Minimum chracters
         equalToRegExp : /#(\S+)/, // Equalto field (id)
-        numberRegExp : /^[0-9]*$/, // Number
-        customRegExp : /\bcustom:'(.*?)'/i // Custom regular expression
+        numberRegExp : /^[0-9]*$/, // Match Number
+        customRegExp : /\bcustom:'(.*?)'/i // Custom regular expression, to match the validation attribute and extract regexp from string
+
+        // isSpaceOrEmpty = /^\s*$/, // Empty space or blank characters (not working yet)
+        // emailRegExp = /^[\wæøå.-0-9a-zA-Z.+_]+@[\wæøå.-0-9a-zA-Z.+_]+\.[\wæøå.a-zA-Z]{2,}$/i, // Email
+        // minCharsRegExp = /\bminchars:+\d/i, // Minimum chracters
+        // equalToRegExp = /\bequalto:^\S+/i, // Equalto field ID
+        // equalToRegExp = /\bequalto:(\S+)/, // Equalto field (id or class)
+        // equalToRegExp = /#(\S+)/, // Equalto field (id)
+        // numberRegExp = /^[0-9]*$/, // Number
+        // customRegExp = /\:'(.*?)'/; // Custom regular expression, get everything after : and between ''
+        // customRegExp = /\bcustom:'(.*?)'/i;
       },
 
       // Keys that will not trigger the keyup event
       disabledKeys = [
-        9,  // backspace
+        // 9,  // backspace
         13, // enter
         16, // shift
         17, // ctrl
@@ -102,18 +114,19 @@ App.FormValidation = (function() {
     // Form element(s)
     dom.$form = $( selectors.form );
     dom.$validateField = $( selectors.validateField, dom.$form );
-    dom.$submitButton = $( selectors.submitButton );
+    dom.$submitButton = $( selectors.submitButton, dom.$form );
   }
 
   /**
    * Attach event listeners to DOM elements
    */
   function _addEventListeners() {
-    // dom.$validateField.on( 'focus', _pitStop );
+    dom.$validateField.on( 'keyup', _pitStop );
     dom.$validateField.on( 'blur', _pitStop );
-    dom.$form.on( 'keyup', dom.$validateField, _pitStop );
+    dom.$form.on( 'submit', _pitStop );
+
+    // dom.$validateField.on( 'focus', _pitStop );
     // dom.$form.on( 'click', dom.$submitButton, _pitStop );
-    // dom.$form.on( 'submit', _pitStop );
   }
 
   /**
@@ -124,31 +137,55 @@ App.FormValidation = (function() {
    * @return {void}
    */
   function _pitStop ( event ) {
-    var $el = $( event.target ); // The form element in question
+    var $el = $( event.target ), // The form element in question
+    fieldInvalid = $el.hasClass( classNames.valid ),
+    fieldIsInvalid = $el.hasClass( classNames.invalid );
 
-    // Get event type to determine what to do next
+    // KEYUP event
     if ( event.type === 'keyup' ) {
       var key = event.keyCode ? event.keyCode : event.charCode;
-      if ( disabledKeys.indexOf( key ) === -1 ) {
+      if ( disabledKeys.indexOf( key ) === -1 && ( fieldIsInvalid || fieldInvalid ) )  {
         _validate($el);
       }
-    } else {
-      _validate($el);
     }
+
+    // BLUR event
+    if ( event.type === 'blur' ) {
+      // Only validate field on blur, if invalid
+      if ( fieldIsInvalid ) {
+        _validate($el);
+      }
+    }
+
+    // SUBMIT event
+    if ( event.type === 'submit' ) {
+      // Loop through all fields
+      var submitBool;
+      $.each(dom.$validateField, function () {
+        submitBool = _validate($(this));
+        console.log($(this).attr('tabindex'), submitBool);
+      });
+
+      console.log('=======');
+
+      return false;
+
+      // return submitBool;
+    }
+
+
+    // } else if ( event.type === 'submit' ) {
+    //   // Validate all fields in form
+
+    //   console.log('submit form triggered');
+    //   return false;
+    // }
+    // } else {
+    //   _validate($el);
+    // }
 
     // if ( event.type === 'focus' ) {
     //   _validate($el);
-    // }
-
-    // if ( event.type === 'blur' ) {
-    //   console.log(event.type);
-    //   _validate($el);
-    // }
-
-    // if ( event.type === 'submit' ) {
-    //   // Validate all fields in form
-    //   console.log('submitting form');
-    //   return false;
     // }
   }
 
@@ -165,16 +202,6 @@ App.FormValidation = (function() {
         $validationType = $this.data('validation'), // Get types of validations for this field
         $value = $this.val(), // Field value
         $length = $value.length; // Field value length
-        // isSpaceOrEmpty = /^\s*$/, // Empty space or blank characters (not working yet)
-        // emailRegExp = /^[\wæøå.-0-9a-zA-Z.+_]+@[\wæøå.-0-9a-zA-Z.+_]+\.[\wæøå.a-zA-Z]{2,}$/i, // Email
-        // minCharsRegExp = /\bminchars:+\d/i, // Minimum chracters
-        // equalToRegExp = /\bequalto:^\S+/i, // Equalto field ID
-        // equalToRegExp = /\bequalto:(\S+)/, // Equalto field (id or class)
-        // equalToRegExp = /#(\S+)/, // Equalto field (id)
-        // numberRegExp = /^[0-9]*$/, // Number
-        // customRegExp = /\:'(.*?)'/; // Custom regular expression, get everything after : and between ''
-        // customRegExp = /\bcustom:'(.*?)'/i;
-
 
     // Check if field belongs to TEXT INPUT FIELDS group
     if ( stringInputFields.indexOf( $type ) !== -1 ) {
@@ -185,7 +212,7 @@ App.FormValidation = (function() {
       if ( $length === 0 ) {
         $this.removeClass(classNames.invalid);
         $.each( validationTypes, function(i, n){
-          $this.removeClass(n);
+          $this.removeClass(n.toString());
         });
       }
 
@@ -207,7 +234,7 @@ App.FormValidation = (function() {
       */
       if ( $length !== 0 && $validationType.indexOf( validationTypes.email ) !== -1 ) {
 
-        if ( RegExps.emailRegExp.test( $value ) ) {
+        if ( regExps.emailRegExp.test( $value ) ) {
           $this.removeClass(validationTypes.email);
         } else {
           $this.addClass(validationTypes.email);
@@ -220,7 +247,7 @@ App.FormValidation = (function() {
       */
       if ( $length !== 0 && $validationType.indexOf( validationTypes.number ) !== -1 ) {
 
-        if ( RegExps.numberRegExp.test( $value ) ) {
+        if ( regExps.numberRegExp.test( $value ) ) {
           $this.removeClass(validationTypes.number);
         } else {
           $this.addClass(validationTypes.number);
@@ -235,7 +262,7 @@ App.FormValidation = (function() {
 
         // Get the number from validation string (minchars:number),
         // convert match from array to string, then remove the semi colon from string
-        var minimumCharsToMatch = $validationType.match( RegExps.minCharsRegExp ).toString();
+        var minimumCharsToMatch = $validationType.match( regExps.minCharsRegExp ).toString();
         minimumCharsToMatch = parseInt(minimumCharsToMatch.replace('minchars:', ''), 10);
 
         // If value length is the same or bigger than minimumCharsToMatch
@@ -255,7 +282,7 @@ App.FormValidation = (function() {
 
         // Get the regular expression string from validation string (custom:'string'),
         // convert match from array to string, then remove the semi colon from string
-        var customRegExpToMatch = $validationType.match( RegExps.customRegExp ); // gets the custom regexp string
+        var customRegExpToMatch = $validationType.match( regExps.customRegExp ); // gets the custom regexp string
         customRegExpToMatch = new RegExp(customRegExpToMatch[1].replace('custom:', ''));
 
         // If the field value matches the customRegExpToMatch
@@ -275,7 +302,7 @@ App.FormValidation = (function() {
 
         // Get the regular expression string from validation string (equalto:'string'),
         // convert match from array to string, then remove the semi colon from string
-        var equaltoRegExpToMatch = $validationType.match( RegExps.equalToRegExp )[0].toString(); // gets the equalto regexp string
+        var equaltoRegExpToMatch = $validationType.match( regExps.equalToRegExp )[0].toString(); // gets the equalto regexp string
 
         // equaltoRegExpToMatch = equaltoRegExpToMatch.replace('equalto:', '');
         var $equaltoFieldValue = $( equaltoRegExpToMatch ).val();
@@ -305,6 +332,22 @@ App.FormValidation = (function() {
       }
 
     }
+
+    /*
+      Checkbox validation
+    */
+    if ( $type === 'checkbox' && $validationType.indexOf( validationTypes.required ) !== -1 ) {
+      if( $this.prop('checked') === false ) {
+        $this.addClass(validationTypes.required);
+        $this.removeClass(classNames.valid);
+        $this.addClass(classNames.invalid);
+        validation = false;
+      } else {
+        $this.removeClass(validationTypes.required);
+      }
+    }
+
+    return validation;
 
     // OLD CRAP
     // else if( $type === undefined && $value === "0" ) {

@@ -524,7 +524,7 @@ pre {
 
 /* line 129, ../sass/core/_base.scss */
 code {
-  color: #333333;
+  color: #0078cc;
   font-size: 14px;
   font-size: 1.4rem;
   padding: 0 5px; }
@@ -633,15 +633,15 @@ button {
 /* line 212, ../sass/core/_base.scss */
 [type="checkbox"] {
   background: #fff;
-  border: none;
+  border: none !important;
   display: inline-block;
   position: relative;
   -moz-appearance: none;
   -webkit-appearance: none;
-  height: 16px;
-  height: 1.6rem;
-  width: 16px;
-  width: 1.6rem; }
+  height: 18px;
+  height: 1.8rem;
+  width: 18px;
+  width: 1.8rem; }
   /* line 220, ../sass/core/_base.scss */
   [type="checkbox"]:after {
     border: 1px solid #333333;
@@ -659,11 +659,15 @@ button {
   /* line 232, ../sass/core/_base.scss */
   label > [type="checkbox"] {
     float: left;
-    margin-right: 1em; }
+    margin-right: 10px;
+    margin-right: 1rem; }
 
 /* line 238, ../sass/core/_base.scss */
 label {
-  display: inline-block; }
+  display: inline; }
+  /* line 242, ../sass/core/_base.scss */
+  label.checkbox {
+    margin-right: 10px; }
 
 /* line 5, ../sass/core/_templates.scss */
 .container {
@@ -997,7 +1001,7 @@ html, body {
 
 /* line 95, ../sass/partials/_forms.scss */
 [data-validation~="required"] {
-  border-bottom: solid 3px #cccccc; }
+  border-bottom: solid 4px #cccccc; }
 
 /* line 106, ../sass/partials/_forms.scss */
 [type="text"].valid,
@@ -1017,15 +1021,9 @@ html, body {
 [type="number"].invalid,
 [type="search"].invalid,
 [type="password"].invalid {
-  border-bottom: solid 1px #fcd780; }
-  /* line 117, ../sass/partials/_forms.scss */
-  [type="text"].invalid.required,
-  [type="email"].invalid.required,
-  [type="number"].invalid.required,
-  [type="search"].invalid.required,
-  [type="password"].invalid.required {
-    height: 48px; }
-  /* line 122, ../sass/partials/_forms.scss */
+  border-bottom: solid 1px #fcd780;
+  height: 47px; }
+  /* line 119, ../sass/partials/_forms.scss */
   [type="text"].invalid + .errors,
   [type="email"].invalid + .errors,
   [type="number"].invalid + .errors,
@@ -1033,45 +1031,56 @@ html, body {
   [type="password"].invalid + .errors {
     display: block;
     padding-top: 10px; }
-  /* line 128, ../sass/partials/_forms.scss */
+  /* line 125, ../sass/partials/_forms.scss */
   [type="text"].invalid.required + .errors [data-error="required"],
   [type="email"].invalid.required + .errors [data-error="required"],
   [type="number"].invalid.required + .errors [data-error="required"],
   [type="search"].invalid.required + .errors [data-error="required"],
   [type="password"].invalid.required + .errors [data-error="required"] {
     display: block; }
-  /* line 131, ../sass/partials/_forms.scss */
+  /* line 128, ../sass/partials/_forms.scss */
   [type="text"].invalid.email + .errors [data-error="email"],
   [type="email"].invalid.email + .errors [data-error="email"],
   [type="number"].invalid.email + .errors [data-error="email"],
   [type="search"].invalid.email + .errors [data-error="email"],
   [type="password"].invalid.email + .errors [data-error="email"] {
     display: block; }
-  /* line 134, ../sass/partials/_forms.scss */
+  /* line 131, ../sass/partials/_forms.scss */
   [type="text"].invalid.number + .errors [data-error="number"],
   [type="email"].invalid.number + .errors [data-error="number"],
   [type="number"].invalid.number + .errors [data-error="number"],
   [type="search"].invalid.number + .errors [data-error="number"],
   [type="password"].invalid.number + .errors [data-error="number"] {
     display: block; }
-  /* line 137, ../sass/partials/_forms.scss */
+  /* line 134, ../sass/partials/_forms.scss */
   [type="text"].invalid.minchars + .errors [data-error="minchars"],
   [type="email"].invalid.minchars + .errors [data-error="minchars"],
   [type="number"].invalid.minchars + .errors [data-error="minchars"],
   [type="search"].invalid.minchars + .errors [data-error="minchars"],
   [type="password"].invalid.minchars + .errors [data-error="minchars"] {
     display: block; }
-  /* line 140, ../sass/partials/_forms.scss */
+  /* line 137, ../sass/partials/_forms.scss */
   [type="text"].invalid.custom + .errors [data-error="custom"],
   [type="email"].invalid.custom + .errors [data-error="custom"],
   [type="number"].invalid.custom + .errors [data-error="custom"],
   [type="search"].invalid.custom + .errors [data-error="custom"],
   [type="password"].invalid.custom + .errors [data-error="custom"] {
     display: block; }
-  /* line 143, ../sass/partials/_forms.scss */
+  /* line 140, ../sass/partials/_forms.scss */
   [type="text"].invalid.equalto + .errors [data-error="equalto"],
   [type="email"].invalid.equalto + .errors [data-error="equalto"],
   [type="number"].invalid.equalto + .errors [data-error="equalto"],
   [type="search"].invalid.equalto + .errors [data-error="equalto"],
   [type="password"].invalid.equalto + .errors [data-error="equalto"] {
     display: block; }
+  /* line 145, ../sass/partials/_forms.scss */
+  [type="text"].invalid[type="checkbox"], [type="text"].invalid[type="radio"],
+  [type="email"].invalid[type="checkbox"],
+  [type="email"].invalid[type="radio"],
+  [type="number"].invalid[type="checkbox"],
+  [type="number"].invalid[type="radio"],
+  [type="search"].invalid[type="checkbox"],
+  [type="search"].invalid[type="radio"],
+  [type="password"].invalid[type="checkbox"],
+  [type="password"].invalid[type="radio"] {
+    border-bottom: solid 1px #fcd780; }

@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8">
 
-    <title>Validate</title>
+    <title>Validate - a simpler cms validation</title>
 
     <meta name="description" content="Form validation">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -38,7 +38,7 @@
 
         <section class="container content-block">
           <h1>Validate</h1>
-          <h2>Form validation for CMS</h2>
+          <h2>Approachable form validation</h2>
           <h3>Markup is the word!</h3>
           <p>
             Because so many form validation plugins are mostly javascript solutions, where which fields are validated, validation types, and error messages, are defined in javascript code, it is not always a good approach for content managment systems, that only flood the DOM. I can think of one scenario where CMS is set up to support multiple languages, and all translations are handled by the CMS, i.e. it will only be rendered in your DOM. Then how do we translate the error messages, for instance?
@@ -54,7 +54,7 @@
             <form class="form demo js-form" data-validation-when="keyup field-blur submit">
               <div class="input-row">
                 <label>Text validation [required]</label>
-                <input type="text" data-validation="required" tabindex="1">
+                <input type="text" tabindex="1" data-validation="required">
                 <ul class="errors">
                   <li class="error" data-error="required">This field is required</li>
                 </ul>
@@ -108,15 +108,24 @@
 
               <div class="input-row">
                 <label>Numbers only [custom] (Custom regular expression)</label>
-                <input type="text" data-validation="custom:'^[0-9]*$'" tabindex="7">
+                <input type="text" data-validation="required custom:'^[0-9]*$'" tabindex="7">
                 <!-- <input type="text" data-validation="custom:'^\s*[\w\-\+_]+(\.[\w\-\+_]+)*\@[\w\-\+_]+\.[\w\-\+_]+(\.[\w\-\+_]+)*\s*$'" tabindex="6"> -->
                 <ul class="errors">
+                  <li class="error" data-error="required">This field is required</li>
                   <li class="error" data-error="custom">Custom Regular Expression not met: Numbers only</li>
                 </ul>
               </div>
 
               <div class="input-row">
-                <input type="submit" onclick="return false" class="js-submit" tabindex="20">
+                <input type="checkbox" id="checkbox" data-validation="required" tabindex="8">
+                <label for="checkbox" class="checkbox">Checkbox [required]</label>
+                <ul class="errors">
+                  <li class="error" data-error="required">You MUST approve our 600 pages of legal stuff</li>
+                </ul>
+              </div>
+
+              <div class="input-row">
+                <input type="submit" class="js-submit" tabindex="20">
               </div>
             </form>
           </div>
@@ -153,7 +162,7 @@
                 </ul>
               </p>
               <h3>Errors</h3>
-              <p>To make an error message trigger on validation, just make sure it has the <code>class="error"</code> and the data attribute <code>data-error="required"</code>, or the validation type corresponding to the validation you want to trigger it.</p>
+              <p>To make an error message trigger on validation, just make sure it has a <code>class="error"</code> and the data attribute <code>data-error="required"</code>, or the validation type corresponding to the validation you want to trigger it.</p>
               <p>
                 Take a look at the <a href="#codeexamples">code examples</a> for more in-depth introduction of how to implement the markup and data attributes.
               </p>
@@ -162,10 +171,9 @@
         </section>
 
         <!-- Code blocks section -->
-        <section class="container content-block" id="codeexamples">
+        <!-- <section class="container content-block" id="codeexamples">
           <header>
             <h2>Code examples</h2>
-            <!-- <h3 class="code-example__header">Single field demos</h3> -->
           </header>
 
           <div class="code-example">
@@ -227,12 +235,12 @@
               <li><a href="http://www.evotech.net/blog/2007/08/css-javascript-character-entities/">Convert HTML Entities to usable CSS code (for pseudo elements)</a></li>
             </ul>
           </section>
-        </section>
+        </section> -->
 
       </article>
     </main>
 
-    <footer class="site-footer">
+    <!-- <footer class="site-footer">
       <div class="container">
         <div class="site-footer__column">
           Created by Tómas Thorvardarson
@@ -244,10 +252,10 @@
           <a href="https://twitter.com/TommiTikall">@TommiTikall</a>
         </div>
       </div>
-    </footer>
+    </footer> -->
 
     <!-- JavaScript at the bottom for fast page loading -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
     <script>window.jQuery || document.write('<script src="javascripts/lib/jquery-1.11.1.js"><\/script>')</script>
     <script src="javascripts/main-min.js"></script>
 

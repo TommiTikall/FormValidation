@@ -16,25 +16,25 @@
 // Field validation styles
 // ===================================================
 
-textarea,
-[type="url"],
-[type="file"],
-[type="text"],
-[type="date"],
-[type="time"],
-[type="week"],
-[type="email"],
-[type="month"],
-[type="color"],
-[type="number"],
-[type="search"],
-[type="password"],
-[type="datetime"],
-[type="datetime-local"] {
-  &[data-validation="required"] {
-    // Insert something that indicates required
-  }
-}
+// textarea,
+// [type="url"],
+// [type="file"],
+// [type="text"],
+// [type="date"],
+// [type="time"],
+// [type="week"],
+// [type="email"],
+// [type="month"],
+// [type="color"],
+// [type="number"],
+// [type="search"],
+// [type="password"],
+// [type="datetime"],
+// [type="datetime-local"] {
+//   &[data-validation="required"] {
+//     // Insert something that indicates required
+//   }
+// }
 
 
 // Field errors
@@ -93,7 +93,7 @@ textarea,
 // }
 
 [data-validation~="required"] {
-  border-bottom: solid 3px $color-border;
+  border-bottom: solid 4px $color-border;
 }
 
 [type="text"],
@@ -113,10 +113,7 @@ textarea,
   &.invalid {
     @extend %invalid;
     border-bottom: solid 1px lighten($color-warning, 20%);
-
-    &.required {
-      height: 48px;
-    }
+    height: 47px;
 
     // Display errors container
     & + .errors {
@@ -142,6 +139,12 @@ textarea,
     }
     &.equalto + .errors [data-error="equalto"] {
       display: block;
+    }
+
+    // Show error for non-text fields
+    &[type="checkbox"],
+    &[type="radio"] {
+      border-bottom: solid 1px lighten($color-warning, 20%);
     }
   }
 

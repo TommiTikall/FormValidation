@@ -51,7 +51,7 @@
         <section class="container content-block">
           <div class="column">
             <h2>Demo</h2>
-            <form class="form demo js-form" data-validation-when="keyup field-blur submit">
+            <form class="form demo js-form" data-validation-when="keyup blur submit" id="example-demo">
               <div class="input-row">
                 <label>Text validation [required]</label>
                 <input type="text" tabindex="1" data-validation="required">
@@ -118,7 +118,7 @@
 
               <div class="input-row">
                 <label for="checkbox">Checkbox [required]</label>
-                <input type="checkbox" class="checkbox" id="checkbox" data-validation="required" tabindex="8">
+                <input type="checkbox" class="checkbox--left" id="checkbox" data-validation="required" tabindex="8">
                 <ul class="errors">
                   <li class="error" data-error="required">You MUST approve our 600 pages of legal stuff</li>
                 </ul>
@@ -152,14 +152,16 @@
               </p>
               <h3>Data attributes</h3>
               <h4>Validation</h4>
+              <p><code>&lt;form data-validation-when="blur focus keyup submit"&gt;</code></p>
               <p>
                 <ul>
-                  <li><code>data-validation="required"</code></li>
-                  <li><code>data-validation="email"</code></li>
-                  <li><code>data-validation="number"</code></li>
-                  <li><code>data-validation="minchars"</code></li>
-                  <li><code>data-validation="custom"</code></li>
+                  <li><code>&lt;input data-validation="required"&gt;</code></li>
+                  <li><code>&lt;input data-validation="email"&gt;</code></li>
+                  <li><code>&lt;input data-validation="number"&gt;</code></li>
+                  <li><code>&lt;input data-validation="minchars:#"&gt;</code></li>
+                  <li><code>&lt;input data-validation="custom"&gt;</code></li>
                 </ul>
+                <p><code>&lt;input data-validation="recuired minchars:6 custom"&gt;</code></p>
               </p>
               <h3>Errors</h3>
               <p>To make an error message trigger on validation, just make sure it has a <code>class="error"</code> and the data attribute <code>data-error="required"</code>, or the validation type corresponding to the validation you want to trigger it.</p>
@@ -183,7 +185,7 @@
               All you have to do, is set <code>data-validation="required"</code> on the <code>&lt;input&gt;</code>, and it will take care of the rest.<br />
               To display an validation error message, add the error container (markup type is optional as long as it <code>class="errors"</code>), with an <code>class="error"</code> and a <code>data-error="required"</code> that reflects the <code>data-validation</code> attribute in the <code>&lt;input&gt;</code>.
             </p>
-            <form class="form js-form column">
+            <form class="form js-form column" data-validation-when="keyup blur" id="example-1">
               <div class="input-row">
                 <label>Text field</label>
                 <input type="text" data-validation="required">
@@ -204,7 +206,7 @@
               Each validation type is set in the <code>data-validation</code> attribute on the <code>&lt;input&gt;</code> tag.<br />
               The example below show exactly how to achieve this.
             </p>
-            <form class="form js-form column">
+            <form class="form js-form column" data-validation-when="keyup blur" id="example-2">
               <div class="input-row">
                 <label>Email</label>
                 <input type="text" data-validation="required email">

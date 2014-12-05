@@ -657,7 +657,7 @@ button {
   [type="checkbox"]:checked:after {
     content: "\2713"; }
   /* line 234, ../sass/core/_base.scss */
-  [type="checkbox"].checkbox {
+  [type="checkbox"].checkbox--left {
     float: left;
     margin-right: 10px;
     margin-right: 1rem; }
@@ -940,11 +940,7 @@ html, body {
 [type="password"].invalid,
 [type="checkbox"].invalid {
   background: #fde6b2;
-  border: solid 1px #fab71c;
-  -moz-transition: none;
-  -o-transition: none;
-  -webkit-transition: none;
-  transition: none; }
+  border: solid 1px #fab71c; }
 
 /* line 49, ../sass/partials/_forms.scss */
 .validation-summary,
@@ -989,11 +985,37 @@ html, body {
 [type="checkbox"].valid {
   border-color: #48b62e;
   background: #caefc1;
-  -moz-transition: none;
-  -o-transition: none;
-  -webkit-transition: none;
-  transition: none; }
-/* line 114, ../sass/partials/_forms.scss */
+  -moz-transition: border-color 0.5s;
+  -o-transition: border-color 0.5s;
+  -webkit-transition: border-color 0.5s;
+  transition: border-color 0.5s; }
+  /* line 112, ../sass/partials/_forms.scss */
+  [type="text"].valid[type="checkbox"], [type="text"].valid[type="radio"],
+  [type="email"].valid[type="checkbox"],
+  [type="email"].valid[type="radio"],
+  [type="number"].valid[type="checkbox"],
+  [type="number"].valid[type="radio"],
+  [type="search"].valid[type="checkbox"],
+  [type="search"].valid[type="radio"],
+  [type="password"].valid[type="checkbox"],
+  [type="password"].valid[type="radio"],
+  [type="checkbox"].valid[type="checkbox"],
+  [type="checkbox"].valid[type="radio"] {
+    background: none; }
+    /* line 116, ../sass/partials/_forms.scss */
+    [type="text"].valid[type="checkbox"]:after, [type="text"].valid[type="radio"]:after,
+    [type="email"].valid[type="checkbox"]:after,
+    [type="email"].valid[type="radio"]:after,
+    [type="number"].valid[type="checkbox"]:after,
+    [type="number"].valid[type="radio"]:after,
+    [type="search"].valid[type="checkbox"]:after,
+    [type="search"].valid[type="radio"]:after,
+    [type="password"].valid[type="checkbox"]:after,
+    [type="password"].valid[type="radio"]:after,
+    [type="checkbox"].valid[type="checkbox"]:after,
+    [type="checkbox"].valid[type="radio"]:after {
+      border-color: #48b62e; }
+/* line 123, ../sass/partials/_forms.scss */
 [type="text"].invalid,
 [type="email"].invalid,
 [type="number"].invalid,
@@ -1001,8 +1023,12 @@ html, body {
 [type="password"].invalid,
 [type="checkbox"].invalid {
   border-bottom: solid 1px #fcd780;
-  height: 47px; }
-  /* line 120, ../sass/partials/_forms.scss */
+  height: 47px;
+  -moz-transition: border-color 0.5s;
+  -o-transition: border-color 0.5s;
+  -webkit-transition: border-color 0.5s;
+  transition: border-color 0.5s; }
+  /* line 130, ../sass/partials/_forms.scss */
   [type="text"].invalid + .errors,
   [type="email"].invalid + .errors,
   [type="number"].invalid + .errors,
@@ -1011,7 +1037,7 @@ html, body {
   [type="checkbox"].invalid + .errors {
     display: block;
     padding-top: 10px; }
-  /* line 126, ../sass/partials/_forms.scss */
+  /* line 136, ../sass/partials/_forms.scss */
   [type="text"].invalid.required + .errors [data-error="required"],
   [type="email"].invalid.required + .errors [data-error="required"],
   [type="number"].invalid.required + .errors [data-error="required"],
@@ -1019,7 +1045,7 @@ html, body {
   [type="password"].invalid.required + .errors [data-error="required"],
   [type="checkbox"].invalid.required + .errors [data-error="required"] {
     display: block; }
-  /* line 129, ../sass/partials/_forms.scss */
+  /* line 139, ../sass/partials/_forms.scss */
   [type="text"].invalid.email + .errors [data-error="email"],
   [type="email"].invalid.email + .errors [data-error="email"],
   [type="number"].invalid.email + .errors [data-error="email"],
@@ -1027,7 +1053,7 @@ html, body {
   [type="password"].invalid.email + .errors [data-error="email"],
   [type="checkbox"].invalid.email + .errors [data-error="email"] {
     display: block; }
-  /* line 132, ../sass/partials/_forms.scss */
+  /* line 142, ../sass/partials/_forms.scss */
   [type="text"].invalid.number + .errors [data-error="number"],
   [type="email"].invalid.number + .errors [data-error="number"],
   [type="number"].invalid.number + .errors [data-error="number"],
@@ -1035,7 +1061,7 @@ html, body {
   [type="password"].invalid.number + .errors [data-error="number"],
   [type="checkbox"].invalid.number + .errors [data-error="number"] {
     display: block; }
-  /* line 135, ../sass/partials/_forms.scss */
+  /* line 145, ../sass/partials/_forms.scss */
   [type="text"].invalid.minchars + .errors [data-error="minchars"],
   [type="email"].invalid.minchars + .errors [data-error="minchars"],
   [type="number"].invalid.minchars + .errors [data-error="minchars"],
@@ -1043,7 +1069,7 @@ html, body {
   [type="password"].invalid.minchars + .errors [data-error="minchars"],
   [type="checkbox"].invalid.minchars + .errors [data-error="minchars"] {
     display: block; }
-  /* line 138, ../sass/partials/_forms.scss */
+  /* line 148, ../sass/partials/_forms.scss */
   [type="text"].invalid.custom + .errors [data-error="custom"],
   [type="email"].invalid.custom + .errors [data-error="custom"],
   [type="number"].invalid.custom + .errors [data-error="custom"],
@@ -1051,7 +1077,7 @@ html, body {
   [type="password"].invalid.custom + .errors [data-error="custom"],
   [type="checkbox"].invalid.custom + .errors [data-error="custom"] {
     display: block; }
-  /* line 141, ../sass/partials/_forms.scss */
+  /* line 151, ../sass/partials/_forms.scss */
   [type="text"].invalid.equalto + .errors [data-error="equalto"],
   [type="email"].invalid.equalto + .errors [data-error="equalto"],
   [type="number"].invalid.equalto + .errors [data-error="equalto"],
@@ -1059,7 +1085,7 @@ html, body {
   [type="password"].invalid.equalto + .errors [data-error="equalto"],
   [type="checkbox"].invalid.equalto + .errors [data-error="equalto"] {
     display: block; }
-  /* line 146, ../sass/partials/_forms.scss */
+  /* line 156, ../sass/partials/_forms.scss */
   [type="text"].invalid[type="checkbox"], [type="text"].invalid[type="radio"],
   [type="email"].invalid[type="checkbox"],
   [type="email"].invalid[type="radio"],
@@ -1077,7 +1103,7 @@ html, body {
     height: 1.8rem;
     width: 18px;
     width: 1.8rem; }
-    /* line 154, ../sass/partials/_forms.scss */
+    /* line 164, ../sass/partials/_forms.scss */
     [type="text"].invalid[type="checkbox"] + .errors, [type="text"].invalid[type="radio"] + .errors,
     [type="email"].invalid[type="checkbox"] + .errors,
     [type="email"].invalid[type="radio"] + .errors,

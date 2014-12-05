@@ -15,6 +15,8 @@ App.FormValidation = (function() {
   'use strict';
 
   var validation,
+      debug = true, // Set to true to debug the validation process
+      debugFieldValidationArray = [], // Array that will contain the id of fields that fail validation. "debug" must be set to true for this to work
 
       validationSettings = {
         onBlur: true, // Only if field is invalid or valid
@@ -122,8 +124,8 @@ App.FormValidation = (function() {
 
     // Form element(s)
     dom.$form = $( selectors.form );
-    dom.$validateField = $( selectors.validateField, dom.$form );
-    dom.$submitButton = $( selectors.submitButton, dom.$form );
+    dom.$validateField = $( selectors.validateField );
+    dom.$submitButton = $( selectors.submitButton );
   }
 
   /**
@@ -158,6 +160,9 @@ App.FormValidation = (function() {
    */
   function _pitStop ( event ) {
     var $el = $( event.target ), // The form element in question
+
+    // If fields ahve invalid or valid classes
+    // This so taht we can validate on keyup, focus and blur
     fieldInvalid = $el.hasClass( classNames.valid ),
     fieldIsInvalid = $el.hasClass( classNames.invalid );
 
@@ -165,7 +170,7 @@ App.FormValidation = (function() {
     if ( event.type === 'keyup' ) {
       var key = event.keyCode ? event.keyCode : event.charCode;
       if ( disabledKeys.indexOf( key ) === -1 && ( fieldIsInvalid || fieldInvalid ) )  {
-        _validate($el);
+        _validateField($el);
       }
     }
 
@@ -173,49 +178,53 @@ App.FormValidation = (function() {
     if ( event.type === 'blur' ) {
       // Only validate field on blur, if invalid
       if ( fieldIsInvalid ) {
-        _validate($el);
+        _validateField($el);
       }
     }
 
     // SUBMIT event
+    // Sets submitBool to true, and if at least one of fields return false, it will be false, and cancel the submit
     if ( event.type === 'submit' ) {
-      // Loop through all fields
-      var submitBool;
-      $.each(dom.$validateField, function () {
-        submitBool = _validate($(this));
-        console.log($(this).attr('tabindex'), submitBool);
+
+      // event.preventDefault(); // temporarily disable event submit
+
+      var $formToValidate = $(event.currentTarget);
+      var submitBool = true;
+
+      // Loop through fields in form
+      $formToValidate.find( dom.$validateField ).each( function () {
+        submitBool = _validateField($(this));
+
+        // To debug which fields are failing
+        if (debug && submitBool === false) {
+          debugFieldValidationArray.push($(this).attr('id'));
+        }
       });
 
-      console.log('=======');
+      if (debug) {
+        console.log('Fields that fail: ' + debugFieldValidationArray);
+      }
 
-      return false;
-
-      // return submitBool;
+      // If submitBool === true, form is valid, and submitted. Else it is not
+      if (!submitBool) {
+        // Set focus in first invalid field
+        $formToValidate.find('.invalid:first').focus();
+        return false;
+      } else {
+        alert('form is valid');
+        return false;
+      }
     }
-
-
-    // } else if ( event.type === 'submit' ) {
-    //   // Validate all fields in form
-
-    //   console.log('submit form triggered');
-    //   return false;
-    // }
-    // } else {
-    //   _validate($el);
-    // }
-
-    // if ( event.type === 'focus' ) {
-    //   _validate($el);
-    // }
   }
 
   /**
-   * Validate fields
+   * Validate field
+   * This function is called in a field loop, and validates one field at a time
    * @param  {jQuery element} $this
    * @param  {variable} validation
    * @return {variable} validation
    */
-  function _validate($this, validation) {
+  function _validateField($this, validation) {
     validation = true;
 
     var $type = $this.attr('type'), // Field type [text, password, email, ...]
@@ -357,46 +366,20 @@ App.FormValidation = (function() {
       Checkbox validation
     */
     if ( $type === 'checkbox' && $validationType.indexOf( validationTypes.required ) !== -1 ) {
-      if( $this.prop('checked') === false ) {
-        $this.addClass(validationTypes.required);
+
+      if ( $this.prop('checked') === false ) {
         $this.removeClass(classNames.valid);
+        $this.addClass(validationTypes.required);
         $this.addClass(classNames.invalid);
         validation = false;
       } else {
         $this.removeClass(validationTypes.required);
+        $this.removeClass(classNames.invalid);
       }
     }
 
+    // returns if the field in context is valid or not
     return validation;
-
-    // OLD CRAP
-    // else if( $type === undefined && $value === "0" ) {
-    //   $this.removeClass(classNames.valid);
-    //   $this.addClass(classNames.invalid);
-    //   validation = false;
-    // }
-    // else if( $type === 'checkbox' && $this.prop('checked') === false ) {
-    //   $this.removeClass(classNames.valid);
-    //   $this.addClass(classNames.invalid);
-    //   validation = false;
-    // }
-    // else if( $type === 'email' && !emailRegExp.test( $value ) ) {
-    //   $this.removeClass(classNames.valid);
-    //   $this.addClass(classNames.invalid);
-    //   validation = false;
-    // }
-    // REQUIRED CHECKBOX
-    // else if( $this.prop('checked') && $this.hasClass('js-user-login') ) {
-    //   $this.removeClass(classNames.valid);
-    //   $this.addClass(classNames.invalid);
-    //   validation = false;
-    // }
-    // else {
-    //   // If all is valid, return validation
-    //   $this.removeClass(classNames.invalid);
-    //   $this.addClass(classNames.valid);
-    //   validation = true;
-    // }
   }
 
   ////////////////

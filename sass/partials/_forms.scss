@@ -43,7 +43,7 @@
 %invalid {
   background: lighten($color-warning, 30%);
   border: solid 1px $color-warning;
-  @include transition(none);
+  // @include transition(border-color 0.5s);
 }
 
 .validation-summary,
@@ -107,7 +107,16 @@
   &.valid {
     border-color: $color-valid;
     background: lighten($color-valid, 40%);
-    @include transition(none);
+    @include transition(border-color 0.5s);
+
+    &[type="checkbox"],
+    &[type="radio"] {
+      background: none;
+
+      &:after {
+        border-color: $color-valid;
+      }
+    }
   }
 
   // When field is invalid
@@ -115,6 +124,7 @@
     @extend %invalid;
     border-bottom: solid 1px lighten($color-warning, 20%);
     height: 47px;
+    @include transition(border-color 0.5s);
 
     // Display errors container
     & + .errors {

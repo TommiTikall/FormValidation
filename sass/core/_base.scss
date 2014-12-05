@@ -231,7 +231,7 @@ button {
   &:checked:after { content: "\2713"; }
 
   // Specifically float left to re-order dom
-  &.checkbox {
+  &.checkbox--left {
     float: left;
     @include rem(margin-right, 10px);
   }

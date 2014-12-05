@@ -15,6 +15,7 @@ App.FormValidation = (function() {
   'use strict';
 
   var validation,
+      validationTriggers,
 
       validationSettings = {
         onBlur: true, // Only if field is invalid or valid
@@ -131,22 +132,58 @@ App.FormValidation = (function() {
    */
   function _addEventListeners() {
 
-    if ( validationSettings.onKeyUp ) {
-      dom.$validateField.on( 'keyup', _pitStop );
+    // Loop through all forms to get validation triggers
+    // dom.$form.each(function () {
+
+    //   validationTriggers = $(this).data('validation-when');
+
+    //   // Add trigger envent listeners to form elements
+    //   _addTriggerListeners($(this));
+
+    // });
+
+    if ( dom.$validateField[0].tagName === "CHECKBOX" ) {
+      dom.$validateField.on( 'change', _pitStop );
     }
-    if ( validationSettings.onFocus ) {
-      dom.$validateField.on( 'focus', _pitStop );
-    }
-    if ( validationSettings.onBlur ) {
-      dom.$validateField.on( 'blur', _pitStop );
-    }
-    if ( validationSettings.onSubmit ) {
-      dom.$form.on( 'submit', _pitStop );
+    else {
+      // If validatioSettings object is used
+      if ( validationSettings.onKeyUp ) {
+        dom.$validateField.on( 'keyup', _pitStop );
+      }
+      if ( validationSettings.onFocus ) {
+        dom.$validateField.on( 'focus', _pitStop );
+      }
+      if ( validationSettings.onBlur ) {
+        dom.$validateField.on( 'blur', _pitStop );
+      }
+      if ( validationSettings.onSubmit ) {
+        dom.$form.on( 'submit', _pitStop );
+      }
     }
 
 
     // dom.$validateField.on( 'focus', _pitStop );
     // dom.$form.on( 'click', dom.$submitButton, _pitStop );
+  }
+
+  // Add listeners to form elements
+  function _addTriggerListeners( $form ) {
+    if ( validationTriggers.indexOf("keyup") !== -1 ) {
+      dom.$validateField.on( 'keyup', $form, _pitStop );
+      console.log('#' + $form.attr('id') + ' > _addTriggerListeners: keyup');
+    }
+    if ( validationTriggers.indexOf("focus") !== -1 ) {
+      dom.$validateField.on( 'focus', $form, _pitStop );
+      console.log('#' + $form.attr('id') + ' > _addTriggerListeners: focus');
+    }
+    if ( validationTriggers.indexOf("blur") !== -1 ) {
+      dom.$validateField.on( 'blur', $form, _pitStop );
+      console.log('#' + $form.attr('id') + ' > _addTriggerListeners: blur');
+    }
+    if ( validationTriggers.indexOf("submit") !== -1 ) {
+      dom.$form.on( 'submit', $form, _pitStop );
+      console.log('#' + $form.attr('id') + ' > _addTriggerListeners: submit');
+    }
   }
 
   /**
@@ -156,16 +193,28 @@ App.FormValidation = (function() {
    * @param  {event} event
    * @return {void}
    */
-  function _pitStop ( event ) {
-    var $el = $( event.target ), // The form element in question
-    fieldInvalid = $el.hasClass( classNames.valid ),
-    fieldIsInvalid = $el.hasClass( classNames.invalid );
+  function _pitStop( event ) {
+    var $el = $( event.target ), // The element in question: form element on submit, input element on field validation
+        $parentForm,
+        fieldInvalid = $el.hasClass( classNames.valid ),
+        fieldIsInvalid = $el.hasClass( classNames.invalid );
+
+    if ($el[0].tagName == 'INPUT') {
+      $parentForm = $el.parents('form');
+    } else {
+      $parentForm = $el;
+    }
+
+    console.log($parentForm[0].id);
+
+    // console.log($el[0].tagName, typeof(event));
+    // console.log($parentForm.attr('id'), typeof(event));
 
     // KEYUP event
     if ( event.type === 'keyup' ) {
       var key = event.keyCode ? event.keyCode : event.charCode;
       if ( disabledKeys.indexOf( key ) === -1 && ( fieldIsInvalid || fieldInvalid ) )  {
-        _validate($el);
+        _validateSingleField($el, $parentForm);
       }
     }
 
@@ -173,20 +222,22 @@ App.FormValidation = (function() {
     if ( event.type === 'blur' ) {
       // Only validate field on blur, if invalid
       if ( fieldIsInvalid ) {
-        _validate($el);
+        _validateSingleField($el);
       }
     }
 
     // SUBMIT event
     if ( event.type === 'submit' ) {
-      // Loop through all fields
-      var submitBool;
-      $.each(dom.$validateField, function () {
-        submitBool = _validate($(this));
-        console.log($(this).attr('tabindex'), submitBool);
-      });
+      _validateForm( $(this) );
 
-      console.log('=======');
+      // Loop through all fields
+      // var submitBool;
+      // $.each(dom.$validateField, function () {
+      //   submitBool = _validateForm($(this));
+      //   console.log($(this).attr('tabindex'), submitBool);
+      // });
+
+      // console.log('=======');
 
       return false;
 
@@ -201,12 +252,20 @@ App.FormValidation = (function() {
     //   return false;
     // }
     // } else {
-    //   _validate($el);
+    //   _validateSingleField($el);
     // }
 
     // if ( event.type === 'focus' ) {
-    //   _validate($el);
+    //   _validateSingleField($el);
     // }
+  }
+
+
+  function _validateForm( $form ) {
+    var $fields = $form.find(dom.$validateField);
+    $fields.each(function() {
+      _validateSingleField( $(this) );
+    });
   }
 
   /**
@@ -215,12 +274,12 @@ App.FormValidation = (function() {
    * @param  {variable} validation
    * @return {variable} validation
    */
-  function _validate($this, validation) {
+  function _validateSingleField( $element ) {
     validation = true;
 
-    var $type = $this.attr('type'), // Field type [text, password, email, ...]
-        $validationType = $this.data('validation'), // Get types of validations for this field
-        $value = $this.val(), // Field value
+    var $type = $element.attr('type'), // Field type [text, password, email, ...]
+        $validationType = $element.data('validation'), // Get types of validations for this field
+        $value = $element.val(), // Field value
         $length = $value.length; // Field value length
 
     // Check if field belongs to TEXT INPUT FIELDS group
@@ -230,9 +289,9 @@ App.FormValidation = (function() {
         Clear all validation classes if EMPTY
       */
       if ( $length === 0 ) {
-        $this.removeClass(classNames.invalid);
+        $element.removeClass(classNames.invalid);
         $.each( validationTypes, function(i, n){
-          $this.removeClass(n.toString());
+          $element.removeClass(n.toString());
         });
       }
 
@@ -242,10 +301,10 @@ App.FormValidation = (function() {
       if ( $validationType.indexOf( validationTypes.required ) !== -1 ) {
 
         if ( $length === 0 ) {
-          $this.addClass(validationTypes.required);
+          $element.addClass(validationTypes.required);
           validation = false;
         } else {
-          $this.removeClass(validationTypes.required);
+          $element.removeClass(validationTypes.required);
         }
       }
 
@@ -255,9 +314,9 @@ App.FormValidation = (function() {
       if ( $length !== 0 && $validationType.indexOf( validationTypes.email ) !== -1 ) {
 
         if ( regExps.emailRegExp.test( $value ) ) {
-          $this.removeClass(validationTypes.email);
+          $element.removeClass(validationTypes.email);
         } else {
-          $this.addClass(validationTypes.email);
+          $element.addClass(validationTypes.email);
           validation = false;
         }
       }
@@ -268,9 +327,9 @@ App.FormValidation = (function() {
       if ( $length !== 0 && $validationType.indexOf( validationTypes.number ) !== -1 ) {
 
         if ( regExps.numberRegExp.test( $value ) ) {
-          $this.removeClass(validationTypes.number);
+          $element.removeClass(validationTypes.number);
         } else {
-          $this.addClass(validationTypes.number);
+          $element.addClass(validationTypes.number);
           validation = false;
         }
       }
@@ -287,9 +346,9 @@ App.FormValidation = (function() {
 
         // If value length is the same or bigger than minimumCharsToMatch
         if ( $length >= minimumCharsToMatch ) {
-          $this.removeClass(validationTypes.minchars);
+          $element.removeClass(validationTypes.minchars);
         } else {
-          $this.addClass(validationTypes.minchars);
+          $element.addClass(validationTypes.minchars);
           validation = false;
         }
       }
@@ -307,9 +366,9 @@ App.FormValidation = (function() {
 
         // If the field value matches the customRegExpToMatch
         if ( customRegExpToMatch.test( $value ) ) {
-          $this.removeClass(validationTypes.custom);
+          $element.removeClass(validationTypes.custom);
         } else {
-          $this.addClass(validationTypes.custom);
+          $element.addClass(validationTypes.custom);
           validation = false;
         }
 
@@ -329,9 +388,9 @@ App.FormValidation = (function() {
 
         // If the field value matches the equaltoRegExpToMatch
         if ( $value === $equaltoFieldValue ) {
-          $this.removeClass(validationTypes.equalto);
+          $element.removeClass(validationTypes.equalto);
         } else {
-          $this.addClass(validationTypes.equalto);
+          $element.addClass(validationTypes.equalto);
           validation = false;
         }
       }
@@ -339,16 +398,16 @@ App.FormValidation = (function() {
       // Check if validation === true || false
       // If field is not valid, remove valid class, and introduce invalid class
       if ( validation === false ) {
-        $this.removeClass(classNames.valid);
-        $this.addClass(classNames.invalid);
+        $element.removeClass(classNames.valid);
+        $element.addClass(classNames.invalid);
 
       // Check if field is valid, and has invalid class
       // If both are fulfilled, then remove invalid class, and add valid class
       // This is to ensure that fields that do not have 'required' validation,
       // do not get valid class if empty when validation is triggered
-      } else if ( validation === true && $this.hasClass(classNames.invalid) ) {
-        $this.removeClass(classNames.invalid);
-        $this.addClass(classNames.valid);
+      } else if ( validation === true && $element.hasClass(classNames.invalid) ) {
+        $element.removeClass(classNames.invalid);
+        $element.addClass(classNames.valid);
       }
 
     }
@@ -356,14 +415,15 @@ App.FormValidation = (function() {
     /*
       Checkbox validation
     */
-    if ( $type === 'checkbox' && $validationType.indexOf( validationTypes.required ) !== -1 ) {
-      if( $this.prop('checked') === false ) {
-        $this.addClass(validationTypes.required);
-        $this.removeClass(classNames.valid);
-        $this.addClass(classNames.invalid);
+    else if ( $type === 'checkbox' && $validationType.indexOf( validationTypes.required ) !== -1 ) {
+      if( $element.prop('checked') === false ) {
+        // $element.addClass(validationTypes.required);
+        $element.removeClass(classNames.valid);
+        $element.addClass(classNames.invalid);
         validation = false;
       } else {
-        $this.removeClass(validationTypes.required);
+        $element.removeClass(validationTypes.invalid);
+        $element.addClass(classNames.valid);
       }
     }
 

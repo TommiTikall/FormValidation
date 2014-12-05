@@ -29,7 +29,7 @@
 
     <header class="site-header">
       <div class="container">
-        <h1 class="logo">Validate</h1>
+        <div class="logo">&lt;Validate&gt;</div>
       </div>
     </header>
 
@@ -51,18 +51,18 @@
         <section class="container content-block">
           <div class="column">
             <h2>Demo</h2>
-            <form class="form demo js-form" data-validation-when="keyup field-blur submit">
+            <form class="form demo js-form" name="demo-form" data-validation-when="keyup field-blur submit">
               <div class="input-row">
-                <label>Text validation [required]</label>
-                <input type="text" tabindex="1" data-validation="required">
+                <label for="text">Text validation [required]</label>
+                <input type="text" id="text" tabindex="1" data-validation="required">
                 <ul class="errors">
                   <li class="error" data-error="required">This field is required</li>
                 </ul>
               </div>
 
               <div class="input-row">
-                <label>E-mail validation [required, email]</label>
-                <input type="email" data-validation="required email" tabindex="2">
+                <label for="email">E-mail validation [required, email]</label>
+                <input type="email" id="email" data-validation="required email" tabindex="2">
                 <ul class="errors">
                   <li class="error" data-error="required">This field is required</li>
                   <li class="error" data-error="email">This is not a valid e-mail</li>
@@ -70,8 +70,8 @@
               </div>
 
               <div class="input-row">
-                <label>Number validation [required, number]</label>
-                <input type="text" data-validation="required number" tabindex="3">
+                <label for="number">Number validation [required, number]</label>
+                <input type="text" id="number" data-validation="required number" tabindex="3">
                 <ul class="errors">
                   <li class="error" data-error="required">This field is required</li>
                   <li class="error" data-error="number">You can only input numbers here</li>
@@ -79,8 +79,8 @@
               </div>
 
               <div class="input-row">
-                <label>Password [required, minchars:6]</label>
-                <input type="password" class="password" id="password" data-validation="required minchars:6" tabindex="4">
+                <label for="password">Password [required, minchars:6]</label>
+                <input type="password" id="password" class="password" id="password" data-validation="required minchars:6" tabindex="4">
                 <ul class="errors">
                   <li class="error" data-error="required">This field is required</li>
                   <li class="error" data-error="minchars">There must be at least 6 characters</li>
@@ -88,8 +88,8 @@
               </div>
 
               <div class="input-row">
-                <label>Confirm password [required equalto:#password]</label>
-                <input type="password" data-validation="required equalto:#password" tabindex="5">
+                <label for="confirm-password">Confirm password [required equalto:#password]</label>
+                <input type="password" id="confirm-password" data-validation="required equalto:#password" tabindex="5">
                 <ul class="errors">
                   <li class="error" data-error="required">This field is required</li>
                   <li class="error" data-error="equalto">The passwords must match</li>
@@ -97,8 +97,8 @@
               </div>
 
               <div class="input-row">
-                <label>Minimum 4 numbers [required, minchars:4, number]</label>
-                <input type="text" data-validation="required minchars:4 number" tabindex="6">
+                <label for="numbers-min4">Minimum 4 numbers [required, minchars:4, number]</label>
+                <input type="text" id="numbers-min4" data-validation="required minchars:4 number" tabindex="6">
                 <ul class="errors">
                   <li class="error" data-error="required">This field is required</li>
                   <li class="error" data-error="minchars">There must be at least 4 characters</li>
@@ -107,8 +107,8 @@
               </div>
 
               <div class="input-row">
-                <label>Numbers only [custom] (Custom regular expression)</label>
-                <input type="text" data-validation="required custom:'^[0-9]*$'" tabindex="7">
+                <label for="numbers-custom">Numbers only [custom] (Custom regular expression)</label>
+                <input type="text" id="numbers-custom" data-validation="required custom:'^[0-9]*$'" tabindex="7">
                 <!-- <input type="text" data-validation="custom:'^\s*[\w\-\+_]+(\.[\w\-\+_]+)*\@[\w\-\+_]+\.[\w\-\+_]+(\.[\w\-\+_]+)*\s*$'" tabindex="6"> -->
                 <ul class="errors">
                   <li class="error" data-error="required">This field is required</li>
@@ -117,8 +117,8 @@
               </div>
 
               <div class="input-row">
-                <input type="checkbox" id="checkbox" data-validation="required" tabindex="8">
-                <label for="checkbox" class="checkbox">Checkbox [required]</label>
+                <label for="checkbox">Checkbox [required]</label>
+                <input type="checkbox" class="checkbox" id="checkbox" data-validation="required" tabindex="8">
                 <ul class="errors">
                   <li class="error" data-error="required">You MUST approve our 600 pages of legal stuff</li>
                 </ul>
@@ -171,7 +171,7 @@
         </section>
 
         <!-- Code blocks section -->
-        <!-- <section class="container content-block" id="codeexamples">
+        <section class="container content-block" id="codeexamples">
           <header>
             <h2>Code examples</h2>
           </header>
@@ -183,13 +183,16 @@
               All you have to do, is set <code>data-validation="required"</code> on the <code>&lt;input&gt;</code>, and it will take care of the rest.<br />
               To display an validation error message, add the error container (markup type is optional as long as it <code>class="errors"</code>), with an <code>class="error"</code> and a <code>data-error="required"</code> that reflects the <code>data-validation</code> attribute in the <code>&lt;input&gt;</code>.
             </p>
-            <form class="form js-form column">
+            <form class="form js-form column" data-validation-when="keyup field-blur">
               <div class="input-row">
                 <label>Text field</label>
                 <input type="text" data-validation="required">
                 <ul class="errors">
                   <li class="error" data-error="required">This field is required</li>
                 </ul>
+              </div>
+              <div class="input-row">
+                <input type="submit" class="js-submit">
               </div>
             </form>
             <div class="codeblock">
@@ -204,7 +207,7 @@
               Each validation type is set in the <code>data-validation</code> attribute on the <code>&lt;input&gt;</code> tag.<br />
               The example below show exactly how to achieve this.
             </p>
-            <form class="form js-form column">
+            <form class="form js-form column" data-validation-when="keyup field-blur">
               <div class="input-row">
                 <label>Email</label>
                 <input type="text" data-validation="required email">
@@ -212,6 +215,9 @@
                   <li class="error" data-error="required">This field is required</li>
                   <li class="error" data-error="email">Not valid email input</li>
                 </ul>
+              </div>
+              <div class="input-row">
+                <input type="submit" class="js-submit">
               </div>
             </form>
             <div class="codeblock">
@@ -235,7 +241,7 @@
               <li><a href="http://www.evotech.net/blog/2007/08/css-javascript-character-entities/">Convert HTML Entities to usable CSS code (for pseudo elements)</a></li>
             </ul>
           </section>
-        </section> -->
+        </section>
 
       </article>
     </main>

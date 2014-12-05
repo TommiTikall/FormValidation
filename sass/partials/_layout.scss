@@ -11,7 +11,7 @@ html, body {
 
 .site-header {
   background: $color-palette-1;
-  border-bottom: solid 7px darken($color-palette-1, 5%);
+  border-bottom: solid 5px darken($color-palette-1, 5%);
   @include rem(margin-bottom, 30px);
   @include rem(padding, 20px 0 0);
 
@@ -21,37 +21,42 @@ html, body {
 
   .logo {
     color: $theme-color-primary;
+    font-family: $font-display;
     position: relative;
-    @include rem(padding, 0 0 0 50px);
+    @include rem(padding, 0 0 15px);
     @include font-size(50px);
 
-    &:first-letter {
-      color: $color-palette-1;
-    }
+    // For browsers that support first letter, get fancy logo
+    // // @supports(p: first-letter) {
 
-    &:before,
-    &:after {
-      // Ballot box
-      content: "\2610";
-      display: block;
-      line-height: 0.5;
-      position: absolute;
-        left: 0;
-        top: 8px;
-        z-index: 0;
-      @include font-size(80px);
-      @include rem(margin, 0 0 0 20px);
-    }
+    //   &:first-letter {
+    //     color: $color-palette-1;
+    //   }
 
-    &:after {
-      // Checkmark
-      content: "\2713";
-      color: #fff;
-      line-height: 0.5;
-      left: 2px;
-      top: 0;
-      @include font-size(100px);
-    }
+    //   &:before,
+    //   &:after {
+    //     // Ballot box
+    //     content: "\2610";
+    //     display: block;
+    //     line-height: 0.5;
+    //     position: absolute;
+    //       left: 0;
+    //       top: 8px;
+    //       z-index: 0;
+    //     @include font-size(80px);
+    //     @include rem(margin, 0 0 0 20px);
+    //   }
+
+    //   &:after {
+    //     // Checkmark
+    //     content: "\2713";
+    //     color: #fff;
+    //     line-height: 0.5;
+    //     left: 2px;
+    //     top: 0;
+    //     @include font-size(100px);
+    //   }
+    // }
   }
 }
 

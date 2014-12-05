@@ -656,16 +656,16 @@ button {
   /* line 231, ../sass/core/_base.scss */
   [type="checkbox"]:checked:after {
     content: "\2713"; }
-  /* line 232, ../sass/core/_base.scss */
-  label > [type="checkbox"] {
+  /* line 234, ../sass/core/_base.scss */
+  [type="checkbox"].checkbox {
     float: left;
     margin-right: 10px;
     margin-right: 1rem; }
 
-/* line 238, ../sass/core/_base.scss */
+/* line 240, ../sass/core/_base.scss */
 label {
   display: inline; }
-  /* line 242, ../sass/core/_base.scss */
+  /* line 244, ../sass/core/_base.scss */
   label.checkbox {
     margin-right: 10px; }
 
@@ -861,7 +861,7 @@ html, body {
 /* line 12, ../sass/partials/_layout.scss */
 .site-header {
   background: #00a1cb;
-  border-bottom: solid 7px #008db2;
+  border-bottom: solid 5px #008db2;
   margin-bottom: 30px;
   margin-bottom: 3rem;
   padding: 20px 0 0;
@@ -872,44 +872,20 @@ html, body {
   /* line 22, ../sass/partials/_layout.scss */
   .site-header .logo {
     color: white;
+    font-family: "Gill Sans", "Lucida Sans Unicode", sans-serif;
     position: relative;
-    padding: 0 0 0 50px;
-    padding:  0 0 0 5rem;
+    padding: 0 0 15px;
+    padding:  0 0 1.5rem;
     font-size: 50px;
     font-size: 5rem; }
-    /* line 28, ../sass/partials/_layout.scss */
-    .site-header .logo:first-letter {
-      color: #00a1cb; }
-    /* line 32, ../sass/partials/_layout.scss */
-    .site-header .logo:before, .site-header .logo:after {
-      content: "\2610";
-      display: block;
-      line-height: 0.5;
-      position: absolute;
-      left: 0;
-      top: 8px;
-      z-index: 0;
-      font-size: 80px;
-      font-size: 8rem;
-      margin: 0 0 0 20px;
-      margin:  0 0 0 2rem; }
-    /* line 46, ../sass/partials/_layout.scss */
-    .site-header .logo:after {
-      content: "\2713";
-      color: #fff;
-      line-height: 0.5;
-      left: 2px;
-      top: 0;
-      font-size: 100px;
-      font-size: 10rem; }
 
 @media (min-width: 700px) {
-  /* line 60, ../sass/partials/_layout.scss */
+  /* line 65, ../sass/partials/_layout.scss */
   .content-block {
     padding-bottom: 30px;
     padding-bottom: 3rem; } }
 
-/* line 71, ../sass/partials/_layout.scss */
+/* line 76, ../sass/partials/_layout.scss */
 .site-footer {
   background: #00a1cb;
   background: rgba(0, 161, 203, 0.9);
@@ -918,32 +894,32 @@ html, body {
   padding: 20px 0;
   padding:  2rem 0; }
 
-/* line 79, ../sass/partials/_layout.scss */
+/* line 84, ../sass/partials/_layout.scss */
 .site-footer__column {
   padding: 5px 0;
   text-align: center; }
   @media (min-width: 700px) {
-    /* line 79, ../sass/partials/_layout.scss */
+    /* line 84, ../sass/partials/_layout.scss */
     .site-footer__column {
       width: 31.42857%;
       float: left;
       margin-right: 2.85714%; }
-      /* line 85, ../sass/partials/_layout.scss */
+      /* line 90, ../sass/partials/_layout.scss */
       .site-footer__column:first-child {
         text-align: left; }
-      /* line 88, ../sass/partials/_layout.scss */
+      /* line 93, ../sass/partials/_layout.scss */
       .site-footer__column:nth-child(3n) {
         text-align: right;
         float: right;
         margin-right: 0; } }
   @media (min-width: 1000px) {
-    /* line 79, ../sass/partials/_layout.scss */
+    /* line 84, ../sass/partials/_layout.scss */
     .site-footer__column {
       width: 31.42857%;
       float: left;
       margin-right: 2.85714%; } }
 
-/* line 100, ../sass/partials/_layout.scss */
+/* line 105, ../sass/partials/_layout.scss */
 .code-example .form {
   padding: 0 0 10px; }
 
@@ -961,7 +937,8 @@ html, body {
 [type="email"].invalid,
 [type="number"].invalid,
 [type="search"].invalid,
-[type="password"].invalid {
+[type="password"].invalid,
+[type="checkbox"].invalid {
   background: #fde6b2;
   border: solid 1px #fab71c;
   -moz-transition: none;
@@ -1003,77 +980,86 @@ html, body {
 [data-validation~="required"] {
   border-bottom: solid 4px #cccccc; }
 
-/* line 106, ../sass/partials/_forms.scss */
+/* line 107, ../sass/partials/_forms.scss */
 [type="text"].valid,
 [type="email"].valid,
 [type="number"].valid,
 [type="search"].valid,
-[type="password"].valid {
+[type="password"].valid,
+[type="checkbox"].valid {
   border-color: #48b62e;
   background: #caefc1;
   -moz-transition: none;
   -o-transition: none;
   -webkit-transition: none;
   transition: none; }
-/* line 113, ../sass/partials/_forms.scss */
+/* line 114, ../sass/partials/_forms.scss */
 [type="text"].invalid,
 [type="email"].invalid,
 [type="number"].invalid,
 [type="search"].invalid,
-[type="password"].invalid {
+[type="password"].invalid,
+[type="checkbox"].invalid {
   border-bottom: solid 1px #fcd780;
   height: 47px; }
-  /* line 119, ../sass/partials/_forms.scss */
+  /* line 120, ../sass/partials/_forms.scss */
   [type="text"].invalid + .errors,
   [type="email"].invalid + .errors,
   [type="number"].invalid + .errors,
   [type="search"].invalid + .errors,
-  [type="password"].invalid + .errors {
+  [type="password"].invalid + .errors,
+  [type="checkbox"].invalid + .errors {
     display: block;
     padding-top: 10px; }
-  /* line 125, ../sass/partials/_forms.scss */
+  /* line 126, ../sass/partials/_forms.scss */
   [type="text"].invalid.required + .errors [data-error="required"],
   [type="email"].invalid.required + .errors [data-error="required"],
   [type="number"].invalid.required + .errors [data-error="required"],
   [type="search"].invalid.required + .errors [data-error="required"],
-  [type="password"].invalid.required + .errors [data-error="required"] {
+  [type="password"].invalid.required + .errors [data-error="required"],
+  [type="checkbox"].invalid.required + .errors [data-error="required"] {
     display: block; }
-  /* line 128, ../sass/partials/_forms.scss */
+  /* line 129, ../sass/partials/_forms.scss */
   [type="text"].invalid.email + .errors [data-error="email"],
   [type="email"].invalid.email + .errors [data-error="email"],
   [type="number"].invalid.email + .errors [data-error="email"],
   [type="search"].invalid.email + .errors [data-error="email"],
-  [type="password"].invalid.email + .errors [data-error="email"] {
+  [type="password"].invalid.email + .errors [data-error="email"],
+  [type="checkbox"].invalid.email + .errors [data-error="email"] {
     display: block; }
-  /* line 131, ../sass/partials/_forms.scss */
+  /* line 132, ../sass/partials/_forms.scss */
   [type="text"].invalid.number + .errors [data-error="number"],
   [type="email"].invalid.number + .errors [data-error="number"],
   [type="number"].invalid.number + .errors [data-error="number"],
   [type="search"].invalid.number + .errors [data-error="number"],
-  [type="password"].invalid.number + .errors [data-error="number"] {
+  [type="password"].invalid.number + .errors [data-error="number"],
+  [type="checkbox"].invalid.number + .errors [data-error="number"] {
     display: block; }
-  /* line 134, ../sass/partials/_forms.scss */
+  /* line 135, ../sass/partials/_forms.scss */
   [type="text"].invalid.minchars + .errors [data-error="minchars"],
   [type="email"].invalid.minchars + .errors [data-error="minchars"],
   [type="number"].invalid.minchars + .errors [data-error="minchars"],
   [type="search"].invalid.minchars + .errors [data-error="minchars"],
-  [type="password"].invalid.minchars + .errors [data-error="minchars"] {
+  [type="password"].invalid.minchars + .errors [data-error="minchars"],
+  [type="checkbox"].invalid.minchars + .errors [data-error="minchars"] {
     display: block; }
-  /* line 137, ../sass/partials/_forms.scss */
+  /* line 138, ../sass/partials/_forms.scss */
   [type="text"].invalid.custom + .errors [data-error="custom"],
   [type="email"].invalid.custom + .errors [data-error="custom"],
   [type="number"].invalid.custom + .errors [data-error="custom"],
   [type="search"].invalid.custom + .errors [data-error="custom"],
-  [type="password"].invalid.custom + .errors [data-error="custom"] {
+  [type="password"].invalid.custom + .errors [data-error="custom"],
+  [type="checkbox"].invalid.custom + .errors [data-error="custom"] {
     display: block; }
-  /* line 140, ../sass/partials/_forms.scss */
+  /* line 141, ../sass/partials/_forms.scss */
   [type="text"].invalid.equalto + .errors [data-error="equalto"],
   [type="email"].invalid.equalto + .errors [data-error="equalto"],
   [type="number"].invalid.equalto + .errors [data-error="equalto"],
   [type="search"].invalid.equalto + .errors [data-error="equalto"],
-  [type="password"].invalid.equalto + .errors [data-error="equalto"] {
+  [type="password"].invalid.equalto + .errors [data-error="equalto"],
+  [type="checkbox"].invalid.equalto + .errors [data-error="equalto"] {
     display: block; }
-  /* line 145, ../sass/partials/_forms.scss */
+  /* line 146, ../sass/partials/_forms.scss */
   [type="text"].invalid[type="checkbox"], [type="text"].invalid[type="radio"],
   [type="email"].invalid[type="checkbox"],
   [type="email"].invalid[type="radio"],
@@ -1082,5 +1068,27 @@ html, body {
   [type="search"].invalid[type="checkbox"],
   [type="search"].invalid[type="radio"],
   [type="password"].invalid[type="checkbox"],
-  [type="password"].invalid[type="radio"] {
-    border-bottom: solid 1px #fcd780; }
+  [type="password"].invalid[type="radio"],
+  [type="checkbox"].invalid[type="checkbox"],
+  [type="checkbox"].invalid[type="radio"] {
+    background: #fff;
+    border-bottom: solid 1px #fcd780;
+    height: 18px;
+    height: 1.8rem;
+    width: 18px;
+    width: 1.8rem; }
+    /* line 154, ../sass/partials/_forms.scss */
+    [type="text"].invalid[type="checkbox"] + .errors, [type="text"].invalid[type="radio"] + .errors,
+    [type="email"].invalid[type="checkbox"] + .errors,
+    [type="email"].invalid[type="radio"] + .errors,
+    [type="number"].invalid[type="checkbox"] + .errors,
+    [type="number"].invalid[type="radio"] + .errors,
+    [type="search"].invalid[type="checkbox"] + .errors,
+    [type="search"].invalid[type="radio"] + .errors,
+    [type="password"].invalid[type="checkbox"] + .errors,
+    [type="password"].invalid[type="radio"] + .errors,
+    [type="checkbox"].invalid[type="checkbox"] + .errors,
+    [type="checkbox"].invalid[type="radio"] + .errors {
+      border-width: 1px;
+      margin-top: 5px;
+      margin-top: 0.5rem; }

@@ -39,11 +39,13 @@
         <section class="container content-block">
           <h1>Validate</h1>
           <h2>Approachable form validation</h2>
-          <h3>Markup is the word!</h3>
+          <!-- <h3>Markup is the word!</h3> -->
           <p>
-            Because so many form validation plugins are mostly javascript solutions, where which fields are validated, validation types, and error messages, are defined in javascript code, it is not always a good approach for content managment systems, that only flood the DOM. I can think of one scenario where CMS is set up to support multiple languages, and all translations are handled by the CMS, i.e. it will only be rendered in your DOM. Then how do we translate the error messages, for instance?
-            <br />
+            Because so many form validation plugins are mostly javascript solutions, where which fields are validated, validation types, and error messages, are defined in javascript code, it is not always a good approach for content managment systems, that only flood the DOM. I can think of one scenario where CMS is set up to support multiple languages, and all translations are handled by the CMS, i.e. it will only be rendered in your DOM. Translating the error messages and other lanugage specific content will be a hassle. Even if it is possible with some plugins, I would rather have it rendered in the DOM rather than injected.
+            <br><br>
             This is why I wanted to come up with a form validation that relies on the markup rather than the javascript. The markup makes the calls, the javascript should just listen and do as it is told!
+            <br>
+            With this approach, we are seperating markup from functionality. The markup just is, and the javascript listens on the DOM elements and handles the rest.
           </p>
 
         </section>
@@ -177,10 +179,11 @@
           </header>
 
           <div class="code-example">
-            <h3>Required validation</h3>
+            <h3>[Required] validation</h3>
             <p>
               Required field validation is the simplest validation.<br />
-              All you have to do, is set <code>data-validation="required"</code> on the <code>&lt;input&gt;</code>, and it will take care of the rest.<br />
+              All you have to do, is set <code>data-validation="required"</code> on the <code>&lt;input&gt;</code>, and it will take care of the rest.
+              <br>
               To display an validation error message, add the error container (markup type is optional as long as it <code>class="errors"</code>), with an <code>class="error"</code> and a <code>data-error="required"</code> that reflects the <code>data-validation</code> attribute in the <code>&lt;input&gt;</code>.
             </p>
             <form class="form js-form column" data-validation-when="keyup field-blur">
@@ -201,10 +204,14 @@
           </div>
 
           <div class="code-example">
-            <h3>Required email validation</h3>
+            <h3>[Required, Email] validation</h3>
             <p>
-              Here we are using multiple validation types: <code>required</code> and <code>email</code><br />
-              Each validation type is set in the <code>data-validation</code> attribute on the <code>&lt;input&gt;</code> tag.<br />
+              Here we are using multiple validation types: <code>required</code> and <code>email</code>.
+              <br>
+              Let's add an <code>Email</code> validation to accompany the <code>Required</code> validation.
+              Each validation type is set in the <code>data-validation</code> attribute on the <code>&lt;input&gt;</code> tag.
+              <br>
+              So we are just adding another data-validation attribute to the <code>&lt;input&gt;</code>.<br>
               The example below show exactly how to achieve this.
             </p>
             <form class="form js-form column" data-validation-when="keyup field-blur">
@@ -222,6 +229,30 @@
             </form>
             <div class="codeblock">
               <script src="https://gist.github.com/TommiTikall/5a056ca0b9441c23429f.js"></script>
+            </div>
+          </div>
+
+          <div class="code-example">
+            <h3>[Required, MinChars] validation</h3>
+            <p>
+              Here we are using multiple and more advanced validation types: <code>required</code> and <code>minchars</code><br />
+              The minchars validation type takes a parameter [number], seperated with a colon [:], like so: <code>minchars:4</code>
+            </p>
+            <form class="form js-form column">
+              <div class="input-row">
+                <label for="text-minchars">Text</label>
+                <input type="text" id="text-minchars" data-validation="required minchars:4">
+                <ul class="errors">
+                  <li class="error" data-error="required">This field is required</li>
+                  <li class="error" data-error="minchars">Please type in at least 4 characters</li>
+                </ul>
+              </div>
+              <div class="input-row">
+                <input type="submit" class="js-submit">
+              </div>
+            </form>
+            <div class="codeblock">
+              <script src="https://gist.github.com/TommiTikall/ccbee4c5ba6562a209da.js"></script>
             </div>
           </div>
         </section>

@@ -14,6 +14,8 @@ var App = App || {};
 App.FormValidation = (function() {
   'use strict';
 
+  console.log('init form');
+
   var validation,
       validationTriggers,
 

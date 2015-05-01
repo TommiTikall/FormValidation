@@ -8,11 +8,9 @@
 var App = App || {};
 
 $(document).ready(function() {
+    // Global init
+    App.Global.initialize();
 
-  // Global init
-  App.Global.initialize();
-
-  // Init form validation
-	App.FormValidation.initialize();
-
+    // Init form validation
+    App.FormValidation.initialize();
 });

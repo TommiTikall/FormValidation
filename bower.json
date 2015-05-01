@@ -1,0 +1,23 @@
+{
+  "name": "FormValidation",
+  "version": "0.0.1",
+  "homepage": "https://github.com/TommiTikall/FormValidation",
+  "authors": [
+    "Tomas Thorvardarson <tomasthorvardarson@gmail.com>"
+  ],
+  "description": "Form validaton for markup central solutions",
+  "main": "index.html",
+  "keywords": [
+    "forms",
+    "validation"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "private": true
+}

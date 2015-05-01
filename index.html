@@ -11,11 +11,11 @@
     <meta name="description" content="Form validation">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link href="stylesheets/main.css" rel="stylesheet">
+    <link href="dist/css/main.css" rel="stylesheet">
 
     <script>
-    // Replace no-js css class with js css class
-    document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, 'js');
+      // Replace no-js css class with js css class
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, 'js');
     </script>
 
     <!--[if lt IE 9]>
@@ -220,6 +220,30 @@
               <script src="https://gist.github.com/TommiTikall/5a056ca0b9441c23429f.js"></script>
             </div>
           </div>
+
+          <div class="code-example">
+            <h3>[Required, MinChars] validation</h3>
+            <p>
+              Here we are using multiple and more advanced validation types: <code>required</code> and <code>minchars</code><br />
+              The minchars validation type takes a parameter [number], seperated with a colon [:], like so: <code>minchars:4</code>
+            </p>
+            <form class="form js-form column" data-validation-when="keyup blur" id="example-3">
+              <div class="input-row">
+                <label for="text-minchars">Text</label>
+                <input type="text" id="text-minchars" data-validation="required minchars:4">
+                <ul class="errors">
+                  <li class="error" data-error="required">This field is required</li>
+                  <li class="error" data-error="minchars">Please type in at least 4 characters</li>
+                </ul>
+              </div>
+              <div class="input-row">
+                <input type="submit" class="js-submit">
+              </div>
+            </form>
+            <div class="codeblock">
+              <script src="https://gist.github.com/TommiTikall/ccbee4c5ba6562a209da.js"></script>
+            </div>
+          </div>
         </section>
 
         <section class="container content-block">
@@ -259,7 +283,7 @@
     <!-- JavaScript at the bottom for fast page loading -->
     <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
     <script>window.jQuery || document.write('<script src="javascripts/lib/jquery-1.11.1.js"><\/script>')</script>
-    <script src="javascripts/main-min.js"></script>
+    <script src="dist/js/main-min.js"></script>
 
   </body>
 </html>

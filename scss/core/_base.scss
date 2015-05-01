@@ -26,7 +26,7 @@ body {
       padding: 5px 10px;
       position: fixed;
         bottom: 0;
-        left: 0;
+        right: 0;
         z-index: 100;
       @include at-breakpoint($layout-m) {   content: "layout-m"; }
       @include at-breakpoint($layout-l) {   content: "layout-l"; }
